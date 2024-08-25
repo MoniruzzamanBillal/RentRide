@@ -1,10 +1,9 @@
+import AppLayout from "./components/layout/AppLayout";
+
 function App() {
   return (
     <div className="mainContainer">
-      <h1>main layout </h1>
-      <h1>main layout </h1>
-      <h1>main layout </h1>
-      <h1>main layout </h1>
+      <AppLayout />
     </div>
   );
 }
