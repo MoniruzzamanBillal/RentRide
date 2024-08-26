@@ -11,3 +11,9 @@ export type TFeaturedCar = {
   imageUrl: string;
   pricePerHour: number;
 };
+
+export type TTestimonial = {
+  review: string;
+  name: string;
+  img: string;
+};

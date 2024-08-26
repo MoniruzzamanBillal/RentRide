@@ -91,3 +91,38 @@ export const whyChooseData = [
     value: "item-10",
   },
 ];
+
+export const testimonialsData = [
+  {
+    review:
+      "Amazing service! The car was in excellent condition and the booking process was seamless. Highly recommend for anyone looking for a hassle-free rental experience.",
+    name: "Abu Ubaida",
+    img: "https://i.ibb.co/Kqrjj24/Doc-P-754782-638436953125887126.png",
+  },
+  {
+    review:
+      "Great selection of cars and affordable pricing. Customer support was responsive and helpful when I had questions. Will definitely use this service again!",
+    name: "Ismail Hania",
+    img: "https://i.ibb.co/FxHzzq7/images.jpg",
+  },
+  {
+    review:
+      "The entire experience was fantastic! From booking to pick-up and drop-off, everything was smooth. The car was clean, well-maintained, and perfect for my trip.",
+    name: "Abdel Malek ",
+    img: "https://i.ibb.co/X3QBnnF/Abdel-Malik-al-Houthi-blue-background-png.jpg",
+  },
+
+  {
+    review:
+      "Good experience overall. The car was nice and clean. The only issue was a slight delay during pick-up, but customer service was very accommodating.",
+    name: "Yahya Sinwar",
+    img: "https://i.ibb.co/bdpwbzK/131779399-yahya-sinwar-epa.jpg",
+  },
+
+  {
+    review:
+      "I rented a car for a weekend trip, and it was a great choice! Excellent customer service, and the vehicle was in top condition. Highly recommend this rental service!",
+    name: "Seikh Tamim",
+    img: "https://i.ibb.co/qgw9Mkf/emir-qatar-sheikh-tamim-bin-hamad-al-440nw-10143881d.jpg",
+  },
+];
