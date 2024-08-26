@@ -1,5 +1,6 @@
 import App from "@/App";
-import HomePage from "@/pages/HomePage";
+import { CarDetail, HomePage } from "@/pages";
+
 import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/detail/:id",
+        element: <CarDetail />,
       },
       {
         path: "/about",
