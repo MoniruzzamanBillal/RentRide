@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import { Navbar } from "../shared";
 
 const AppLayout = () => {
@@ -11,10 +12,7 @@ const AppLayout = () => {
 
       {/* child component  */}
       <div className="childComponent  mt-[4.4rem]  ">
-        {/* <Outlet /> */}
-        <h1>children</h1>
-        <h1>children</h1>
-        <h1>children</h1>
+        <Outlet />
       </div>
       {/* child component  */}
 
