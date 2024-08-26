@@ -1,4 +1,4 @@
-import { FeaturedCar } from "@/components/ui";
+import { FeaturedCar, WhyChoose } from "@/components/ui";
 
 const HomePage = () => {
   return (
@@ -6,11 +6,9 @@ const HomePage = () => {
       <h1> HomePage</h1>
       <h1> HomePage</h1>
       <h1> HomePage</h1>
-      <h1> HomePage</h1>
-      <h1> HomePage</h1>
-      <h1> HomePage</h1>
 
       <FeaturedCar />
+      <WhyChoose />
     </div>
   );
 };
