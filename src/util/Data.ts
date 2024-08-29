@@ -126,3 +126,34 @@ export const testimonialsData = [
     img: "https://i.ibb.co/qgw9Mkf/emir-qatar-sheikh-tamim-bin-hamad-al-440nw-10143881d.jpg",
   },
 ];
+
+export const valueCommitmentData = [
+  {
+    header: "Customer Satisfaction",
+    title:
+      "Ensuring a smooth, enjoyable rental experience is our top priority, from booking to return.",
+  },
+
+  {
+    header: "Quality Service",
+    title:
+      "We provide reliable, well-maintained vehicles with friendly, responsive support for your safety and comfort.",
+  },
+  {
+    header: "Sustainability",
+    title:
+      "We're committed to eco-friendly practices and include fuel-efficient cars in our fleet to reduce our environmental footprint.",
+  },
+
+  {
+    header: "Integrity",
+    title:
+      "We value transparency and honesty, offering clear communication, fair pricing, and building trust with our customers.",
+  },
+
+  {
+    header: "Innovation",
+    title:
+      "We embrace technology to continuously improve our services and provide efficient car rental experiences.",
+  },
+];

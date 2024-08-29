@@ -17,3 +17,15 @@ export type TTestimonial = {
   name: string;
   img: string;
 };
+
+export type TMissionVisionItem = {
+  id: number;
+  header: string;
+  content: string;
+  img: string;
+};
+
+export type TValueCommitment = {
+  header: string;
+  title: string;
+};

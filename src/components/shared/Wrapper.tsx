@@ -8,7 +8,7 @@ type TWrapperProps = {
 const Wrapper = ({ children, className }: TWrapperProps) => {
   return (
     <div
-      className={`WrapperContainer  w-[98%] sm:w-[94%] xl:w-[90%] xlg:w-[85%] m-auto ${
+      className={`WrapperContainer  w-[95%] sm:w-[93%] xl:w-[90%] xlg:w-[85%] m-auto ${
         className || ""
       } `}
     >
