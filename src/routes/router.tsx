@@ -1,5 +1,5 @@
 import App from "@/App";
-import { AboutUs, CarDetail, HomePage } from "@/pages";
+import { AboutUs, CarDetail, HomePage, Login, SignUp } from "@/pages";
 
 import { createBrowserRouter } from "react-router-dom";
 
@@ -8,6 +8,14 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
+      {
+        path: "/sign-up",
+        element: <SignUp />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
       {
         path: "/",
         element: <HomePage />,

@@ -77,9 +77,11 @@ const Navbar = () => {
             ))}
 
           <div className="buttonSection md:ml-8   ">
-            <Button className=" -z-[1] text-xs sm:text-sm md:text-base bg-prime50 hover:bg-prime100 ">
-              Sign in
-            </Button>
+            <Link to={"/sign-up"}>
+              <Button className=" -z-[1] text-xs sm:text-sm md:text-base bg-prime50 hover:bg-prime100 ">
+                Sign in
+              </Button>
+            </Link>
           </div>
         </ul>
       </Wrapper>
