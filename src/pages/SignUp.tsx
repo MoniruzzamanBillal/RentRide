@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { RentForm, RentInput } from "@/components/form";
 import Wrapper from "@/components/shared/Wrapper";
 import { Button } from "@/components/ui/button";
@@ -6,14 +7,55 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router-dom";
 import userSchema from "@/schemas/CreateUser.schema";
 import RentCheckbox from "@/components/form/RentCheckbox ";
+import { useSignUpMutation } from "@/redux/features/auth/auth.api";
+import { toast } from "sonner";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const [signUp] = useSignUpMutation();
 
   // ! for  creating a user
-  const handleCreateUser = (data: FieldValues) => {
-    console.log("creating a user !!");
-    console.log(data);
+  const handleCreateUser = async (data: FieldValues) => {
+    const toastId = toast.loading("creating a user.....");
+
+    const { name, email, password, phone } = data;
+
+    const payload = {
+      name,
+      email,
+      password,
+      phone,
+    };
+
+    try {
+      const result = await signUp(payload);
+
+      // * if there is error
+      if (result?.error) {
+        const errorMsg = (result?.error as any)?.data?.errorMessages[0]
+          ?.message;
+
+        toast.error(errorMsg, {
+          id: toastId,
+          duration: 1400,
+        });
+
+        return;
+      }
+
+      // * for success sign up
+      if (result?.data?.success) {
+        toast.success(result?.data?.message, {
+          id: toastId,
+          duration: 1400,
+        });
+
+        navigate("/login");
+      }
+    } catch (error) {
+      toast.error("Something went wrong!! ", { id: toastId, duration: 1400 });
+      console.log(error);
+    }
   };
 
   return (
@@ -34,7 +76,7 @@ const SignUp = () => {
           >
             <RentInput type="text" label="Name :" name="name" />
             <RentInput type="email" label="Email :" name="email" />
-
+            <RentInput type="number" label="Phone :" name="phone" />
             <RentInput type="password" label="Password :" name="password" />
             <RentInput
               type="password"
@@ -53,8 +95,8 @@ const SignUp = () => {
 
           {/*  */}
 
-          <div className="text-center  ">
-            <a className="right-0 inline-block text-sm font-light align-baseline text-gray-900 hover:text-gray-950 dark:text-gray-100 dark:hover:text-gray-200 ">
+          <div className="text-center mt-6   ">
+            <a className="right-0 inline-block text-sm font-semibold align-baseline text-gray-900 hover:text-gray-950  ">
               Already have account ?{" "}
               <span className=" text-blue-700 font-bold cursor-pointer ">
                 <Link to={`/login`}>Log in </Link>

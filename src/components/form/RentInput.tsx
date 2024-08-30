@@ -10,6 +10,14 @@ type TInput = {
 const RentInput = ({ type, label, name }: TInput) => {
   const { control } = useFormContext();
 
+  const inputProps =
+    type === "number"
+      ? {
+          onWheel: (e: React.WheelEvent<HTMLInputElement>) =>
+            e.currentTarget.blur(),
+        }
+      : {};
+
   return (
     <div className="RentInputContainer mb-5 flex flex-col gap-y-1">
       {label ? <label htmlFor={name}>{label}</label> : null}
@@ -31,6 +39,7 @@ const RentInput = ({ type, label, name }: TInput) => {
                   field.onChange(e.target.value);
                 }
               }}
+              {...inputProps}
             />
 
             {error && (

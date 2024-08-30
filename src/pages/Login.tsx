@@ -73,8 +73,8 @@ const Login = () => {
 
           {/*  */}
 
-          <div className="text-center  ">
-            <a className="right-0 inline-block text-sm font-light align-baseline text-gray-900 hover:text-gray-950 dark:text-gray-100 dark:hover:text-gray-200 ">
+          <div className="text-center  mt-6  ">
+            <a className="right-0 inline-block text-sm font-semibold align-baseline text-gray-900 hover:text-gray-950  ">
               Don't have any account ?{" "}
               <span className=" text-blue-700 font-bold cursor-pointer ">
                 <Link to={`/sign-up`}>Log in </Link>
