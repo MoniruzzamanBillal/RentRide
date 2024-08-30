@@ -1,16 +1,52 @@
 import { RentForm, RentInput } from "@/components/form";
 import Wrapper from "@/components/shared/Wrapper";
 import { Button } from "@/components/ui/button";
+import { useLogInMutation } from "@/redux/features/auth/auth.api";
+import { setUser } from "@/redux/features/auth/auth.slice";
+import { useAppDispatch } from "@/redux/hook";
+
 import loginSchema from "@/schemas/Login.schema";
+import { TUser } from "@/types/globalTypes";
+import { verifyToken } from "@/util/Verify.token";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 const Login = () => {
+  const dispatch = useAppDispatch();
+  const [logIn, { error }] = useLogInMutation();
+
   // ! for log in
-  const handleLogin = (data: FieldValues) => {
-    console.log("Login !!");
-    console.log(data);
+  const handleLogin = async (data: FieldValues) => {
+    const { email, password } = data;
+
+    const toastId = toast.loading("Loginng in...");
+
+    try {
+      const payload = {
+        email,
+        password,
+      };
+
+      const result = await logIn(payload).unwrap();
+
+      if (result?.success) {
+        const token = result?.token;
+        console.log(token);
+
+        const user = verifyToken(token) as TUser;
+
+        console.log(user);
+
+        dispatch(setUser({ user, token }));
+
+        toast.success(result?.message, { id: toastId, duration: 1400 });
+      }
+    } catch (error) {
+      toast.error("Something went wrong!! ", { id: toastId, duration: 1400 });
+      console.log(error);
+    }
   };
 
   return (

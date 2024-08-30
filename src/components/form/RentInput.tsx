@@ -22,7 +22,7 @@ const RentInput = ({ type, label, name }: TInput) => {
             <Input
               type={type}
               id={name}
-              className="border border-gray-400"
+              className="border border-gray-400  "
               value={type === "file" ? undefined : field?.value}
               onChange={(e) => {
                 if (type === "file") {
