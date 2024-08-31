@@ -1,6 +1,8 @@
+import { ReactNode } from "react";
+
 export type TUser = {
   userId: string;
-  role: string;
+  userRole: string;
   iat: number;
   exp: number;
 };
@@ -28,4 +30,10 @@ export type TMissionVisionItem = {
 export type TValueCommitment = {
   header: string;
   title: string;
+};
+
+export type TDashboardLinks = {
+  name: string;
+  path: string;
+  icon: ReactNode;
 };

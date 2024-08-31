@@ -5,8 +5,8 @@ import { Outlet } from "react-router-dom";
 
 const DashboardLayout = () => {
   return (
-    <div className="DashboardLayoutContainer">
-      <Wrapper className="dashbaordWrapper min-h-screen mx-auto sm:flex py-8 px-2 gap-2  ">
+    <div className="DashboardLayoutContainer bg-gray-50 ">
+      <Wrapper className="dashbaordWrapper min-h-screen mx-auto sm:flex py-4 px-2 gap-x-4 gap-y-6  ">
         {/* sidebar section  */}
 
         <div
@@ -18,7 +18,7 @@ const DashboardLayout = () => {
         {/* sidebar section  */}
 
         {/* children section  */}
-        <div className="contentSection w-full bg-green-300 ">
+        <div className="contentSection w-full   ">
           <Outlet />
         </div>
       </Wrapper>

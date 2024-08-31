@@ -1,10 +1,20 @@
-import { LuUser2 } from "react-icons/lu";
+import { GetUserRole } from "@/util/GetUserRole";
+import { LuUser2, LuCar } from "react-icons/lu";
+import { CiBookmark } from "react-icons/ci";
+import { IoMdReturnRight } from "react-icons/io";
+import { FiUsers } from "react-icons/fi";
+import { MdOutlinePayments } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import { TDashboardLinks } from "@/types/globalTypes";
 
-const LinkItem = ({ link }) => {
+type TLinkProps = {
+  link: TDashboardLinks;
+};
+
+const LinkItem = ({ link }: TLinkProps) => {
   return (
     <NavLink to={link.path}>
-      <div className="linksContainer   flex items-center gap-x-1  my-4 ">
+      <div className="linksContainer   flex items-center gap-x-1  my-6 ">
         {link.icon}
         <p>{link.name}</p>
       </div>
@@ -13,23 +23,46 @@ const LinkItem = ({ link }) => {
 };
 
 const DashboardLinks = () => {
+  const userRole = GetUserRole();
+
   let links = [
     {
-      name: "Orders",
-      path: "/dashboard/orders",
-      icon: <LuUser2 className=" text-xl font-bold " />,
+      name: "Bookings",
+      path: "/dashboard/user/user-booking",
+      icon: <CiBookmark className=" text-xl font-bold " />,
     },
     {
       name: "Payments",
-      path: "/dashboard/payments",
-      icon: <LuUser2 className=" text-xl font-bold " />,
-    },
-    {
-      name: "Wishlist",
-      path: "/dashboard/wishlist",
-      icon: <LuUser2 className=" text-xl font-bold " />,
+      path: "/dashboard/user/user-payment",
+      icon: <MdOutlinePayments className=" text-xl font-bold " />,
     },
   ];
+
+  // ! admin route
+  if (userRole === "admin") {
+    links = [
+      {
+        name: "Manage Cars",
+        path: "/dashboard/admin/manage-car",
+        icon: <LuCar className=" text-xl font-bold " />,
+      },
+      {
+        name: "Manage Bookings",
+        path: "/dashboard/admin/manage-booking",
+        icon: <CiBookmark className=" text-xl font-bold " />,
+      },
+      {
+        name: "Return Cars",
+        path: "/dashboard/admin/manage-return-car",
+        icon: <IoMdReturnRight className=" text-xl font-bold " />,
+      },
+      {
+        name: "Manage Users",
+        path: "/dashboard/admin/manage-user",
+        icon: <FiUsers className=" text-xl font-bold " />,
+      },
+    ];
+  }
 
   return (
     <div>

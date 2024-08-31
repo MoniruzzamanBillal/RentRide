@@ -1,4 +1,5 @@
 import App from "@/App";
+import { AddNewCar } from "@/components/ui";
 import {
   AboutUs,
   CarDetail,
@@ -6,7 +7,13 @@ import {
   DashboardLayout,
   HomePage,
   Login,
+  ManageBookings,
+  ManageCars,
+  ManageReturnCar,
+  ManageUsers,
   SignUp,
+  UserBooking,
+  UserPayment,
 } from "@/pages";
 
 import { createBrowserRouter } from "react-router-dom";
@@ -48,6 +55,34 @@ const router = createBrowserRouter([
           {
             path: "/dashboard",
             element: <Dashboard />,
+          },
+          {
+            path: "/dashboard/add-car",
+            element: <AddNewCar />,
+          },
+          {
+            path: "/dashboard/admin/manage-car",
+            element: <ManageCars />,
+          },
+          {
+            path: "/dashboard/admin/manage-booking",
+            element: <ManageBookings />,
+          },
+          {
+            path: "/dashboard/admin/manage-return-car",
+            element: <ManageReturnCar />,
+          },
+          {
+            path: "/dashboard/admin/manage-user",
+            element: <ManageUsers />,
+          },
+          {
+            path: "/dashboard/user/user-booking",
+            element: <UserBooking />,
+          },
+          {
+            path: "/dashboard/user/user-payment",
+            element: <UserPayment />,
           },
         ],
       },

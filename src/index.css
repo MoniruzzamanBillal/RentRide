@@ -68,6 +68,23 @@
   }
 }
 
+table {
+  @apply text-sm w-full bg-white;
+}
+
+table tr {
+  @apply px-4;
+}
+
+table th,
+td {
+  @apply px-4 py-2 border-2 text-center;
+}
+
+table th {
+  @apply uppercase bg-sky-50;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -81,5 +98,5 @@
 }
 
 .active {
-  color: rgb(103, 37, 37);
+  color: #009b94;
 }

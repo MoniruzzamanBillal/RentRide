@@ -1,0 +1,164 @@
+import { TableDataError } from "@/components/ui";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import { useGetAllCarsQuery } from "@/redux/features/cars/car.api";
+import { Link } from "react-router-dom";
+
+const ManageCars = () => {
+  const {
+    data: allCarData,
+    isLoading: carDataLoading,
+    isError: carDataError,
+  } = useGetAllCarsQuery(undefined);
+
+  // ! for deleting a product
+  const handleDeleteItem = (id: string) => {
+    console.log("delete click ");
+    console.log(id);
+  };
+
+  let content = null;
+  // *  if data is loading
+  if (carDataLoading) {
+    content = (
+      <tr>
+        <td colSpan={8}>
+          <div className="flex justify-center items-center h-screen">
+            <div className="rounded-full h-20 w-20 bg-prime100 animate-ping"></div>
+          </div>
+        </td>
+      </tr>
+    );
+  }
+
+  // * if there is a error
+  else if (!carDataLoading && carDataError) {
+    content = (
+      <tr>
+        <td colSpan={8}>
+          <TableDataError message="Something went wrong " />
+        </td>
+      </tr>
+    );
+  }
+
+  // * for no product
+  else if (!carDataLoading && !carDataError && allCarData?.data?.length < 1) {
+    content = (
+      <tr>
+        <td colSpan={8}>
+          <TableDataError message="Nothing Found" />
+        </td>
+      </tr>
+    );
+  }
+
+  // * if there is a product
+  else if (!carDataLoading && !carDataError && allCarData?.data?.length) {
+    content = allCarData?.data?.map((item) => (
+      <tr key={item._id} className="border-b">
+        <td className="p-4 text-center">{item?.name}</td>
+        <td className="p-4 text-center"> image</td>
+
+        <td className="p-4 text-center">{item?.color}</td>
+        <td className="p-4 text-center">{item?.isElectric ? "Yes" : "No"}</td>
+
+        <td className="p-4 text-center">{item?.pricePerHour}</td>
+        <td className="p-4 text-center">{item?.status}</td>
+
+        <td className="p-4 text-center uppercase">
+          <Link to={`/update-product/${item?._id}`}>
+            <Button className=" px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base bg-green-600 hover:bg-green-700 active:scale-95 duration-500 ">
+              Update
+            </Button>
+          </Link>
+        </td>
+        <td className="p-4 text-center uppercase">
+          {/* delete button  */}
+          <AlertDialog>
+            {/* alert trigger  */}
+            <AlertDialogTrigger asChild>
+              <Button className=" px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base bg-red-600 hover:bg-red-700 active:scale-95 duration-500 ">
+                Delete
+              </Button>
+            </AlertDialogTrigger>
+
+            {/* alert content  */}
+            <AlertDialogContent>
+              {/* header and content type  */}
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently delete
+                  your account and remove your data from our servers.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+
+              {/* bottom button type  */}
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={() => handleDeleteItem(item?._id)}>
+                  Continue
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </td>
+      </tr>
+    ));
+  }
+
+  return (
+    <div className="ManageCarsContainer ">
+      <div className="manageCarWrapper bg-gray-100 shadow rounded-md p-3 ">
+        <h3 className="brand text-2xl font-medium mb-4 ">All Cars</h3>
+
+        {/* new product add  container starts  */}
+        <div className="addNewProduct mb-4 ">
+          <Link to={"/dashboard/add-car"}>
+            <Button className=" px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base bg-prime50 hover:bg-prime100 active:scale-95 duration-500 ">
+              Add new Car
+            </Button>
+          </Link>
+
+          {/*  */}
+        </div>
+        {/* new product add  container ends */}
+
+        {/* table starts  */}
+        <div className="relative w-full overflow-auto mt-4">
+          <table className="w-full text-sm">
+            <thead className="border-b">
+              <tr>
+                <th className="px-4 font-medium">Name</th>
+                <th className="px-4 font-medium">Image</th>
+                <th className="px-4 font-medium">Color</th>
+                <th className="px-4 font-medium">Electric</th>
+                <th className="px-4 font-medium">Price Per Hour</th>
+                <th className="px-4 font-medium">Status</th>
+                <th className="px-4 font-medium">Update</th>
+                <th className="px-4 font-medium">Deletee</th>
+              </tr>
+            </thead>
+            <tbody>{content}</tbody>
+          </table>
+        </div>
+        {/* table ends  */}
+
+        {/*  */}
+      </div>
+    </div>
+  );
+};
+
+export default ManageCars;

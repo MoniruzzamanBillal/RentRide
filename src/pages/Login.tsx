@@ -41,8 +41,6 @@ const Login = () => {
 
         const user = verifyToken(token) as TUser;
 
-        console.log(user);
-
         dispatch(setUser({ user, token }));
 
         toast.success(result?.message, { id: toastId, duration: 1400 });
@@ -86,7 +84,7 @@ const Login = () => {
             <a className="right-0 inline-block text-sm font-semibold align-baseline text-gray-900 hover:text-gray-950  ">
               Don't have any account ?{" "}
               <span className=" text-blue-700 font-bold cursor-pointer ">
-                <Link to={`/sign-up`}>Log in </Link>
+                <Link to={`/sign-up`}>Sign up </Link>
               </span>
             </a>
           </div>
