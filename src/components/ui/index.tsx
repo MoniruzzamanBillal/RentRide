@@ -9,3 +9,5 @@ export { default as FleetBanner } from "./FleetBanner";
 export { default as FleetBannerCard } from "./FleetBannerCard";
 export { default as MapContainer } from "./MapContainer";
 export { default as ValueCommitmentCard } from "./ValueCommitmentCard";
+export { default as Sidebar } from "./Sidebar";
+export { default as DashboardLinks } from "./DashboardLinks";

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { RentForm, RentInput } from "@/components/form";
 import Wrapper from "@/components/shared/Wrapper";
 import { Button } from "@/components/ui/button";
@@ -10,12 +11,16 @@ import { TUser } from "@/types/globalTypes";
 import { verifyToken } from "@/util/Verify.token";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const Login = () => {
   const dispatch = useAppDispatch();
-  const [logIn, { error }] = useLogInMutation();
+  const [logIn] = useLogInMutation();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  console.log(location?.state);
 
   // ! for log in
   const handleLogin = async (data: FieldValues) => {
@@ -33,7 +38,6 @@ const Login = () => {
 
       if (result?.success) {
         const token = result?.token;
-        console.log(token);
 
         const user = verifyToken(token) as TUser;
 
@@ -42,9 +46,14 @@ const Login = () => {
         dispatch(setUser({ user, token }));
 
         toast.success(result?.message, { id: toastId, duration: 1400 });
+
+        setTimeout(() => {
+          navigate(location?.state ? location.state : "/");
+        }, 500);
       }
     } catch (error) {
-      toast.error("Something went wrong!! ", { id: toastId, duration: 1400 });
+      const errorMsg = (error as any)?.data?.message;
+      toast.error(errorMsg, { id: toastId, duration: 1800 });
       console.log(error);
     }
   };

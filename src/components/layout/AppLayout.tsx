@@ -11,7 +11,7 @@ const AppLayout = () => {
       {/* nav ends */}
 
       {/* child component  */}
-      <div className="childComponent  mt-[3.7rem]  ">
+      <div className="childComponent  mt-[4rem]  ">
         <Outlet />
       </div>
       {/* child component  */}

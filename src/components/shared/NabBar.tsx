@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
+import { LuUser2 } from "react-icons/lu";
 import Wrapper from "./Wrapper";
 
 import logo from "@/assets/logo.png";
 import { Button } from "../ui/button";
+import { UseGetUser } from "@/util/SharedFunction";
 
 const Links = [
   { name: "Home", link: "/" },
@@ -15,6 +17,7 @@ const Links = [
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const userInfo = UseGetUser();
 
   // dark mode toggle
   // const handleDarkMode = () => {
@@ -77,11 +80,29 @@ const Navbar = () => {
             ))}
 
           <div className="buttonSection md:ml-8   ">
-            <Link to={"/login"}>
-              <Button className=" -z-[1] text-xs sm:text-sm md:text-base bg-prime50 hover:bg-prime100 ">
-                Sign in
-              </Button>
-            </Link>
+            {!userInfo ? (
+              <Link to={"/login"}>
+                <Button className=" -z-[1] text-xs sm:text-sm md:text-base bg-prime50 hover:bg-prime100 ">
+                  Sign in
+                </Button>
+              </Link>
+            ) : (
+              <div className="relative">
+                <Link
+                  to="/dashboard"
+                  className="inline-block p-2 rounded-full bg-orange-100 cursor-pointe"
+                >
+                  <LuUser2 className=" text-2xl font-bold " />
+                </Link>
+              </div>
+            )}
+
+            {/*  */}
+            {/*  */}
+            {/*  */}
+
+            {/*  */}
+            {/*  */}
           </div>
         </ul>
       </Wrapper>

@@ -1,5 +1,13 @@
 import App from "@/App";
-import { AboutUs, CarDetail, HomePage, Login, SignUp } from "@/pages";
+import {
+  AboutUs,
+  CarDetail,
+  Dashboard,
+  DashboardLayout,
+  HomePage,
+  Login,
+  SignUp,
+} from "@/pages";
 
 import { createBrowserRouter } from "react-router-dom";
 
@@ -32,8 +40,21 @@ const router = createBrowserRouter([
         path: "/about",
         element: <p>about us </p>,
       },
+
+      {
+        path: "/dashboard",
+        element: <DashboardLayout />,
+        children: [
+          {
+            path: "/dashboard",
+            element: <Dashboard />,
+          },
+        ],
+      },
     ],
   },
+
+  //
 ]);
 
 export default router;
