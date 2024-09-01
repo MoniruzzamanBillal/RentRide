@@ -1,26 +1,52 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useNavigate } from "react-router-dom";
+import {
+  useGetCarQuery,
+  useUpdateCarMutation,
+} from "@/redux/features/cars/car.api";
+import { useNavigate, useParams } from "react-router-dom";
+import CarDetail from "./../../pages/CarDetail";
+import { useEffect } from "react";
 import { RentForm, RentInput, RentSelectInput } from "../form";
 import { FieldValues } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import UpdateCarSchema from "@/schemas/UpdateCarSchema";
 import {
   carFeaturesOptions,
   dropLocationOptions,
   isElectricCarOption,
 } from "@/util/Constants";
-import { Button } from "./button";
 import RentMultiSelectInput from "../form/RentMultiSelectInput ";
-import { zodResolver } from "@hookform/resolvers/zod";
-import addCarValidationSchema from "@/schemas/AddCarSchema";
+import { Button } from "./button";
 import { toast } from "sonner";
-import GetImgLink from "@/util/GetImgLink";
-import { useAddNewCarMutation } from "@/redux/features/cars/car.api";
 
-const AddNewCar = () => {
+const UpdateCar = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
-  const [addNewCar] = useAddNewCarMutation();
 
-  // ! for adding new car
-  const handleAddCar = async (data: FieldValues) => {
+  if (!id) {
+    throw new Error("Something went wrong!! ");
+  }
+
+  const {
+    data: carDetail,
+    isLoading: carDetailLoading,
+    isFetching: carDetailFetching,
+  } = useGetCarQuery(id);
+
+  const [updateCar] = useUpdateCarMutation();
+
+  let defaultValues;
+  defaultValues = {
+    name: carDetail?.data?.name,
+    description: carDetail?.data?.description,
+    color: carDetail?.data?.color,
+    isElectric: carDetail?.data?.isElectric === true ? "yes" : "no",
+    features: carDetail?.data?.features,
+    pricePerHour: carDetail?.data?.pricePerHour,
+    dropLocation: carDetail?.data?.dropLocation,
+  };
+
+  //   ! for updating car data
+  const handleUpdateCar = async (data: FieldValues) => {
     const {
       name,
       description,
@@ -33,12 +59,10 @@ const AddNewCar = () => {
 
     const elec = electric === "yes" ? true : false;
 
-    const taostId = toast.loading("Adding car....");
+    const taostId = toast.loading("Updating car....");
 
     try {
-      // const carImg = await GetImgLink(image);
-
-      const payload = {
+      const carData = {
         name,
         description,
         color,
@@ -48,20 +72,22 @@ const AddNewCar = () => {
         dropLocation,
       };
 
-      const result = await addNewCar(payload);
+      const result = await updateCar({ id, carData });
 
       //  *  for any  error
       if (result?.error) {
+        console.log(result?.error);
         const errorMessage = (result?.error as any)?.data?.message;
 
         toast.error(errorMessage, {
           id: taostId,
-          duration: 1400,
+          duration: 1500,
         });
       }
 
-      // * for successful insertion
+      // * for successful updation
       if (result?.data) {
+        console.log(result?.data);
         const successMsg = result?.data?.message;
 
         toast.success(successMsg, {
@@ -73,28 +99,43 @@ const AddNewCar = () => {
           navigate("/dashboard/admin/manage-car");
         }, 600);
       }
-
-      //
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong !!!", { id: taostId, duration: 1400 });
     }
-
-    //
   };
 
+  // ! effect for getting default value
+  useEffect(() => {
+    if (carDetail?.data) {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      defaultValues = {
+        name: carDetail?.data?.name,
+        description: carDetail?.data?.description,
+        color: carDetail?.data?.color,
+        isElectric: carDetail?.data?.isElectric === true ? "yes" : "no",
+        features: carDetail?.data?.features,
+        pricePerHour: carDetail?.data?.pricePerHour,
+        dropLocation: carDetail?.data?.dropLocation,
+      };
+    }
+  }, [carDetail]);
+
+  let content = null;
+
   return (
-    <div className="AddNewCarContainer py-8 bg-gray-100 min-h-screen p-3 shadow rounded-md ">
-      <div className="addCarWrapper">
+    <div className="UpdateCarContainer  py-8 bg-gray-100 min-h-screen p-3 shadow rounded-md ">
+      <div className="UpdateCarWrapper">
         <h1 className=" mb-8 px-3 xsm:px-4 sm:px-5 md:px-6 font-bold text-2xl  md:text-3xl text-center  ">
-          Add new car
+          Update car
         </h1>
 
-        {/* add car form container starts  */}
-        <div className="addCarForm p-1 w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto ">
+        {/* update car form container starts  */}
+        <div className="updateCarForm p-1 w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto ">
           <RentForm
-            onSubmit={handleAddCar}
-            resolver={zodResolver(addCarValidationSchema)}
+            defaultValues={defaultValues}
+            onSubmit={handleUpdateCar}
+            resolver={zodResolver(UpdateCarSchema)}
           >
             <RentInput type="text" label="Name :" name="name" />
             {/* <RentInput type="file" label="Car Image :" name="image" /> */}
@@ -124,14 +165,14 @@ const AddNewCar = () => {
             />
 
             <Button className="px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base bg-green-600 hover:bg-green-700 active:scale-95 duration-500">
-              Add car
+              Update
             </Button>
           </RentForm>
         </div>
-        {/* add car form container ends  */}
+        {/* update car form container ends  */}
       </div>
     </div>
   );
 };
 
-export default AddNewCar;
+export default UpdateCar;

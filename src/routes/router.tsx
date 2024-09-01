@@ -1,5 +1,5 @@
 import App from "@/App";
-import { AddNewCar } from "@/components/ui";
+import { AddNewCar, UpdateCar } from "@/components/ui";
 import {
   AboutUs,
   CarDetail,
@@ -59,6 +59,10 @@ const router = createBrowserRouter([
           {
             path: "/dashboard/add-car",
             element: <AddNewCar />,
+          },
+          {
+            path: "/dashboard/update-car/:id",
+            element: <UpdateCar />,
           },
           {
             path: "/dashboard/admin/manage-car",
