@@ -123,6 +123,50 @@ const UpdateCar = () => {
 
   let content = null;
 
+  //   ! if data is loading
+  if (carDetailLoading || carDetailFetching) {
+    content = (
+      <div className="flex justify-center items-center h-screen">
+        <div className="rounded-full h-20 w-20 bg-prime100 animate-ping"></div>
+      </div>
+    );
+  } else if ((!carDetailLoading || !carDetailFetching) && carDetail?.data) {
+    content = (
+      <RentForm
+        defaultValues={defaultValues}
+        onSubmit={handleUpdateCar}
+        resolver={zodResolver(UpdateCarSchema)}
+      >
+        <RentInput type="text" label="Name :" name="name" />
+        {/* <RentInput type="file" label="Car Image :" name="image" /> */}
+        <RentInput type="text" label="Description :" name="description" />
+        <RentInput type="text" label="Color :" name="color" />
+
+        <RentSelectInput
+          name="isElectric"
+          label="Electric  : "
+          options={isElectricCarOption}
+        />
+        <RentMultiSelectInput
+          name="features"
+          label="Features : "
+          options={carFeaturesOptions}
+        />
+        <RentMultiSelectInput
+          name="dropLocation"
+          label="Drop locations: "
+          options={dropLocationOptions}
+        />
+
+        <RentInput type="number" label="Price per hour :" name="pricePerHour" />
+
+        <Button className="px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base bg-green-600 hover:bg-green-700 active:scale-95 duration-500">
+          Update
+        </Button>
+      </RentForm>
+    );
+  }
+
   return (
     <div className="UpdateCarContainer  py-8 bg-gray-100 min-h-screen p-3 shadow rounded-md ">
       <div className="UpdateCarWrapper">
@@ -132,42 +176,7 @@ const UpdateCar = () => {
 
         {/* update car form container starts  */}
         <div className="updateCarForm p-1 w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto ">
-          <RentForm
-            defaultValues={defaultValues}
-            onSubmit={handleUpdateCar}
-            resolver={zodResolver(UpdateCarSchema)}
-          >
-            <RentInput type="text" label="Name :" name="name" />
-            {/* <RentInput type="file" label="Car Image :" name="image" /> */}
-            <RentInput type="text" label="Description :" name="description" />
-            <RentInput type="text" label="Color :" name="color" />
-
-            <RentSelectInput
-              name="isElectric"
-              label="Electric  : "
-              options={isElectricCarOption}
-            />
-            <RentMultiSelectInput
-              name="features"
-              label="Features : "
-              options={carFeaturesOptions}
-            />
-            <RentMultiSelectInput
-              name="dropLocation"
-              label="Drop locations: "
-              options={dropLocationOptions}
-            />
-
-            <RentInput
-              type="number"
-              label="Price per hour :"
-              name="pricePerHour"
-            />
-
-            <Button className="px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base bg-green-600 hover:bg-green-700 active:scale-95 duration-500">
-              Update
-            </Button>
-          </RentForm>
+          {content}
         </div>
         {/* update car form container ends  */}
       </div>
