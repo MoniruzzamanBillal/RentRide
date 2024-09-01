@@ -11,20 +11,32 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { useGetAllCarsQuery } from "@/redux/features/cars/car.api";
+import {
+  useDeleteCarMutation,
+  useGetAllCarsQuery,
+} from "@/redux/features/cars/car.api";
+import axios from "axios";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 const ManageCars = () => {
   const {
     data: allCarData,
     isLoading: carDataLoading,
     isError: carDataError,
+    refetch: carDataRefetch,
   } = useGetAllCarsQuery(undefined);
 
+  const [deleteCar] = useDeleteCarMutation();
+
   // ! for deleting a product
-  const handleDeleteItem = (id: string) => {
-    console.log("delete click ");
-    console.log(id);
+  const handleDeleteItem = async (id: string) => {
+    const response = await deleteCar(id);
+
+    if (response?.data?.success) {
+      toast.success(response?.data?.message);
+      carDataRefetch();
+    }
   };
 
   let content = null;

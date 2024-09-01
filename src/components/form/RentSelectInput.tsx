@@ -29,14 +29,17 @@ const RentSelectInput = ({ name, label, options }: TSelect) => {
               value={field.value || ""}
             >
               <SelectTrigger className=" border border-gray-400 outline-none ring-none focus:ring-none ">
-                <SelectValue placeholder={label} />
+                <SelectValue
+                  placeholder={"Select option..."}
+                  className=" text-gray-300 bg-red-500 "
+                />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
                   {options &&
                     options?.map((item, ind) => (
-                      <SelectItem key={ind} value={item?.name}>
-                        {item?.value}
+                      <SelectItem key={ind} value={item?.value}>
+                        {item?.name}
                       </SelectItem>
                     ))}
                 </SelectGroup>

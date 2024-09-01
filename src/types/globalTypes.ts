@@ -37,3 +37,8 @@ export type TDashboardLinks = {
   path: string;
   icon: ReactNode;
 };
+
+export type TSelectElectric = {
+  name: string;
+  value: string;
+};
