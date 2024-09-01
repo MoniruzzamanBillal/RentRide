@@ -26,7 +26,6 @@ const RentMultiSelectInput = ({ name, label, options }: TMultiSelect) => {
           <>
             <Select
               {...field}
-              closeMenuOnSelect={false}
               components={animatedComponents}
               isMulti
               options={selectOptions}

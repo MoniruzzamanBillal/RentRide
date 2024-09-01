@@ -21,8 +21,6 @@ const AddNewCar = () => {
 
   // ! for adding new car
   const handleAddCar = async (data: FieldValues) => {
-    console.log("car added !!!");
-
     const {
       name,
       description,
@@ -35,7 +33,7 @@ const AddNewCar = () => {
 
     const elec = electric === "yes" ? true : false;
 
-    const taostId = toast.loading("Adding  car....");
+    const taostId = toast.loading("Adding car....");
 
     try {
       // const carImg = await GetImgLink(image);
@@ -70,7 +68,7 @@ const AddNewCar = () => {
 
         toast.success(successMsg, {
           id: taostId,
-          duration: 1400,
+          duration: 1000,
         });
 
         setTimeout(() => {
