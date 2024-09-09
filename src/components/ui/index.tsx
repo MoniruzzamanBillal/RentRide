@@ -15,3 +15,4 @@ export { default as UserProfile } from "./UserProfile";
 export { default as TableDataError } from "./TableDataError";
 export { default as AddNewCar } from "./AddNewCar";
 export { default as UpdateCar } from "./UpdateCar";
+export { default as CarDeleteModal } from "./CarDeleteModal";

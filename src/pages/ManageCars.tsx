@@ -1,4 +1,4 @@
-import { TableDataError } from "@/components/ui";
+import { CarDeleteModal, TableDataError } from "@/components/ui";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -31,11 +31,17 @@ const ManageCars = () => {
 
   // ! for deleting a product
   const handleDeleteItem = async (id: string) => {
-    const response = await deleteCar(id);
+    const toastId = toast.loading("deleting car !!! ");
+    try {
+      const response = await deleteCar(id);
 
-    if (response?.data?.success) {
-      toast.success(response?.data?.message);
-      carDataRefetch();
+      if (response?.data?.success) {
+        toast.success(response?.data?.message, { id: toastId, duration: 1500 });
+        carDataRefetch();
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("something went wrong !! ", { id: toastId, duration: 1200 });
     }
   };
 
@@ -105,35 +111,10 @@ const ManageCars = () => {
           </Link>
         </td>
         <td className="p-4 text-center uppercase">
-          {/* delete button  */}
-          <AlertDialog>
-            {/* alert trigger  */}
-            <AlertDialogTrigger asChild>
-              <Button className=" px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base bg-red-600 hover:bg-red-700 active:scale-95 duration-500 ">
-                Delete
-              </Button>
-            </AlertDialogTrigger>
-
-            {/* alert content  */}
-            <AlertDialogContent>
-              {/* header and content type  */}
-              <AlertDialogHeader>
-                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  This action cannot be undone. This will permanently delete
-                  your account and remove your data from our servers.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-
-              {/* bottom button type  */}
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction onClick={() => handleDeleteItem(item?._id)}>
-                  Continue
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+          <CarDeleteModal
+            handleDeleteFunction={handleDeleteItem}
+            id={item?._id}
+          />
         </td>
       </tr>
     ));
