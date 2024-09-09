@@ -15,7 +15,7 @@ import {
   useDeleteCarMutation,
   useGetAllCarsQuery,
 } from "@/redux/features/cars/car.api";
-import axios from "axios";
+
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
@@ -44,9 +44,12 @@ const ManageCars = () => {
   if (carDataLoading) {
     content = (
       <tr>
-        <td colSpan={8}>
-          <div className="flex justify-center items-center h-screen">
-            <div className="rounded-full h-20 w-20 bg-prime100 animate-ping"></div>
+        <td colSpan={8} className="p-4">
+          <div
+            className="flex justify-center items-center h-16
+           "
+          >
+            <div className="rounded-full size-8 bg-prime100 animate-ping"></div>
           </div>
         </td>
       </tr>

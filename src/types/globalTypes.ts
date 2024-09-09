@@ -42,3 +42,15 @@ export type TSelectElectric = {
   name: string;
   value: string;
 };
+
+export type TUserResponseData = {
+  _id: string;
+  name: string;
+  email: string;
+  role: "user" | "admin";
+  phone: string;
+  isBlocked: boolean;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};

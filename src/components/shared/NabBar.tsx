@@ -11,8 +11,8 @@ import { UseGetUser } from "@/util/SharedFunction";
 const Links = [
   { name: "Home", link: "/" },
   { name: "About us", link: "/about-us" },
-  { name: "products", link: "/" },
-  { name: "Cart", link: "/" },
+  { name: "Booking", link: "/" },
+  { name: "Contact", link: "/" },
 ];
 
 const Navbar = () => {

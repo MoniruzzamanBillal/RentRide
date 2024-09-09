@@ -22,3 +22,8 @@ export const dropLocationOptions = [
   { name: "Gazipur", value: "Gazipur" },
   { name: "Khulna", value: "Khulna" },
 ];
+
+export const userRole = {
+  admin: "admin",
+  user: "user",
+};
