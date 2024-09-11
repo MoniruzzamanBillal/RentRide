@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { baseApi } from "@/redux/api/baseApi";
 
-const userApi = baseApi.injectEndpoints({
+const bookingApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    // !  for getting all users
-    getUsers: builder.query({
+    // ! for getting all bookings
+    getBookings: builder.query({
       query: () => {
         return {
-          url: "/user/all-user",
+          url: "/bookings",
           method: "GET",
         };
       },
@@ -16,18 +16,16 @@ const userApi = baseApi.injectEndpoints({
           data: (response as any)?.data,
         };
       },
-      providesTags: ["users"],
     }),
 
-    // ! changing user role
-    changeUserRole: builder.mutation({
-      query: (id) => {
+    // ! for approve a booking
+    approveBooking: builder.mutation({
+      query: (id: string) => {
         return {
-          url: `/user/change-role/${id}`,
+          url: `/bookings/approve-booking/${id}`,
           method: "PATCH",
         };
       },
-      invalidatesTags: ["users"],
     }),
 
     //
@@ -35,4 +33,4 @@ const userApi = baseApi.injectEndpoints({
 });
 
 //
-export const { useGetUsersQuery, useChangeUserRoleMutation } = userApi;
+export const { useGetBookingsQuery, useApproveBookingMutation } = bookingApi;

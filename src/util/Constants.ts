@@ -27,3 +27,9 @@ export const userRole = {
   admin: "admin",
   user: "user",
 };
+
+export const bookingStatus = {
+  pending: "pending",
+  approved: "approved",
+  completed: "completed",
+};

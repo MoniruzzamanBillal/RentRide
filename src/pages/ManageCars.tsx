@@ -1,15 +1,5 @@
 import { CarDeleteModal, TableDataError } from "@/components/ui";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+
 import { Button } from "@/components/ui/button";
 import {
   useDeleteCarMutation,
@@ -100,21 +90,29 @@ const ManageCars = () => {
             item?.status === "unavailable" ? "text-red-600" : "text-green-600"
           } `}
         >
-          {item?.status}{" "}
+          {item?.status}
         </td>
 
         <td className="p-4 text-center uppercase">
-          <Link to={`/dashboard/update-car/${item?._id}`}>
-            <Button className=" px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base bg-green-600 hover:bg-green-700 active:scale-95 duration-500 ">
-              Update
-            </Button>
-          </Link>
+          {item?.status === "unavailable" ? (
+            ""
+          ) : (
+            <Link to={`/dashboard/update-car/${item?._id}`}>
+              <Button className=" px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base bg-green-600 hover:bg-green-700 active:scale-95 duration-500 ">
+                Update
+              </Button>
+            </Link>
+          )}
         </td>
-        <td className="p-4 text-center uppercase">
-          <CarDeleteModal
-            handleDeleteFunction={handleDeleteItem}
-            id={item?._id}
-          />
+        <td className="p-4 text-center uppercase  ">
+          {item?.status === "unavailable" ? (
+            ""
+          ) : (
+            <CarDeleteModal
+              handleDeleteFunction={handleDeleteItem}
+              id={item?._id}
+            />
+          )}
         </td>
       </tr>
     ));

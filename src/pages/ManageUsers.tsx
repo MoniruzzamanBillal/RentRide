@@ -1,16 +1,50 @@
-import { TableDataError } from "@/components/ui";
-import { useGetUsersQuery } from "@/redux/features/user/user.api";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ChangeRoleModal, TableDataError } from "@/components/ui";
+
+import {
+  useChangeUserRoleMutation,
+  useGetUsersQuery,
+} from "@/redux/features/user/user.api";
 import { TUserResponseData } from "@/types/globalTypes";
 import { userRole } from "@/util/Constants";
+import { toast } from "sonner";
 
 const ManageUsers = () => {
   const {
     data: usersData,
     isLoading: userDataLoading,
     isError: userDataError,
+    refetch: userDataRefetch,
   } = useGetUsersQuery(undefined);
 
+  const [changeUserRole] = useChangeUserRoleMutation();
+
   console.log(usersData?.data);
+
+  // ! for changing user role
+  const handleChangeRole = async (id: string) => {
+    const toastId = toast.loading("Changing user role !! ");
+
+    try {
+      const response = await changeUserRole(id);
+
+      // * for any error
+      if (response?.error) {
+        toast.error((response?.error as any)?.data?.message, {
+          id: toastId,
+          duration: 1400,
+        });
+      }
+
+      if (response?.data?.success) {
+        toast.success(response?.data?.message, { id: toastId, duration: 1500 });
+        userDataRefetch();
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("something went wrong !! ", { id: toastId, duration: 1200 });
+    }
+  };
 
   let content = null;
   // *  if data is loading
@@ -65,7 +99,13 @@ const ManageUsers = () => {
         >
           {user?.role}
         </td>
-        <td className="p-4 text-center">{user?.name}</td>
+        {user?.role === userRole.admin ? (
+          ""
+        ) : (
+          <td className="p-4 text-center  ">
+            <ChangeRoleModal changeRole={handleChangeRole} id={user?._id} />
+          </td>
+        )}
       </tr>
     ));
   }
@@ -91,6 +131,9 @@ const ManageUsers = () => {
           </table>
         </div>
         {/* manage user table ends  */}
+
+        {/*  */}
+        {/*  */}
       </div>
     </div>
   );

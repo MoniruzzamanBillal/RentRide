@@ -11,21 +11,19 @@ import {
 } from "./alert-dialog";
 import { Button } from "./button";
 
-type TCarDeleteProps = {
-  handleDeleteFunction: (id: string) => void;
+type TRoleChangeProps = {
+  changeRole: (id: string) => void;
   id: string;
 };
 
-const CarDeleteModal = ({ handleDeleteFunction, id }: TCarDeleteProps) => {
+const ChangeRoleModal = ({ changeRole, id }: TRoleChangeProps) => {
   return (
-    <div className="CarDeleteModalContainer">
-      {/* delete button  */}
-
+    <div className="ChangeRoleModalContainer">
       <AlertDialog>
         {/* alert trigger  */}
         <AlertDialogTrigger asChild>
-          <Button className=" px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base bg-red-600 hover:bg-red-700 active:scale-95 duration-500 ">
-            Delete
+          <Button className=" px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base bg-prime50 hover:bg-prime100 active:scale-95 duration-500 ">
+            Make admin
           </Button>
         </AlertDialogTrigger>
 
@@ -33,17 +31,19 @@ const CarDeleteModal = ({ handleDeleteFunction, id }: TCarDeleteProps) => {
         <AlertDialogContent>
           {/* header and content type  */}
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogTitle>
+              Are you absolutely sure to change role ?
+            </AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
+              This action cannot be undone. This will permanently make admin to
+              this user .
             </AlertDialogDescription>
           </AlertDialogHeader>
 
           {/* bottom button type  */}
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={() => handleDeleteFunction(id)}>
+            <AlertDialogAction onClick={() => changeRole(id)}>
               Continue
             </AlertDialogAction>
           </AlertDialogFooter>
@@ -53,4 +53,4 @@ const CarDeleteModal = ({ handleDeleteFunction, id }: TCarDeleteProps) => {
   );
 };
 
-export default CarDeleteModal;
+export default ChangeRoleModal;
