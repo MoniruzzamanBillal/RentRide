@@ -28,9 +28,20 @@ const bookingApi = baseApi.injectEndpoints({
       },
     }),
 
+    // ! for canceling a booking
+    cancelBooking: builder.mutation({
+      query: (id: string) => {
+        return { url: `/bookings/cancel-booking/${id}`, method: "PATCH" };
+      },
+    }),
+
     //
   }),
 });
 
 //
-export const { useGetBookingsQuery, useApproveBookingMutation } = bookingApi;
+export const {
+  useGetBookingsQuery,
+  useApproveBookingMutation,
+  useCancelBookingMutation,
+} = bookingApi;

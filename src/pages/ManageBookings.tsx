@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ManageBookingModal, TableDataError } from "@/components/ui";
 
 import {
   useApproveBookingMutation,
+  useCancelBookingMutation,
   useGetBookingsQuery,
 } from "@/redux/features/booking/booking.api";
 import { TBooking } from "@/types/globalTypes";
@@ -17,6 +19,7 @@ const ManageBookings = () => {
   } = useGetBookingsQuery(undefined);
 
   const [approveBooking] = useApproveBookingMutation();
+  const [cancelBooking] = useCancelBookingMutation();
 
   // console.log(bookingsData?.data[0]);
 
@@ -41,14 +44,33 @@ const ManageBookings = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("something went wrong !! ", { duration: 1200, id: toastId });
+      toast.error("something went wrong !! ", { duration: 2000, id: toastId });
     }
   };
 
   // !  for cancel booking
   const handleCancelBooking = async (id: string) => {
-    console.log("booking cancel !!");
-    console.log(id);
+    const toastId = toast.loading("Approving booking !! ");
+
+    try {
+      const response = await cancelBooking(id);
+
+      // * for any error
+      if (response?.error) {
+        toast.error((response?.error as any)?.data?.message, {
+          id: toastId,
+          duration: 1400,
+        });
+      }
+
+      if (response?.data?.success) {
+        toast.success(response?.data?.message, { id: toastId, duration: 1200 });
+        bookingDataRefetch();
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("something went wrong !! ", { duration: 2000, id: toastId });
+    }
   };
 
   let content = null;
