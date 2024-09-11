@@ -18,6 +18,21 @@ const bookingApi = baseApi.injectEndpoints({
       },
     }),
 
+    // ! for getting all completed booking
+    getCompletedBookings: builder.query({
+      query: () => {
+        return {
+          url: "/bookings/completed-booking",
+          method: "GET",
+        };
+      },
+      transformResponse: (response) => {
+        return {
+          data: (response as any)?.data,
+        };
+      },
+    }),
+
     // ! for approve a booking
     approveBooking: builder.mutation({
       query: (id: string) => {
@@ -44,4 +59,5 @@ export const {
   useGetBookingsQuery,
   useApproveBookingMutation,
   useCancelBookingMutation,
+  useGetCompletedBookingsQuery,
 } = bookingApi;

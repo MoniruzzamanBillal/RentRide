@@ -18,3 +18,4 @@ export { default as UpdateCar } from "./UpdateCar";
 export { default as CarDeleteModal } from "./CarDeleteModal";
 export { default as ChangeRoleModal } from "./ChangeRoleModal";
 export { default as ManageBookingModal } from "./ManageBookingModal";
+export { default as ManageReturnCarModal } from "./ManageReturnCarModal";

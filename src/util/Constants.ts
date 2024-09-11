@@ -33,3 +33,8 @@ export const bookingStatus = {
   approved: "approved",
   completed: "completed",
 };
+
+export const carStatus = {
+  available: "available",
+  unavailable: "unavailable",
+};
