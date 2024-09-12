@@ -2,6 +2,8 @@ import App from "@/App";
 import { AddNewCar, UpdateCar } from "@/components/ui";
 import {
   AboutUs,
+  BookForm,
+  BookingConfirmation,
   CarDetail,
   Dashboard,
   DashboardLayout,
@@ -44,8 +46,12 @@ const router = createBrowserRouter([
         element: <CarDetail />,
       },
       {
-        path: "/about",
-        element: <p>about us </p>,
+        path: "/book-car/:carId",
+        element: <BookForm />,
+      },
+      {
+        path: "/confirm-booking",
+        element: <BookingConfirmation />,
       },
 
       {

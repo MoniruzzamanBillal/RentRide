@@ -100,3 +100,7 @@ table th {
 .active {
   color: #009b94;
 }
+
+.text-shadow-prime {
+  text-shadow: 2px 4px 14px #08cdc3a8;
+}

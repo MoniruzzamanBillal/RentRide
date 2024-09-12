@@ -11,3 +11,5 @@ export { default as ManageReturnCar } from "./ManageReturnCar";
 export { default as ManageUsers } from "./ManageUsers";
 export { default as UserBooking } from "./UserBooking";
 export { default as UserPayment } from "./UserPayment";
+export { default as BookForm } from "./BookForm";
+export { default as BookingConfirmation } from "./BookingConfirmation";

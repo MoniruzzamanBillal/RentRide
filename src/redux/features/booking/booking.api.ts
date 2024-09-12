@@ -50,6 +50,17 @@ const bookingApi = baseApi.injectEndpoints({
       },
     }),
 
+    // ! book a  car
+    makeBooking: builder.mutation({
+      query: (payload) => {
+        return {
+          url: `/bookings`,
+          method: "POST",
+          body: payload,
+        };
+      },
+    }),
+
     //
   }),
 });
@@ -60,4 +71,5 @@ export const {
   useApproveBookingMutation,
   useCancelBookingMutation,
   useGetCompletedBookingsQuery,
+  useMakeBookingMutation,
 } = bookingApi;

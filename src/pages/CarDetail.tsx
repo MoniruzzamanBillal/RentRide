@@ -1,8 +1,9 @@
 import Wrapper from "@/components/shared/Wrapper";
 import GlassZoomImage from "@/util/GlassZoomImage";
-import { useParams } from "react-router-dom";
+
 import { useGetCarQuery } from "@/redux/features/cars/car.api";
 import { carStatus } from "@/util/Constants";
+import { Link, useParams } from "react-router-dom";
 
 const CarDetail = () => {
   const { id } = useParams();
@@ -104,19 +105,25 @@ const CarDetail = () => {
 
             {/* {/* buttons - start  */}
             <div className="   ">
-              <button
-                disabled={carDetail?.data?.status}
-                className={`inline-block flex-1 rounded-lg px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 sm:flex-none md:text-base 
-                    ${
-                      carDetail?.data?.status === carStatus.available
-                        ? "bg-prime50 hover:bg-prime100 hover:scale-[1.02] active:scale-100 cursor-pointer   "
-                        : " bg-red-600 cursor-not-allowed "
-                    }
-                
-                `}
-              >
-                Book Now
-              </button>
+              <Link to={`/book-car/${carDetail?.data?._id}`}>
+                <button
+                  disabled={
+                    carDetail?.data?.status === carStatus.unavailable
+                      ? true
+                      : false
+                  }
+                  className={`inline-block flex-1 rounded-lg px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 sm:flex-none md:text-base 
+                 ${
+                   carDetail?.data?.status === carStatus.available
+                     ? "bg-prime50 hover:bg-prime100 hover:scale-[1.02] active:scale-100 cursor-pointer   "
+                     : " bg-red-600 cursor-not-allowed "
+                 }
+             
+             `}
+                >
+                  Book Now
+                </button>
+              </Link>
             </div>
             {/* buttons - end  */}
           </div>
