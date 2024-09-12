@@ -43,11 +43,10 @@ const BookingConfirmation = () => {
           duration: 2000,
         });
 
-        dispatch(clearBookingData());
-
         setTimeout(() => {
           navigate("/");
         }, 1600);
+        dispatch(clearBookingData());
       }
     } catch (error) {
       console.log(error);
