@@ -163,7 +163,7 @@ const ManageBookings = () => {
   return (
     <div className="ManageBookingsContainer">
       <div className="manageBookingWrapper bg-gray-100 shadow rounded-md p-3 ">
-        <h3 className="brand text-2xl font-medium mb-4 ">All Cars</h3>
+        <h3 className="brand text-2xl font-medium mb-4 ">All Bookings</h3>
 
         {/* table starts  */}
         <div className="tableContainer relative w-full overflow-auto mt-4 ">

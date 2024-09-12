@@ -8,11 +8,18 @@ type TFeatureCarProps = {
 };
 
 const FeaturedCarCard = ({ carData }: TFeatureCarProps) => {
+  // console.log(carData);
+
   return (
     <div className=" bg-gray-50 min-h-[28rem] w-[82%] xsm:w-[65%]  sm:w-auto m-auto carCard p-4  cursor-pointer group flex flex-col justify-between  gap-y-4 border   border-gray-300 rounded-2xl  shadow-md hover:shadow-lg hover:scale-[1.02] duration-200 overflow-hidden ">
       {/* product image  */}
       <div className="carImg  h-[12rem] ">
-        <img className="w-full h-full" src={carData?.imageUrl} alt="" />
+        <img
+          className="w-full h-full"
+          // src={carData?.carImg}
+          alt="car image "
+          src="https://i.ibb.co/XWy9KF8/car1.png"
+        />
       </div>
 
       {/* prod name  */}
@@ -23,7 +30,7 @@ const FeaturedCarCard = ({ carData }: TFeatureCarProps) => {
       {/* brief description  */}
       <div className="carBriefDescription   ">
         <p className=" font-medium  text-sm text-gray-700 ">
-          {carData?.briefDescription}
+          {carData?.description}
         </p>
       </div>
 
@@ -37,7 +44,7 @@ const FeaturedCarCard = ({ carData }: TFeatureCarProps) => {
 
       {/* detail section  */}
       <div className="carDetailBTN  ">
-        <Link to={`/product/detail/product?._id`}>
+        <Link to={`/car-detail/${carData?._id}`}>
           <Button className=" -z-[1] text-xs sm:text-sm md:text-base bg-prime50 hover:bg-prime100 ">
             Detail
           </Button>

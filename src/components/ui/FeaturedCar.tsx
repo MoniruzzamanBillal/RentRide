@@ -1,9 +1,83 @@
-import { featureCarData } from "@/util/Data";
 import Wrapper from "../shared/Wrapper";
 import { TFeaturedCar } from "@/types/globalTypes";
 import FeaturedCarCard from "./FeatureCarCard";
+import { useGetAllCarsQuery } from "@/redux/features/cars/car.api";
+import TableDataError from "./TableDataError";
 
 const FeaturedCar = () => {
+  const {
+    data: featureCarData,
+    isLoading: featureCarLoading,
+    isError: featureCarError,
+  } = useGetAllCarsQuery(undefined);
+
+  console.log(featureCarData?.data);
+
+  let content = null;
+
+  // * if data is loading
+  if (featureCarLoading) {
+    content = (
+      <div className="loadingContainer">
+        <div
+          className="flex justify-center items-center h-16
+           "
+        >
+          <div className="rounded-full size-8 bg-prime100 animate-ping"></div>
+        </div>
+      </div>
+    );
+  }
+
+  // * if error
+  if (!featureCarLoading && featureCarError) {
+    content = (
+      <div className="errorMessage">
+        <TableDataError message="Something went wrong " />
+      </div>
+    );
+  }
+
+  // * for no product
+  else if (
+    !featureCarLoading &&
+    !featureCarError &&
+    featureCarData?.data?.length < 1
+  ) {
+    content = (
+      <tr>
+        <td colSpan={8}>
+          <TableDataError message="Nothing Found" />
+        </td>
+      </tr>
+    );
+  }
+
+  // ! for data
+  else if (
+    !featureCarLoading &&
+    !featureCarError &&
+    featureCarData?.data?.length
+  ) {
+    content = (
+      <div className="productContainer">
+        {/* products content starts  */}
+        <div className="productsContent  py-3 px-4 ">
+          {/* all products  */}
+          <div className="allProducts grid grid-cols-1 sm:grid-cols-2 xmd:grid-cols-3  xlm:grid-cols-4 gap-x-4 gap-y-8 ">
+            {featureCarData &&
+              featureCarData?.data
+                ?.slice(0, 4)
+                ?.map((product: TFeaturedCar, ind: number) => (
+                  <FeaturedCarCard carData={product} key={ind} />
+                ))}
+          </div>
+        </div>
+        {/* products content ends */}
+      </div>
+    );
+  }
+
   return (
     <div className="FeaturedCarContainer py-8 bg-blue-50 ">
       <Wrapper className="FeaturedCarWrapper  ">
@@ -12,19 +86,7 @@ const FeaturedCar = () => {
           Featured <span className=" text-prime100 ">Car</span>
         </h1>
 
-        <div className="featuredCardItem">
-          {/* products content starts  */}
-          <div className="productsContent  py-3 px-4 ">
-            {/* all products  */}
-            <div className="allProducts grid grid-cols-1 sm:grid-cols-2 xmd:grid-cols-3  xlm:grid-cols-4 gap-x-4 gap-y-8 ">
-              {featureCarData &&
-                featureCarData?.map((product: TFeaturedCar, ind: number) => (
-                  <FeaturedCarCard carData={product} key={ind} />
-                ))}
-            </div>
-          </div>
-          {/* products content ends */}
-        </div>
+        <div className="featuredCardItem">{content}</div>
       </Wrapper>
     </div>
   );

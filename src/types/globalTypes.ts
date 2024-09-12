@@ -8,10 +8,18 @@ export type TUser = {
 };
 
 export type TFeaturedCar = {
+  _id: string;
   name: string;
-  briefDescription: string;
-  imageUrl: string;
+  carImg?: string;
+  description: string;
+  color: string;
+  isElectric: boolean;
   pricePerHour: number;
+  status: "available" | "unavailable";
+  isDeleted: boolean;
+  features: string[];
+  dropLocation: string[];
+  __v: number;
 };
 
 export type TTestimonial = {
