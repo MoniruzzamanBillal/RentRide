@@ -1,14 +1,21 @@
 import { ManageUserBookingModal, TableDataError } from "@/components/ui";
-import { useUserBookingQuery } from "@/redux/features/booking/booking.api";
+import {
+  useCancelBookingMutation,
+  useUserBookingQuery,
+} from "@/redux/features/booking/booking.api";
 import { TBooking } from "@/types/globalTypes";
 import { bookingStatus } from "@/util/Constants";
+import { toast } from "sonner";
 
 const UserBooking = () => {
   const {
     data: userBookingData,
     isLoading: userBookingDataLoading,
     isError: userBookingDataError,
+    refetch: userBookingDataRefetch,
   } = useUserBookingQuery(undefined);
+
+  const [cancelBooking] = useCancelBookingMutation();
 
   console.log(userBookingData?.data);
 
@@ -18,8 +25,28 @@ const UserBooking = () => {
   };
 
   // ! for  cancel booking
-  const handleCancelBooking = (id: string) => {
-    console.log("cancel booking !!! ");
+  const handleCancelBooking = async (id: string) => {
+    const toastId = toast.loading("Approving booking !! ");
+
+    try {
+      const response = await cancelBooking(id);
+
+      // * for any error
+      if (response?.error) {
+        toast.error((response?.error as any)?.data?.message, {
+          id: toastId,
+          duration: 1400,
+        });
+      }
+
+      if (response?.data?.success) {
+        toast.success(response?.data?.message, { id: toastId, duration: 1200 });
+        userBookingDataRefetch();
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("something went wrong !! ", { duration: 2000, id: toastId });
+    }
   };
 
   let content = null;
