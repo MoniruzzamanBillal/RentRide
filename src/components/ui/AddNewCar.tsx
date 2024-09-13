@@ -12,7 +12,7 @@ import RentMultiSelectInput from "../form/RentMultiSelectInput ";
 import { zodResolver } from "@hookform/resolvers/zod";
 import addCarValidationSchema from "@/schemas/AddCarSchema";
 import { toast } from "sonner";
-import GetImgLink from "@/util/GetImgLink";
+
 import { useAddNewCarMutation } from "@/redux/features/cars/car.api";
 
 const AddNewCar = () => {
@@ -29,26 +29,33 @@ const AddNewCar = () => {
       features,
       dropLocation,
       pricePerHour,
+      image,
     } = data;
 
     const elec = electric === "yes" ? true : false;
 
+    const payload = {
+      name,
+      description,
+      color,
+      isElectric: elec,
+      features,
+      pricePerHour,
+      dropLocation,
+    };
+    const cardata = {
+      car: payload,
+    };
+
+    const formdata = new FormData();
+
+    formdata.append("data", JSON.stringify(cardata));
+    formdata.append("file", image);
+
     const taostId = toast.loading("Adding car....");
 
     try {
-      // const carImg = await GetImgLink(image);
-
-      const payload = {
-        name,
-        description,
-        color,
-        isElectric: elec,
-        features,
-        pricePerHour,
-        dropLocation,
-      };
-
-      const result = await addNewCar(payload);
+      const result = await addNewCar(formdata);
 
       //  *  for any  error
       if (result?.error) {
@@ -73,14 +80,10 @@ const AddNewCar = () => {
           navigate("/dashboard/admin/manage-car");
         }, 600);
       }
-
-      //
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong !!!", { id: taostId, duration: 1400 });
     }
-
-    //
   };
 
   return (
@@ -97,7 +100,7 @@ const AddNewCar = () => {
             resolver={zodResolver(addCarValidationSchema)}
           >
             <RentInput type="text" label="Name :" name="name" />
-            {/* <RentInput type="file" label="Car Image :" name="image" /> */}
+            <RentInput type="file" label="Car Image :" name="image" />
             <RentInput type="text" label="Description :" name="description" />
             <RentInput type="text" label="Color :" name="color" />
 

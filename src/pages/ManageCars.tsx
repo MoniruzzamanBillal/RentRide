@@ -5,6 +5,7 @@ import {
   useDeleteCarMutation,
   useGetAllCarsQuery,
 } from "@/redux/features/cars/car.api";
+import { TCar } from "@/types/globalTypes";
 
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
@@ -76,10 +77,16 @@ const ManageCars = () => {
 
   // * if there is a product
   else if (!carDataLoading && !carDataError && allCarData?.data?.length) {
-    content = allCarData?.data?.map((item) => (
+    content = allCarData?.data?.map((item: TCar) => (
       <tr key={item._id} className="border-b">
         <td className="p-4 text-center">{item?.name}</td>
-        <td className="p-4 text-center"> image</td>
+        <td className="p-4 flex justify-center items-center ">
+          <img
+            className="size-[2.4rem] xsm:size-[2.9rem] sm:size-[3.5rem]"
+            src={item?.carImg}
+            alt="car img"
+          />
+        </td>
 
         <td className="p-4 text-center">{item?.color}</td>
         <td className="p-4 text-center">{item?.isElectric ? "Yes" : "No"}</td>

@@ -22,6 +22,21 @@ export type TFeaturedCar = {
   __v: number;
 };
 
+export type TCar = {
+  carImg: string;
+  color: string;
+  description: string;
+  dropLocation: string[];
+  features: string[];
+  isDeleted: boolean;
+  isElectric: boolean;
+  name: string;
+  pricePerHour: number;
+  status: "available" | "unavailable";
+  __v: number;
+  _id: string;
+};
+
 export type TTestimonial = {
   review: string;
   name: string;
