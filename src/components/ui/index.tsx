@@ -20,3 +20,4 @@ export { default as ChangeRoleModal } from "./ChangeRoleModal";
 export { default as ManageBookingModal } from "./ManageBookingModal";
 export { default as ManageReturnCarModal } from "./ManageReturnCarModal";
 export { default as ManageUserBookingModal } from "./ManageUserBookingModal";
+export { default as CompleteBookingModal } from "./CompleteBookingModal";

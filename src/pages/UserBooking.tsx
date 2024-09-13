@@ -1,4 +1,8 @@
-import { ManageUserBookingModal, TableDataError } from "@/components/ui";
+import {
+  CompleteBookingModal,
+  ManageUserBookingModal,
+  TableDataError,
+} from "@/components/ui";
 import {
   useCancelBookingMutation,
   useUserBookingQuery,
@@ -49,6 +53,11 @@ const UserBooking = () => {
       console.log(error);
       toast.error("something went wrong !! ", { duration: 2000, id: toastId });
     }
+  };
+
+  // ! for completing booking
+  const handleCompleteBooking = (id: string) => {
+    console.log("booking completed !! ", id);
   };
 
   let content = null;
@@ -117,22 +126,23 @@ const UserBooking = () => {
               : "text-green-600"
           }  `}
         >
-          {" "}
           {booking?.status}{" "}
         </td>
-        <td
-          className={`p-4  ${
-            booking?.status === bookingStatus.approved ||
-            booking?.status === bookingStatus.completed
-              ? " hidden "
-              : " flex justify-center items-center"
-          }  `}
-        >
-          <ManageUserBookingModal
-            handleUpdateBooking={handleUpdateBooking}
-            handleCancelBooking={handleCancelBooking}
-            id={booking._id}
-          />
+        <td className={`p-4 flex justify-center items-center  `}>
+          {booking?.status === bookingStatus.pending ? (
+            <ManageUserBookingModal
+              handleUpdateBooking={handleUpdateBooking}
+              handleCancelBooking={handleCancelBooking}
+              id={booking._id}
+            />
+          ) : booking?.status === bookingStatus.approved ? (
+            <CompleteBookingModal
+              handleCompleteBooking={handleCompleteBooking}
+              id={booking._id}
+            />
+          ) : (
+            " "
+          )}
         </td>
       </tr>
     ));
