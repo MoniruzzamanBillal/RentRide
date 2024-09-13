@@ -7,6 +7,8 @@ type TBooking = {
   dropLocation: string;
   paymentMethod: string;
   additionalFeature: string[];
+  license: number | null;
+  nid: number | null;
 };
 
 const initialState: TBooking = {
@@ -16,6 +18,8 @@ const initialState: TBooking = {
   dropLocation: "",
   paymentMethod: "",
   additionalFeature: [],
+  license: null,
+  nid: null,
 };
 
 const bookingSlice = createSlice({

@@ -34,11 +34,26 @@ const bookingApi = baseApi.injectEndpoints({
     }),
 
     // ! get user  booking
-
     userBooking: builder.query({
       query: () => {
         return {
           url: "/bookings/my-bookings",
+          method: "GET",
+        };
+      },
+
+      transformResponse: (response) => {
+        return {
+          data: (response as any)?.data,
+        };
+      },
+    }),
+
+    // ! get specific booking
+    singleBooking: builder.query({
+      query: (id: string) => {
+        return {
+          url: `/bookings/single-booking/${id}`,
           method: "GET",
         };
       },
@@ -56,6 +71,18 @@ const bookingApi = baseApi.injectEndpoints({
         return {
           url: `/bookings/approve-booking/${id}`,
           method: "PATCH",
+        };
+      },
+    }),
+
+    // ! for updating a booking
+    updateBooking: builder.mutation({
+      query: (payload) => {
+        const { bookId, bookingData } = payload;
+        return {
+          url: `/bookings/update-booking/${bookId}`,
+          method: "PATCH",
+          body: bookingData,
         };
       },
     }),
@@ -90,4 +117,6 @@ export const {
   useGetCompletedBookingsQuery,
   useMakeBookingMutation,
   useUserBookingQuery,
+  useSingleBookingQuery,
+  useUpdateBookingMutation,
 } = bookingApi;

@@ -45,7 +45,7 @@ const BookingConfirmation = () => {
 
         setTimeout(() => {
           navigate("/");
-        }, 1600);
+        }, 1000);
         dispatch(clearBookingData());
       }
     } catch (error) {
@@ -62,20 +62,23 @@ const BookingConfirmation = () => {
           <h3 className="font-bold text-xl mb-4">
             Review your Booking Details
           </h3>
-          {/* <p className="mb-1.5">
-            <strong>Car ID:</strong> {booking.carId}
-          </p> */}
+          <p className="mb-1.5">
+            <strong>License:</strong> {booking?.license}
+          </p>
+          <p className="mb-1.5">
+            <strong>NID/Passport:</strong> {booking?.nid}
+          </p>
           <p>
-            <strong>Date:</strong> {booking.date}
+            <strong>Date:</strong> {booking?.date}
           </p>
           <p className="mb-1.5">
-            <strong>Start Time:</strong> {booking.startTime}
+            <strong>Start Time:</strong> {booking?.startTime}
           </p>
           <p className="mb-1.5">
-            <strong>Drop Location:</strong> {booking.dropLocation}
+            <strong>Drop Location:</strong> {booking?.dropLocation}
           </p>
           <p className="mb-1.5">
-            <strong>Payment Method:</strong> {booking.paymentMethod}
+            <strong>Payment Method:</strong> {booking?.paymentMethod}
           </p>
           <p className="mb-1.5">
             <strong>Additional Features:</strong>{" "}

@@ -14,6 +14,7 @@ import {
   ManageReturnCar,
   ManageUsers,
   SignUp,
+  UpdateBookForm,
   UserBooking,
   UserPayment,
 } from "@/pages";
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "/book-car/:carId",
         element: <BookForm />,
+      },
+      {
+        path: "/update-book-car/:bookId",
+        element: <UpdateBookForm />,
       },
       {
         path: "/confirm-booking",

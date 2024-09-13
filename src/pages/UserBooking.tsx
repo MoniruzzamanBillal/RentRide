@@ -5,9 +5,11 @@ import {
 } from "@/redux/features/booking/booking.api";
 import { TBooking } from "@/types/globalTypes";
 import { bookingStatus } from "@/util/Constants";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const UserBooking = () => {
+  const navigate = useNavigate();
   const {
     data: userBookingData,
     isLoading: userBookingDataLoading,
@@ -17,11 +19,11 @@ const UserBooking = () => {
 
   const [cancelBooking] = useCancelBookingMutation();
 
-  console.log(userBookingData?.data);
+  // console.log(userBookingData?.data);
 
   // ! for  updating
   const handleUpdateBooking = (id: string) => {
-    console.log("update booking !!! ");
+    navigate(`/update-book-car/${id}`);
   };
 
   // ! for  cancel booking
