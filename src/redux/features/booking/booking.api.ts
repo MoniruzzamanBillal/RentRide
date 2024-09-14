@@ -50,6 +50,22 @@ const bookingApi = baseApi.injectEndpoints({
       providesTags: ["userBooking"],
     }),
 
+    // ! get user completed booking
+    userCompletedBooking: builder.query({
+      query: () => {
+        return {
+          url: "/bookings/my-completed-bookings",
+          method: "GET",
+        };
+      },
+
+      transformResponse: (response) => {
+        return {
+          data: (response as any)?.data,
+        };
+      },
+    }),
+
     // ! get specific booking
     singleBooking: builder.query({
       query: (id: string) => {
@@ -133,4 +149,5 @@ export const {
   useSingleBookingQuery,
   useUpdateBookingMutation,
   useCompleteBookingMutation,
+  useUserCompletedBookingQuery,
 } = bookingApi;

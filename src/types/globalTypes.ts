@@ -109,3 +109,40 @@ export type TBooking = {
   updatedAt: string;
   __v: number;
 };
+
+export type TUserCompletedBooking = {
+  _id: string;
+  date: string;
+  user: {
+    _id: string;
+    name: string;
+    email: string;
+    role: string;
+    phone: string;
+    isBlocked: boolean;
+  };
+  car: {
+    _id: string;
+    name: string;
+    description: string;
+    color: string;
+    isElectric: boolean;
+    status: string;
+    features: string[];
+    pricePerHour: number;
+    isDeleted: boolean;
+    __v: number;
+    dropLocation: string[];
+  };
+  startTime: string;
+  endTime: string;
+  totalCost: number;
+  status: string;
+  payment: string;
+  dropLocation: string;
+  additionalFeature: string[];
+  paymentMethod: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};

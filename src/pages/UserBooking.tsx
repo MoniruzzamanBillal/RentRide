@@ -156,7 +156,7 @@ const UserBooking = () => {
 
   return (
     <div className="UserBookingContainer">
-      <div className="UserBookingWrapper bg-gray-100 shadow rounded-md p-3">
+      <div className="UserBookingWrapper bg-gray-100 shadow rounded-md p-3 ">
         <h3 className="brand text-2xl font-medium mb-4 ">My Bookings</h3>
 
         {/* table starts  */}
