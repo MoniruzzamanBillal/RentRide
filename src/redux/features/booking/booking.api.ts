@@ -47,6 +47,7 @@ const bookingApi = baseApi.injectEndpoints({
           data: (response as any)?.data,
         };
       },
+      providesTags: ["userBooking"],
     }),
 
     // ! get specific booking
@@ -105,6 +106,18 @@ const bookingApi = baseApi.injectEndpoints({
       },
     }),
 
+    // ! complete booking
+    completeBooking: builder.mutation({
+      query: (payload) => {
+        return {
+          url: `/bookings/complete-booking`,
+          method: "PATCH",
+          body: payload,
+        };
+      },
+      invalidatesTags: ["userBooking"],
+    }),
+
     //
   }),
 });
@@ -119,4 +132,5 @@ export const {
   useUserBookingQuery,
   useSingleBookingQuery,
   useUpdateBookingMutation,
+  useCompleteBookingMutation,
 } = bookingApi;

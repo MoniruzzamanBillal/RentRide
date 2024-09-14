@@ -1,24 +1,28 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Wrapper from "@/components/shared/Wrapper";
 import { Button } from "@/components/ui/button";
-import { useSingleBookingQuery } from "@/redux/features/booking/booking.api";
+import {
+  useCompleteBookingMutation,
+  useSingleBookingQuery,
+} from "@/redux/features/booking/booking.api";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
 
 const CompleteBooking = () => {
+  const navigate = useNavigate();
   const { bookId } = useParams();
 
   const { data: bookingDetail, isLoading: bookingDetailLoading } =
     useSingleBookingQuery(bookId!, { skip: !bookId });
 
+  const [completeBooking] = useCompleteBookingMutation();
+
   const [startDate, setStartDate] = useState(new Date());
+  const [bookingStartTime, setbookingStartTime] = useState("");
 
-  //   console.log(bookingDetail?.data);
-  //   console.log(bookingDetail?.data?.startTime);
-  let bookingStartTime = bookingDetail?.data?.startTime;
-
-  const filterPassedTime = (time) => {
+  const filterPassedTime = (time: Date) => {
     const currentDate = new Date();
     const selectedDate = new Date(time);
 
@@ -31,16 +35,67 @@ const CompleteBooking = () => {
     return selectedDate.getTime() > bookingStartDate.getTime();
   };
 
-  const handleCompleteBooking = () => {
+  // ! for compleating booking
+  const handleCompleteBooking = async () => {
     if (!startDate) {
       toast.error("Select ending time !!  ", { duration: 1200 });
     }
 
-    console.log(startDate);
+    const completeData = new Date(startDate);
+
+    const hours = completeData.getHours().toString().padStart(2, "0");
+    const minutes = completeData.getMinutes().toString().padStart(2, "0");
+
+    const endTime = `${hours}:${minutes}`;
+
+    const completeBookingData = {
+      endTime,
+      bookingId: bookId,
+    };
+
+    const toastId = toast.loading("Completing booking !! ");
+
+    try {
+      const response = await completeBooking(completeBookingData);
+
+      // * for any error
+      if (response?.error) {
+        toast.error((response?.error as any)?.data?.message, {
+          id: toastId,
+          duration: 1400,
+        });
+      }
+
+      if (response?.data?.success) {
+        toast.success(response?.data?.message, { id: toastId, duration: 1200 });
+        setTimeout(() => {
+          navigate("/dashboard/user/user-booking");
+        }, 600);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("something went wrong !! ", { duration: 2000, id: toastId });
+    }
   };
 
+  useEffect(() => {
+    if (bookingDetail?.data) {
+      setbookingStartTime(bookingDetail?.data?.startTime);
+    }
+  }, [bookingDetail]);
+
+  // * if data is loading
   if (bookingDetailLoading) {
-    return <p>loading !!n</p>;
+    return (
+      <div className="loadingContainer min-h-screen flex items-center justify-center ">
+        <div
+          className="flex justify-center items-center h-14
+         "
+        >
+          <div className="rounded-full size-8 bg-prime100 animate-ping"></div>
+        </div>
+      </div>
+    );
   }
 
   return (

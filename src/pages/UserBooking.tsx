@@ -128,7 +128,13 @@ const UserBooking = () => {
         >
           {booking?.status}{" "}
         </td>
-        <td className={`p-4 flex justify-center items-center  `}>
+        <td
+          className={`p-4   ${
+            booking?.status === bookingStatus.completed
+              ? "hidden"
+              : "flex justify-center items-center"
+          } `}
+        >
           {booking?.status === bookingStatus.pending ? (
             <ManageUserBookingModal
               handleUpdateBooking={handleUpdateBooking}
