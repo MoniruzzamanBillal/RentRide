@@ -57,7 +57,7 @@ const UserBooking = () => {
 
   // ! for completing booking
   const handleCompleteBooking = (id: string) => {
-    console.log("booking completed !! ", id);
+    navigate(`/complete-booking/${id}`);
   };
 
   let content = null;

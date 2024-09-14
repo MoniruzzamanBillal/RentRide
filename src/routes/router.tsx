@@ -5,6 +5,7 @@ import {
   BookForm,
   BookingConfirmation,
   CarDetail,
+  CompleteBooking,
   Dashboard,
   DashboardLayout,
   HomePage,
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/update-book-car/:bookId",
         element: <UpdateBookForm />,
+      },
+      {
+        path: "/complete-booking/:bookId",
+        element: <CompleteBooking />,
       },
       {
         path: "/confirm-booking",

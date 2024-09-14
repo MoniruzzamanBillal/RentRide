@@ -110,7 +110,7 @@ const BookForm = () => {
   }
 
   return (
-    <div className="bookformContainer w-full min-h-screen  imageCenter  flex items-center justify-center ">
+    <div className="bookformContainer w-full min-h-screen flex items-center justify-center ">
       <Wrapper className="formWrapper   py-14 ">
         <div className="    w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto p-3 xsm:p-5 sm:p-7 md:p-10  rounded-md shadow-xl bg-gray-200 backdrop-blur bg-opacity-60 dark:backdrop-blur  ">
           <h1 className=" mb-6  md:mb-8 xmd:mb-12 lg:mb-14 text-center font-semibold text-prime100 text-lg xsm:text-xl sm:text-3xl md:text-3xl xl:text-4xl text-shadow-prime ">
@@ -120,7 +120,6 @@ const BookForm = () => {
           {/*  */}
 
           {/* form starts  */}
-          {/* resolver={zodResolver(loginSchema)} */}
           <RentForm
             onSubmit={handleBookCar}
             resolver={zodResolver(bookCarSchema)}

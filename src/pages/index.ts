@@ -14,3 +14,4 @@ export { default as UserPayment } from "./UserPayment";
 export { default as BookForm } from "./BookForm";
 export { default as UpdateBookForm } from "./UpdateBookForm";
 export { default as BookingConfirmation } from "./BookingConfirmation";
+export { default as CompleteBooking } from "./CompleteBooking";

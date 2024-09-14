@@ -56,9 +56,9 @@ const BookingConfirmation = () => {
 
   return (
     <div className="BookingConfirmationContainer  py-8 ">
-      <div className="BookingConfirmationWrapper  bg-gray-100 p-3 shadow rounded-md  flex flex-col justify-center items-center w-[40%] m-auto ">
+      <div className="BookingConfirmationWrapper  bg-gray-100 border border-gray-200 py-6  shadow-md rounded-md  flex flex-col justify-center items-center w-[40%] m-auto ">
         <h2 className="text-3xl font-bold mb-6 ">Booking Confirmation</h2>
-        <div className="confirmation-details bg-gray-100 p-4 rounded-lg">
+        <div className="confirmation-details  p-4 ">
           <h3 className="font-bold text-xl mb-4">
             Review your Booking Details
           </h3>

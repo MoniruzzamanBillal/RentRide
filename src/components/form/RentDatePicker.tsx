@@ -21,7 +21,7 @@ const RentDatePicker = ({ label, name }: TInput) => {
               selected={field.value}
               onChange={field.onChange}
               showTimeSelect
-              dateFormat="MMMM d, yyyy h:mm aa"
+              dateFormat="d-MMM-yyyy ,h:mm aa"
               className="border border-gray-400 py-2 px-3 rounded-md "
             />
             {error && (
