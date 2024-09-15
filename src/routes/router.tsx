@@ -14,6 +14,7 @@ import {
   ManageCars,
   ManageReturnCar,
   ManageUsers,
+  PaymentSuccess,
   SignUp,
   UpdateBookForm,
   UserBooking,
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "/confirm-booking",
         element: <BookingConfirmation />,
+      },
+      {
+        path: "/payment-success",
+        element: <PaymentSuccess />,
       },
 
       {
