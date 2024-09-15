@@ -4,7 +4,7 @@ import { GetUserRole } from "@/util/GetUserRole";
 const Dashboard = () => {
   const userRole = GetUserRole();
 
-  console.log(userRole);
+  // console.log(userRole);
 
   return (
     <div className="DashboardContainer">

@@ -135,6 +135,16 @@ const bookingApi = baseApi.injectEndpoints({
       invalidatesTags: ["userBooking"],
     }),
 
+    // ! completing payment
+    completePayment: builder.mutation({
+      query: (id: string) => {
+        return {
+          url: `payment/procede-payment/${id}`,
+          method: "POST",
+        };
+      },
+    }),
+
     //
   }),
 });
@@ -151,4 +161,5 @@ export const {
   useUpdateBookingMutation,
   useCompleteBookingMutation,
   useUserCompletedBookingQuery,
+  useCompletePaymentMutation,
 } = bookingApi;

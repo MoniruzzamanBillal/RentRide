@@ -15,14 +15,10 @@ const BookingConfirmation = () => {
 
   //   !  for confirming booking
   const handleConfirmBooking = async () => {
-    console.log("Booking Confirmed", booking);
-
     const taostId = toast.loading("Booking car ...");
 
     try {
       const result = await makeBooking(booking);
-
-      console.log(result);
 
       //  *  for any  error
       if (result?.error) {

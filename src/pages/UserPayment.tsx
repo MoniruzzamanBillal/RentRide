@@ -1,6 +1,10 @@
 import { ProcedePaymentModal, TableDataError } from "@/components/ui";
-import { useUserCompletedBookingQuery } from "@/redux/features/booking/booking.api";
+import {
+  useCompletePaymentMutation,
+  useUserCompletedBookingQuery,
+} from "@/redux/features/booking/booking.api";
 import { TUserCompletedBooking } from "@/types/globalTypes";
+import { toast } from "sonner";
 
 const UserPayment = () => {
   const {
@@ -10,14 +14,49 @@ const UserPayment = () => {
     refetch: userCompletedBookRefetch,
   } = useUserCompletedBookingQuery(undefined);
 
+  const [completePayment] = useCompletePaymentMutation();
+
   // ! for complete payment
-  const handleProcedePayment = (id: string) => {
-    console.log("payment ", id);
+  const handleProcedePayment = async (id: string) => {
+    const taostId = toast.loading("Paying ....");
+
+    try {
+      const result = await completePayment(id);
+
+      console.log(result);
+
+      if (result?.error) {
+        const errorMessage = (result?.error as any)?.data?.message;
+
+        toast.error(errorMessage, {
+          id: taostId,
+          duration: 1400,
+        });
+      }
+
+      if (result?.data) {
+        const successMsg = result?.data?.message;
+
+        const paymentUrl = result?.data?.data?.payment_url;
+
+        console.log(paymentUrl);
+
+        toast.success(successMsg, {
+          id: taostId,
+          duration: 2000,
+        });
+
+        window.location.href = paymentUrl;
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong !!!", { id: taostId, duration: 1400 });
+    }
   };
 
   let content = null;
 
-  console.log(userPaymentCompletedBookingData?.data);
+  // console.log(userPaymentCompletedBookingData?.data);
 
   // *  if data is loading
   if (userCompletedBookLoading) {
