@@ -4,9 +4,13 @@ import {
   useUserCompletedBookingQuery,
 } from "@/redux/features/booking/booking.api";
 import { TUserCompletedBooking } from "@/types/globalTypes";
+import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
 
 const UserPayment = () => {
+  const [searchParam] = useSearchParams();
+
   const {
     data: userPaymentCompletedBookingData,
     isLoading: userCompletedBookLoading,
@@ -53,6 +57,15 @@ const UserPayment = () => {
       toast.error("Something went wrong !!!", { id: taostId, duration: 1400 });
     }
   };
+
+  useEffect(() => {
+    const errorMsg = searchParam.get("paymentConfirmation");
+    if (errorMsg) {
+      toast.error("Failed to make payment , Please try again !! ", {
+        duration: 1600,
+      });
+    }
+  }, []);
 
   let content = null;
 

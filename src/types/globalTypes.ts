@@ -101,6 +101,7 @@ export type TBooking = {
   car: TBookingCar;
   user: TBookingUser;
   startTime: string;
+  payment: string;
   endTime: string | null;
   dropLocation: string;
   status: string;

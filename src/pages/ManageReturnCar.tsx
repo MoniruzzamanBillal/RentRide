@@ -16,6 +16,8 @@ const ManageReturnCar = () => {
 
   const [returnCar] = useReturnCarMutation();
 
+  console.log(completedBookingData?.data);
+
   // ! for return car
   const handleReturnCar = async (id: string) => {
     const toastId = toast.loading("Returning car!!!");
@@ -107,6 +109,15 @@ const ManageReturnCar = () => {
         >
           {booking?.car?.status}
         </td>
+
+        <td
+          className={`p-4 text-center font-semibold ${
+            booking?.payment === "pending" ? "text-red-600" : "text-green-600"
+          }  `}
+        >
+          {booking?.payment}
+        </td>
+
         <td
           className={`p-4  ${
             booking?.car?.status === carStatus.available
@@ -140,7 +151,8 @@ const ManageReturnCar = () => {
                 <th className="px-4 font-medium">Booking Date</th>
                 <th className="px-4 font-medium">Drop location</th>
                 <th className="px-4 font-medium">Earning</th>
-                <th className="px-4 font-medium">Status</th>
+                <th className="px-4 font-medium">Booking Status</th>
+                <th className="px-4 font-medium">Payment Status</th>
                 <th className="px-4 font-medium">Action</th>
               </tr>
             </thead>
