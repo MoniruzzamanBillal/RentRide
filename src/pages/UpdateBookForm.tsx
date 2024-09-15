@@ -28,6 +28,7 @@ import {
 } from "@/redux/features/booking/booking.api";
 import { UpdatebookCarSchema } from "@/schemas/BookCarSchema";
 import { toast } from "sonner";
+import Loading from "./Loading";
 
 const paymentOptions = [
   {
@@ -164,14 +165,7 @@ const UpdateBookForm = () => {
 
   // ! if data is loading
   if (carDetailLoading || bookingDetailLoading) {
-    return (
-      <div
-        className="flex justify-center items-center h-screen
-       "
-      >
-        <div className="rounded-full size-16 bg-prime100 animate-ping"></div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
@@ -185,7 +179,6 @@ const UpdateBookForm = () => {
           {/*  */}
 
           {/* form starts  */}
-          {/* resolver={zodResolver(loginSchema)} */}
           <RentForm
             onSubmit={handleUpdateBooking}
             resolver={zodResolver(UpdatebookCarSchema)}

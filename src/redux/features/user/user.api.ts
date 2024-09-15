@@ -19,6 +19,36 @@ const userApi = baseApi.injectEndpoints({
       providesTags: ["users"],
     }),
 
+    // !  for getting logged in  user
+    getLoggedInUser: builder.query({
+      query: () => {
+        return {
+          url: "/user/loggedIn-user",
+          method: "GET",
+        };
+      },
+      transformResponse: (response) => {
+        return {
+          data: (response as any)?.data,
+        };
+      },
+    }),
+
+    // !  for getting single user
+    getSingleUser: builder.query({
+      query: (id: string) => {
+        return {
+          url: `/user/single-user/${id}`,
+          method: "GET",
+        };
+      },
+      transformResponse: (response) => {
+        return {
+          data: (response as any)?.data,
+        };
+      },
+    }),
+
     // ! changing user role
     changeUserRole: builder.mutation({
       query: (id) => {
@@ -35,4 +65,9 @@ const userApi = baseApi.injectEndpoints({
 });
 
 //
-export const { useGetUsersQuery, useChangeUserRoleMutation } = userApi;
+export const {
+  useGetUsersQuery,
+  useChangeUserRoleMutation,
+  useGetLoggedInUserQuery,
+  useGetSingleUserQuery,
+} = userApi;

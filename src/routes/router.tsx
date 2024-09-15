@@ -17,6 +17,7 @@ import {
   PaymentSuccess,
   SignUp,
   UpdateBookForm,
+  UpdateUserForm,
   UserBooking,
   UserPayment,
 } from "@/pages";
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/sign-up",
         element: <SignUp />,
+      },
+      {
+        path: "/update-user/:id",
+        element: <UpdateUserForm />,
       },
       {
         path: "/login",
