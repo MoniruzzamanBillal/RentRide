@@ -60,6 +60,17 @@ const userApi = baseApi.injectEndpoints({
       invalidatesTags: ["users"],
     }),
 
+    // ! update user
+    updateUser: builder.mutation({
+      query: (payload) => {
+        return {
+          url: `/user/update-user`,
+          method: "PATCH",
+          body: payload,
+        };
+      },
+    }),
+
     //
   }),
 });
@@ -70,4 +81,5 @@ export const {
   useChangeUserRoleMutation,
   useGetLoggedInUserQuery,
   useGetSingleUserQuery,
+  useUpdateUserMutation,
 } = userApi;

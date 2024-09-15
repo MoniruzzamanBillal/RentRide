@@ -1,7 +1,10 @@
-//
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { useGetSingleUserQuery } from "@/redux/features/user/user.api";
-import { useParams } from "react-router-dom";
+import {
+  useGetSingleUserQuery,
+  useUpdateUserMutation,
+} from "@/redux/features/user/user.api";
+import { useNavigate, useParams } from "react-router-dom";
 import Loading from "./Loading";
 import Wrapper from "@/components/shared/Wrapper";
 import { RentForm, RentInput } from "@/components/form";
@@ -10,8 +13,10 @@ import { FieldValues } from "react-hook-form";
 import UpdateUserSchema from "@/schemas/UpdateUserSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
+import { toast } from "sonner";
 
 const UpdateUserForm = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const { data: userData, isLoading: userDataLoadig } = useGetSingleUserQuery(
@@ -19,7 +24,9 @@ const UpdateUserForm = () => {
     { skip: !id }
   );
 
-  console.log(userData?.data);
+  const [updateUser] = useUpdateUserMutation();
+
+  //   console.log(userData?.data);
 
   let defaultValues;
   defaultValues = {
@@ -29,11 +36,48 @@ const UpdateUserForm = () => {
   };
 
   //   ! for updating a user
-  const handleUpdateUser = (data: FieldValues) => {
-    console.log("update user ");
-    console.log(data);
-
+  const handleUpdateUser = async (data: FieldValues) => {
     const { email, name, phone } = data;
+
+    const toastId = toast.loading("updating user.....");
+
+    try {
+      const payload = {
+        email,
+        name,
+        phone,
+      };
+
+      const result = await updateUser(payload);
+
+      // * if there is error
+      if (result?.error) {
+        const errorMsg = (result?.error as any)?.data?.errorMessages[0]
+          ?.message;
+
+        toast.error(errorMsg, {
+          id: toastId,
+          duration: 1400,
+        });
+
+        return;
+      }
+
+      // * for success sign up
+      if (result?.data?.success) {
+        toast.success(result?.data?.message, {
+          id: toastId,
+          duration: 1400,
+        });
+
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 1000);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong!! ", { id: toastId, duration: 1400 });
+    }
   };
 
   //   ! use effect for getting default values
