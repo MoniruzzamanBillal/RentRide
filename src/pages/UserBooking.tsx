@@ -9,6 +9,7 @@ import {
 } from "@/redux/features/booking/booking.api";
 import { TBooking } from "@/types/globalTypes";
 import { bookingStatus } from "@/util/Constants";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
@@ -59,6 +60,10 @@ const UserBooking = () => {
   const handleCompleteBooking = (id: string) => {
     navigate(`/complete-booking/${id}`);
   };
+
+  useEffect(() => {
+    userBookingDataRefetch();
+  }, []);
 
   let content = null;
 

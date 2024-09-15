@@ -1,4 +1,4 @@
-import { TableDataError } from "@/components/ui";
+import { ProcedePaymentModal, TableDataError } from "@/components/ui";
 import { useUserCompletedBookingQuery } from "@/redux/features/booking/booking.api";
 import { TUserCompletedBooking } from "@/types/globalTypes";
 
@@ -9,6 +9,11 @@ const UserPayment = () => {
     isError: userCompletedBookError,
     refetch: userCompletedBookRefetch,
   } = useUserCompletedBookingQuery(undefined);
+
+  // ! for complete payment
+  const handleProcedePayment = (id: string) => {
+    console.log("payment ", id);
+  };
 
   let content = null;
 
@@ -85,7 +90,10 @@ const UserPayment = () => {
                 : "flex justify-center items-center"
             } `}
           >
-            action !!
+            <ProcedePaymentModal
+              handleProcedeFunction={handleProcedePayment}
+              id={booking?._id}
+            />
           </td>
         </tr>
       )
