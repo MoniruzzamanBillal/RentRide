@@ -82,6 +82,22 @@ const bookingApi = baseApi.injectEndpoints({
       },
     }),
 
+    // ! get all completed payment booking for chart data
+    completedPaymentBooking: builder.query({
+      query: (query) => {
+        return {
+          url: `/bookings/completed-payment-booking`,
+          method: "GET",
+          params: { range: query },
+        };
+      },
+      transformResponse: (response) => {
+        return {
+          data: (response as any)?.data,
+        };
+      },
+    }),
+
     // ! for approve a booking
     approveBooking: builder.mutation({
       query: (id: string) => {
@@ -162,4 +178,5 @@ export const {
   useCompleteBookingMutation,
   useUserCompletedBookingQuery,
   useCompletePaymentMutation,
+  useCompletedPaymentBookingQuery,
 } = bookingApi;

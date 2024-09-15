@@ -11,7 +11,7 @@ import { UseGetUser } from "@/util/SharedFunction";
 const Links = [
   { name: "Home", link: "/" },
   { name: "About us", link: "/about-us" },
-  { name: "Booking", link: "/" },
+  { name: "Booking", link: "/booking-car-list" },
   { name: "Contact", link: "/" },
 ];
 

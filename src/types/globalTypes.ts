@@ -10,6 +10,7 @@ export type TUser = {
 export type TFeaturedCar = {
   _id: string;
   name: string;
+  type: string;
   carImg?: string;
   description: string;
   color: string;
@@ -24,6 +25,7 @@ export type TFeaturedCar = {
 
 export type TCar = {
   carImg: string;
+  type: string;
   color: string;
   description: string;
   dropLocation: string[];

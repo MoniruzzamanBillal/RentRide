@@ -2,6 +2,7 @@ import { z } from "zod";
 
 const addCarValidationSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
+  type: z.string().min(1, { message: "Car type is required" }),
   image: z.any().refine((file) => file instanceof File && file.size > 0, {
     message: "Image is required",
   }),

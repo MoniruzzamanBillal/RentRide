@@ -16,9 +16,9 @@ const FeaturedCarCard = ({ carData }: TFeatureCarProps) => {
       <div className="carImg  h-[12rem] ">
         <img
           className="w-full h-full"
-          // src={carData?.carImg}
+          src={carData?.carImg}
           alt="car image "
-          src="https://i.ibb.co/XWy9KF8/car1.png"
+          // src="https://i.ibb.co/XWy9KF8/car1.png"
         />
       </div>
 
@@ -29,8 +29,10 @@ const FeaturedCarCard = ({ carData }: TFeatureCarProps) => {
 
       {/* brief description  */}
       <div className="carBriefDescription   ">
-        <p className=" font-medium  text-sm text-gray-700 ">
-          {carData?.description}
+        <p className="   text-sm text-gray-500 ">
+          {carData?.description?.length >= 110
+            ? `${carData?.description.slice(0, 100)}....`
+            : carData?.description}
         </p>
       </div>
 

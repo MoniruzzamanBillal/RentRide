@@ -18,6 +18,21 @@ const carApi = baseApi.injectEndpoints({
       providesTags: ["cars"],
     }),
 
+    // ! for getting all available cars
+    getAllAvailableCars: builder.query({
+      query: (param) => ({
+        url: "/cars/available-cars",
+        method: "GET",
+        params: param,
+      }),
+
+      transformResponse: (response) => {
+        return {
+          data: (response as any)?.data,
+        };
+      },
+    }),
+
     // ! for getting single car data
     getCar: builder.query({
       query: (id: string) => {
@@ -85,6 +100,7 @@ const carApi = baseApi.injectEndpoints({
 //
 export const {
   useGetAllCarsQuery,
+  useGetAllAvailableCarsQuery,
   useGetCarQuery,
   useAddNewCarMutation,
   useDeleteCarMutation,

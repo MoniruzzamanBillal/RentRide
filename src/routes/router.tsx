@@ -3,6 +3,7 @@ import { AddNewCar, UpdateCar } from "@/components/ui";
 import {
   AboutUs,
   BookForm,
+  BookingCarList,
   BookingConfirmation,
   CarDetail,
   CompleteBooking,
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/booking-car-list",
+        element: <BookingCarList />,
       },
       {
         path: "/about-us",

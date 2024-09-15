@@ -18,3 +18,4 @@ export { default as UpdateBookForm } from "./UpdateBookForm";
 export { default as BookingConfirmation } from "./BookingConfirmation";
 export { default as CompleteBooking } from "./CompleteBooking";
 export { default as PaymentSuccess } from "./PaymentSuccess";
+export { default as BookingCarList } from "./BookingCarList";

@@ -82,7 +82,7 @@ const ManageCars = () => {
         <td className="p-4 text-center">{item?.name}</td>
         <td className="p-4 flex justify-center items-center ">
           <img
-            className="size-[2.4rem] xsm:size-[2.9rem] sm:size-[3.5rem]"
+            className="size-[3.4rem] xsm:size-[4rem] sm:size-[4.5rem]"
             src={item?.carImg}
             alt="car img"
           />

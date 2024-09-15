@@ -16,7 +16,7 @@ const ManageReturnCar = () => {
 
   const [returnCar] = useReturnCarMutation();
 
-  console.log(completedBookingData?.data);
+  // console.log(completedBookingData?.data);
 
   // ! for return car
   const handleReturnCar = async (id: string) => {
@@ -151,7 +151,7 @@ const ManageReturnCar = () => {
                 <th className="px-4 font-medium">Booking Date</th>
                 <th className="px-4 font-medium">Drop location</th>
                 <th className="px-4 font-medium">Earning</th>
-                <th className="px-4 font-medium">Booking Status</th>
+                <th className="px-4 font-medium">Car Status</th>
                 <th className="px-4 font-medium">Payment Status</th>
                 <th className="px-4 font-medium">Action</th>
               </tr>

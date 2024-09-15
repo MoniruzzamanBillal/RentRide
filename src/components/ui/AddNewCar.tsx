@@ -4,6 +4,7 @@ import { RentForm, RentInput, RentSelectInput } from "../form";
 import { FieldValues } from "react-hook-form";
 import {
   carFeaturesOptions,
+  carTypeOptions,
   dropLocationOptions,
   isElectricCarOption,
 } from "@/util/Constants";
@@ -17,7 +18,7 @@ import { useAddNewCarMutation } from "@/redux/features/cars/car.api";
 
 const AddNewCar = () => {
   const navigate = useNavigate();
-  const [addNewCar] = useAddNewCarMutation();
+  const [addNewCar, { isLoading }] = useAddNewCarMutation();
 
   // ! for adding new car
   const handleAddCar = async (data: FieldValues) => {
@@ -30,6 +31,7 @@ const AddNewCar = () => {
       dropLocation,
       pricePerHour,
       image,
+      type,
     } = data;
 
     const elec = electric === "yes" ? true : false;
@@ -42,6 +44,7 @@ const AddNewCar = () => {
       features,
       pricePerHour,
       dropLocation,
+      type,
     };
     const cardata = {
       car: payload,
@@ -56,6 +59,8 @@ const AddNewCar = () => {
 
     try {
       const result = await addNewCar(formdata);
+
+      console.log(result);
 
       //  *  for any  error
       if (result?.error) {
@@ -109,6 +114,11 @@ const AddNewCar = () => {
               label="Electric  : "
               options={isElectricCarOption}
             />
+            <RentSelectInput
+              name="type"
+              label="Car Type  : "
+              options={carTypeOptions}
+            />
             <RentMultiSelectInput
               name="features"
               label="Features : "
@@ -126,7 +136,14 @@ const AddNewCar = () => {
               name="pricePerHour"
             />
 
-            <Button className="px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base bg-green-600 hover:bg-green-700 active:scale-95 duration-500">
+            <Button
+              disabled={isLoading}
+              className={`px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base  active:scale-95 duration-500 ${
+                isLoading
+                  ? " bg-gray-600 cursor-not-allowed "
+                  : " bg-green-600 hover:bg-green-700 "
+              } `}
+            >
               Add car
             </Button>
           </RentForm>

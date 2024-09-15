@@ -11,7 +11,7 @@ const FeaturedCar = () => {
     isError: featureCarError,
   } = useGetAllCarsQuery(undefined);
 
-  console.log(featureCarData?.data);
+  // console.log(featureCarData?.data);
 
   let content = null;
 
