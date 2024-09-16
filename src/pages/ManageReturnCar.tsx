@@ -80,7 +80,7 @@ const ManageReturnCar = () => {
     content = (
       <tr>
         <td colSpan={8}>
-          <TableDataError message="Nothing Found" />
+          <TableDataError message="No Data Found" />
         </td>
       </tr>
     );

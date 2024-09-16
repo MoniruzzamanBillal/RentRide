@@ -1,6 +1,6 @@
 import CountUp from "react-countup";
 
-const StatisticsCard = () => {
+const StatisticsCard = ({ number, text }: { number: number; text: string }) => {
   //   const { number, text } = counter;
 
   return (
@@ -34,10 +34,10 @@ const StatisticsCard = () => {
       {/* bottom right line  */}
 
       <div className="  text-gray-800 group-hover:text-prime100 dark:text-gray-400   pb-2 text-sm xsm:text-lg sm:text-xl md:text-2xl xmd:text-3xl font-semibold     ">
-        <CountUp start={0} end={100} duration={2} />
+        <CountUp start={0} end={number} duration={2} />
       </div>
       <div className="  text-center text-gray-800 group-hover:text-prime100 text-sm xsm:text-lg sm:text-xl md:text-xl xmd:text-2xl  font-semibold    ">
-        <h4 className="counterTitle  ">text</h4>
+        <h4 className="counterTitle  ">{text}</h4>
       </div>
     </div>
   );

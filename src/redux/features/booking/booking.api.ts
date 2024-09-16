@@ -66,6 +66,40 @@ const bookingApi = baseApi.injectEndpoints({
       },
     }),
 
+    // ! get payment completed booking count
+    completedPaymentBookingCount: builder.query({
+      query: () => {
+        return {
+          url: "/bookings/completed-payment-booking-count",
+          method: "GET",
+        };
+      },
+
+      transformResponse: (response) => {
+        return {
+          data: (response as any)?.data,
+        };
+      },
+      providesTags: ["completeBookingCount"],
+    }),
+
+    // ! get payment completed booking count
+    completedPaymentBookingRevenue: builder.query({
+      query: () => {
+        return {
+          url: "/bookings/completed-payment-booking-revenue",
+          method: "GET",
+        };
+      },
+
+      transformResponse: (response) => {
+        return {
+          data: (response as any)?.data,
+        };
+      },
+      providesTags: ["bookingRevenue"],
+    }),
+
     // ! get specific booking
     singleBooking: builder.query({
       query: (id: string) => {
@@ -159,6 +193,7 @@ const bookingApi = baseApi.injectEndpoints({
           method: "POST",
         };
       },
+      invalidatesTags: ["completeBookingCount", "bookingRevenue"],
     }),
 
     //
@@ -179,4 +214,6 @@ export const {
   useUserCompletedBookingQuery,
   useCompletePaymentMutation,
   useCompletedPaymentBookingQuery,
+  useCompletedPaymentBookingCountQuery,
+  useCompletedPaymentBookingRevenueQuery,
 } = bookingApi;

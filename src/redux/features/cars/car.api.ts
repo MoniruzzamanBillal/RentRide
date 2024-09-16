@@ -32,6 +32,7 @@ const carApi = baseApi.injectEndpoints({
           data: (response as any)?.data,
         };
       },
+      providesTags: ["availableCar"],
     }),
 
     // ! for getting single car data
@@ -82,6 +83,7 @@ const carApi = baseApi.injectEndpoints({
           method: "PATCH",
         };
       },
+      invalidatesTags: ["availableCar"],
     }),
 
     // ! for deleting a car
