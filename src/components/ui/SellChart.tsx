@@ -1,3 +1,4 @@
+import { Loading } from "@/pages";
 import { useCompletedPaymentBookingQuery } from "@/redux/features/booking/booking.api";
 import { useEffect, useState } from "react";
 import {
@@ -11,15 +12,19 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import TableDataError from "./TableDataError";
 
 const SellChart = () => {
   const [range, setRange] = useState("");
   const [barData, setBarData] = useState([]);
 
-  const { data: paymentData, isLoading } =
-    useCompletedPaymentBookingQuery(range);
+  const {
+    data: paymentData,
+    isLoading,
+    isError,
+  } = useCompletedPaymentBookingQuery(range);
 
-  console.log(paymentData);
+  console.log(paymentData?.data);
 
   // ! effect to set bar data in state
   useEffect(() => {
@@ -31,13 +36,27 @@ const SellChart = () => {
     }
   }, [paymentData, isLoading]);
 
-  return (
-    <div className="SellChartContainer">
-      <div className="SellChartWrapper rounded bg-gray-100 border border-gray-200 p-6 shadow-md ">
-        <h1 className=" mb-8 px-3 xsm:px-4 sm:px-5 md:px-6 font-medium text-2xl  md:text-3xl   ">
-          Revinue Per Day
-        </h1>
+  let content = null;
 
+  // * if data is loading
+  if (isLoading) {
+    content = <Loading />;
+  }
+
+  // * if any error
+  if (!isLoading && isError) {
+    content = <TableDataError message="Something went wrong " />;
+  }
+
+  // * if there is no data
+  if (!isLoading && !isError && paymentData?.data?.length < 1) {
+    content = <TableDataError message="No data Found" />;
+  }
+
+  // * for data
+  if (!isLoading && !isError && paymentData?.data?.length >= 1) {
+    content = (
+      <div className="chartDataContainer  ">
         {/* select input starts  */}
         <div className="selectInput  mb-14  ">
           <label
@@ -83,6 +102,19 @@ const SellChart = () => {
           </BarChart>
         </ResponsiveContainer>
         {/* chart ends */}
+      </div>
+    );
+  }
+
+  return (
+    <div className="SellChartContainer">
+      <div className="SellChartWrapper rounded-md bg-gray-100 border border-gray-200 p-6 shadow-md ">
+        <h1 className=" mb-8 px-3 xsm:px-4 sm:px-5 md:px-6 font-medium text-2xl  md:text-3xl   ">
+          Revinue Per Day
+        </h1>
+        {/*  */}
+        {content}
+        {/*  */}
       </div>
     </div>
   );

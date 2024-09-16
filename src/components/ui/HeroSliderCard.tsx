@@ -23,7 +23,7 @@ const HeroSliderCard = ({ banner }: THeroSliderCardProps) => {
         </p>
 
         <div className="  ">
-          <Link to={"/products"}>
+          <Link to={"/car-list"}>
             <Button className="inline-block rounded-lg bg-prime50 text-sm font-medium text-white outline-none ring-indigo-300 transition duration-100 hover:bg-prime100 focus-visible:ring  md:text-base">
               Book Now
             </Button>

@@ -1,18 +1,14 @@
 //
 
 import SellChart from "./SellChart";
+import Statistics from "./Statistics";
 
 const AdminProfile = () => {
   return (
     <div className="AdminProfileContainer">
-      <div className="AdminProfileWrapper bg-gray-100 p-3 rounded-md shadow ">
+      <div className="AdminProfileWrapper  flex flex-col gap-y-6  ">
+        <Statistics />
         <SellChart />
-        <h1> AdminProfile</h1>
-        <h1> AdminProfile</h1>
-        <h1> AdminProfile</h1>
-        <h1> AdminProfile</h1>
-        <h1> AdminProfile</h1>
-        <h1> AdminProfile</h1>
       </div>
     </div>
   );
