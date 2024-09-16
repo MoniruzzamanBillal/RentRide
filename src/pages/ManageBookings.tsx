@@ -21,7 +21,7 @@ const ManageBookings = () => {
   const [approveBooking] = useApproveBookingMutation();
   const [cancelBooking] = useCancelBookingMutation();
 
-  // console.log(bookingsData?.data[0]);
+  console.log(bookingsData?.data);
 
   // ! for approving booking
   const handleApproveBooking = async (id: string) => {

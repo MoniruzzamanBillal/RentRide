@@ -28,6 +28,8 @@ const BookingCarList = () => {
 
   const { data: allCars, isLoading } = useGetAllAvailableCarsQuery(params);
 
+  console.log(allCars?.data);
+
   // ! for reseting filter
   const handleAddReset = () => {
     setParams(undefined);

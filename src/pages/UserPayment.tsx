@@ -15,10 +15,11 @@ const UserPayment = () => {
     data: userPaymentCompletedBookingData,
     isLoading: userCompletedBookLoading,
     isError: userCompletedBookError,
-    refetch: userCompletedBookRefetch,
   } = useUserCompletedBookingQuery(undefined);
 
   const [completePayment] = useCompletePaymentMutation();
+
+  console.log(userPaymentCompletedBookingData?.data);
 
   // ! for complete payment
   const handleProcedePayment = async (id: string) => {
@@ -30,6 +31,7 @@ const UserPayment = () => {
       console.log(result);
 
       if (result?.error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const errorMessage = (result?.error as any)?.data?.message;
 
         toast.error(errorMessage, {

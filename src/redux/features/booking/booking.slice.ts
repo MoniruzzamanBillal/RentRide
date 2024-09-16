@@ -32,7 +32,12 @@ const bookingSlice = createSlice({
     },
 
     // ! for clearing booking state
-    clearBookingData(state) {
+
+    // clearBookingData(state) {
+    //   return initialState;
+    // },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    clearBookingData(_state) {
       return initialState;
     },
   },

@@ -22,6 +22,8 @@ const CompleteBooking = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [bookingStartTime, setbookingStartTime] = useState("");
 
+  console.log(bookingDetail?.data);
+
   const filterPassedTime = (time: Date) => {
     const currentDate = new Date();
     const selectedDate = new Date(time);

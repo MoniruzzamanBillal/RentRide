@@ -16,7 +16,7 @@ const ManageReturnCar = () => {
 
   const [returnCar] = useReturnCarMutation();
 
-  // console.log(completedBookingData?.data);
+  console.log(completedBookingData?.data);
 
   // ! for return car
   const handleReturnCar = async (id: string) => {

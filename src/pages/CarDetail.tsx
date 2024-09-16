@@ -14,7 +14,7 @@ const CarDetail = () => {
 
   const { data: carDetail } = useGetCarQuery(id, { skip: !id });
 
-  // console.log(carDetail?.data);
+  console.log(carDetail?.data);
 
   return (
     <div className="CarDetailContainer py-8 ">

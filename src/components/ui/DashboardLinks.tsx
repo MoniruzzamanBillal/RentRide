@@ -1,5 +1,5 @@
 import { GetUserRole } from "@/util/GetUserRole";
-import { LuUser2, LuCar } from "react-icons/lu";
+import { LuCar } from "react-icons/lu";
 import { CiBookmark } from "react-icons/ci";
 import { IoMdReturnRight } from "react-icons/io";
 import { FiUsers } from "react-icons/fi";

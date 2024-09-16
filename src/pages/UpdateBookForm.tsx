@@ -18,10 +18,7 @@ import { FieldValues } from "react-hook-form";
 import { GetStartTime } from "@/util/GetStartTime";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  clearBookingData,
-  setBookingData,
-} from "@/redux/features/booking/booking.slice";
+import { clearBookingData } from "@/redux/features/booking/booking.slice";
 import {
   useSingleBookingQuery,
   useUpdateBookingMutation,

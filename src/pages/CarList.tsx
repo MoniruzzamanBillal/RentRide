@@ -31,6 +31,8 @@ const CarList = () => {
 
   const { data: allCars, isLoading } = useGetAllCarsQuery(params);
 
+  console.log(allCars?.data);
+
   // ! for reseting filter
   const handleAddReset = () => {
     setParams(undefined);

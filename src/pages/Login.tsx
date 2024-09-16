@@ -17,10 +17,8 @@ import { toast } from "sonner";
 const Login = () => {
   const dispatch = useAppDispatch();
   const [logIn] = useLogInMutation();
-  const location = useLocation();
-  const navigate = useNavigate();
 
-  console.log(location?.state);
+  const navigate = useNavigate();
 
   // ! for log in
   const handleLogin = async (data: FieldValues) => {
@@ -46,7 +44,7 @@ const Login = () => {
         toast.success(result?.message, { id: toastId, duration: 1400 });
 
         setTimeout(() => {
-          navigate(location?.state ? location.state : "/");
+          navigate("/");
         }, 500);
       }
     } catch (error) {

@@ -20,6 +20,8 @@ const ManageCars = () => {
 
   const [deleteCar] = useDeleteCarMutation();
 
+  console.log(allCarData?.data);
+
   // ! for deleting a product
   const handleDeleteItem = async (id: string) => {
     const toastId = toast.loading("deleting car !!! ");

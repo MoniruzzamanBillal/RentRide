@@ -9,7 +9,6 @@ const HomePage = () => {
   return (
     <div className="HomePageContainer">
       <HeroBanner />
-
       <FeaturedCar />
       <WhyChoose />
       <Testimonial />

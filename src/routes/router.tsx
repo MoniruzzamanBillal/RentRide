@@ -1,4 +1,5 @@
 import App from "@/App";
+import ProtectedRoute from "@/components/layout/ProtectedRoute";
 import { AddNewCar, UpdateCar } from "@/components/ui";
 import {
   AboutUs,
@@ -23,6 +24,7 @@ import {
   UserBooking,
   UserPayment,
 } from "@/pages";
+import { userRole } from "@/util/Constants";
 
 import { createBrowserRouter } from "react-router-dom";
 
@@ -49,11 +51,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/booking-car-list",
-        element: <BookingCarList />,
+        element: (
+          <ProtectedRoute role={userRole.user}>
+            <BookingCarList />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/booking-car-list/:location",
-        element: <BookingCarList />,
+        element: (
+          <ProtectedRoute role={userRole.user}>
+            <BookingCarList />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/car-list",
@@ -102,35 +112,67 @@ const router = createBrowserRouter([
           },
           {
             path: "/dashboard/add-car",
-            element: <AddNewCar />,
+            element: (
+              <ProtectedRoute role={userRole.admin}>
+                <AddNewCar />
+              </ProtectedRoute>
+            ),
           },
           {
             path: "/dashboard/update-car/:id",
-            element: <UpdateCar />,
+            element: (
+              <ProtectedRoute role={userRole.admin}>
+                <UpdateCar />
+              </ProtectedRoute>
+            ),
           },
           {
             path: "/dashboard/admin/manage-car",
-            element: <ManageCars />,
+            element: (
+              <ProtectedRoute role={userRole.admin}>
+                <ManageCars />
+              </ProtectedRoute>
+            ),
           },
           {
             path: "/dashboard/admin/manage-booking",
-            element: <ManageBookings />,
+            element: (
+              <ProtectedRoute role={userRole.admin}>
+                <ManageBookings />
+              </ProtectedRoute>
+            ),
           },
           {
             path: "/dashboard/admin/manage-return-car",
-            element: <ManageReturnCar />,
+            element: (
+              <ProtectedRoute role={userRole.admin}>
+                <ManageReturnCar />
+              </ProtectedRoute>
+            ),
           },
           {
             path: "/dashboard/admin/manage-user",
-            element: <ManageUsers />,
+            element: (
+              <ProtectedRoute role={userRole.admin}>
+                <ManageUsers />
+              </ProtectedRoute>
+            ),
           },
           {
             path: "/dashboard/user/user-booking",
-            element: <UserBooking />,
+            element: (
+              <ProtectedRoute role={userRole.user}>
+                <UserBooking />
+              </ProtectedRoute>
+            ),
           },
           {
             path: "/dashboard/user/user-payment",
-            element: <UserPayment />,
+            element: (
+              <ProtectedRoute role={userRole.user}>
+                <UserPayment />
+              </ProtectedRoute>
+            ),
           },
         ],
       },

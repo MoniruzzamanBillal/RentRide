@@ -24,7 +24,7 @@ const UserBooking = () => {
 
   const [cancelBooking] = useCancelBookingMutation();
 
-  // console.log(userBookingData?.data);
+  console.log(userBookingData?.data);
 
   // ! for  updating
   const handleUpdateBooking = (id: string) => {

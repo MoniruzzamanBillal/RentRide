@@ -3,7 +3,7 @@ import {
   useUpdateCarMutation,
 } from "@/redux/features/cars/car.api";
 import { useNavigate, useParams } from "react-router-dom";
-import CarDetail from "./../../pages/CarDetail";
+
 import { useEffect } from "react";
 import { RentForm, RentInput, RentSelectInput } from "../form";
 import { FieldValues } from "react-hook-form";
