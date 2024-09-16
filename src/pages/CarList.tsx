@@ -1,7 +1,7 @@
+import { useGetAllCarsQuery } from "@/redux/features/cars/car.api";
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
 import Wrapper from "@/components/shared/Wrapper";
-import { useGetAllAvailableCarsQuery } from "@/redux/features/cars/car.api";
 import { Input } from "@/components/ui/input";
 import { NoProduct, ProductsFilter } from "@/components/ui";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -15,7 +15,7 @@ import {
 import { TCar } from "@/types/globalTypes";
 import FeaturedCarCard from "@/components/ui/FeatureCarCard";
 
-const BookingCarList = () => {
+const CarList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [pricePerHour, setpricePerHour] = useState<number | null>(null);
   const [type, setType] = useState("");
@@ -26,7 +26,7 @@ const BookingCarList = () => {
   );
   const [isXl, setIsXl] = useState(false);
 
-  const { data: allCars, isLoading } = useGetAllAvailableCarsQuery(params);
+  const { data: allCars, isLoading } = useGetAllCarsQuery(params);
 
   // ! for reseting filter
   const handleAddReset = () => {
@@ -83,11 +83,9 @@ const BookingCarList = () => {
     return <Loading />;
   }
 
-  // console.log(params);
-
   return (
-    <div className="BookingCarListContainer py-6 ">
-      <Wrapper className="BookingCarListWrapper">
+    <div className="CarListContainer py-6 ">
+      <Wrapper className="CarListWrapper">
         {/* search section   */}
         <div className="searchSection bg-gray-50 border border-gray-300  w-[60%] m-auto py-1 px-5 rounded-full flex justify-center items-center  mb-6  ">
           <Input
@@ -213,4 +211,4 @@ const BookingCarList = () => {
   );
 };
 
-export default BookingCarList;
+export default CarList;

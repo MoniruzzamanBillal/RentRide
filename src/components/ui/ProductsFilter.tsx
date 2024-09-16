@@ -31,7 +31,7 @@ const ProductsFilter = ({
 }: TProductsFilterProps) => {
   return (
     <div className="ProductsFilterContainer flex flex-col gap-y-6">
-      <h1 className=" mb-3   font-semibold text-indigo-500 text-lg xsm:text-xl sm:text-3xl md:text-2xl xl:text-3xl text-shadow-blue">
+      <h1 className=" mb-3   font-semibold text-prime100 text-shadow-prime text-lg xsm:text-xl sm:text-3xl md:text-2xl xl:text-3xl text-shadow-blue">
         Filtered By :
       </h1>
       {/*  price range type starts   */}

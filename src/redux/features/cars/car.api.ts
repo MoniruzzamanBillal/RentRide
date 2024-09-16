@@ -5,9 +5,10 @@ const carApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     // ! for getting all cars
     getAllCars: builder.query({
-      query: () => ({
+      query: (param) => ({
         url: "/cars",
         method: "GET",
+        params: param,
       }),
 
       transformResponse: (response) => {

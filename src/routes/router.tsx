@@ -6,6 +6,7 @@ import {
   BookingCarList,
   BookingConfirmation,
   CarDetail,
+  CarList,
   CompleteBooking,
   Dashboard,
   DashboardLayout,
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/booking-car-list",
         element: <BookingCarList />,
+      },
+      {
+        path: "/car-list",
+        element: <CarList />,
       },
       {
         path: "/about-us",
