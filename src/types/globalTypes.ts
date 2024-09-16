@@ -7,6 +7,13 @@ export type TUser = {
   exp: number;
 };
 
+export type TBannerInfo = {
+  subHeading: string;
+  heading: string;
+  description: string;
+  bannerImg: string;
+};
+
 export type TFeaturedCar = {
   _id: string;
   name: string;

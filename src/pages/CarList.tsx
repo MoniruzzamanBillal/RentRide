@@ -14,8 +14,11 @@ import {
 } from "@/components/ui/select";
 import { TCar } from "@/types/globalTypes";
 import FeaturedCarCard from "@/components/ui/FeatureCarCard";
+import { useParams } from "react-router-dom";
 
 const CarList = () => {
+  const { location } = useParams();
+
   const [searchTerm, setSearchTerm] = useState("");
   const [pricePerHour, setpricePerHour] = useState<number | null>(null);
   const [type, setType] = useState("");
@@ -52,6 +55,18 @@ const CarList = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  //   ! use effect to check if there is any location query location
+  useEffect(() => {
+    const updateParam = () => {
+      const newParam: Record<string, unknown> = {};
+      if (location) {
+        newParam.location = location;
+      }
+      setParams(newParam);
+    };
+    updateParam();
+  }, [location]);
+
   //! Use effect to track param value
   useEffect(() => {
     const updateParam = () => {
@@ -60,7 +75,9 @@ const CarList = () => {
       if (searchTerm) {
         newParam.searchTerm = searchTerm;
       }
-
+      if (location) {
+        newParam.location = location;
+      }
       if (pricePerHour) {
         newParam.pricePerHour = pricePerHour;
       }
@@ -77,11 +94,13 @@ const CarList = () => {
     };
 
     updateParam();
-  }, [searchTerm, pricePerHour, type, sort]);
+  }, [searchTerm, pricePerHour, type, sort, location]);
 
   if (isLoading) {
     return <Loading />;
   }
+
+  console.log(params);
 
   return (
     <div className="CarListContainer py-6 ">

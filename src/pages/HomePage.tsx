@@ -1,11 +1,14 @@
-import { FeaturedCar, Testimonial, WhyChoose } from "@/components/ui";
+import {
+  FeaturedCar,
+  HeroBanner,
+  Testimonial,
+  WhyChoose,
+} from "@/components/ui";
 
 const HomePage = () => {
   return (
     <div className="HomePageContainer">
-      <h1> HomePage</h1>
-      <h1> HomePage</h1>
-      <h1> HomePage</h1>
+      <HeroBanner />
 
       <FeaturedCar />
       <WhyChoose />

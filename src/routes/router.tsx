@@ -56,6 +56,10 @@ const router = createBrowserRouter([
         element: <CarList />,
       },
       {
+        path: "/car-list/:location",
+        element: <CarList />,
+      },
+      {
         path: "/about-us",
         element: <AboutUs />,
       },

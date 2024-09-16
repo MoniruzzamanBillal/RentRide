@@ -26,3 +26,5 @@ export { default as AdminProfile } from "./AdminProfile";
 export { default as SellChart } from "./SellChart";
 export { default as ProductsFilter } from "./ProductsFilter";
 export { default as NoProduct } from "./NoProduct";
+export { default as HeroBanner } from "./HeroBanner";
+export { default as HeroSlider } from "./HeroSlider";
