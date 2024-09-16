@@ -9,6 +9,7 @@ import {
   CarDetail,
   CarList,
   CompleteBooking,
+  ContactUs,
   Dashboard,
   DashboardLayout,
   HomePage,
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: "/about-us",
         element: <AboutUs />,
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs />,
       },
       {
         path: "/car-detail/:id",

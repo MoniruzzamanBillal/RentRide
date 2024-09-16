@@ -4,6 +4,7 @@ import GlassZoomImage from "@/util/GlassZoomImage";
 import { useGetCarQuery } from "@/redux/features/cars/car.api";
 import { carStatus } from "@/util/Constants";
 import { Link, useParams } from "react-router-dom";
+import Loading from "./Loading";
 
 const CarDetail = () => {
   const { id } = useParams();
@@ -12,9 +13,13 @@ const CarDetail = () => {
     throw new Error("Something went wrong!! ");
   }
 
-  const { data: carDetail } = useGetCarQuery(id, { skip: !id });
+  const { data: carDetail, isLoading } = useGetCarQuery(id, { skip: !id });
 
-  console.log(carDetail?.data);
+  // console.log(carDetail?.data);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="CarDetailContainer py-8 ">
@@ -58,6 +63,21 @@ const CarDetail = () => {
               </div>
             </div>
             {/* price - end  */}
+
+            {/* trip completed section  */}
+
+            {carDetail?.data?.tripCompleted > 1 && (
+              <div className="mb-6">
+                <div className="  font-medium mb-1.5  ">
+                  Trip Completed :{" "}
+                  <span className=" font-bold text-gray-800 md:text-xl">
+                    {carDetail?.data?.tripCompleted}+
+                  </span>
+                </div>
+              </div>
+            )}
+
+            {/* trip completed section ends  */}
 
             {/* drop location starts   */}
             <div className="dropLocation mb-5 ">

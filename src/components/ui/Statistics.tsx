@@ -30,7 +30,7 @@ const Statistics = () => {
 
   let content = null;
 
-  if (bookingDataLoading) {
+  if (bookingDataLoading || revenueDataLoading || carDataLoading) {
     content = <Loading />;
   } else {
     content = (
