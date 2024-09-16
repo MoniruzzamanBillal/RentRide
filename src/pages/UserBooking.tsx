@@ -24,7 +24,7 @@ const UserBooking = () => {
 
   const [cancelBooking] = useCancelBookingMutation();
 
-  console.log(userBookingData?.data);
+  // console.log(userBookingData?.data);
 
   // ! for  updating
   const handleUpdateBooking = (id: string) => {
@@ -103,7 +103,7 @@ const UserBooking = () => {
     content = (
       <tr>
         <td colSpan={8}>
-          <TableDataError message="Nothing Found" />
+          <TableDataError message="No Booking Data is  Found" />
         </td>
       </tr>
     );

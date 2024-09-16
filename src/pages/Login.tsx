@@ -10,8 +10,9 @@ import loginSchema from "@/schemas/Login.schema";
 import { TUser } from "@/types/globalTypes";
 import { verifyToken } from "@/util/Verify.token";
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import { FieldValues } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const Login = () => {
@@ -44,7 +45,9 @@ const Login = () => {
         toast.success(result?.message, { id: toastId, duration: 1400 });
 
         setTimeout(() => {
-          navigate("/");
+          navigate("/", {
+            replace: true,
+          });
         }, 500);
       }
     } catch (error) {

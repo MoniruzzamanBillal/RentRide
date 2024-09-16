@@ -28,7 +28,7 @@ const BookingCarList = () => {
 
   const { data: allCars, isLoading } = useGetAllAvailableCarsQuery(params);
 
-  console.log(allCars?.data);
+  // console.log(allCars?.data);
 
   // ! for reseting filter
   const handleAddReset = () => {
@@ -81,8 +81,28 @@ const BookingCarList = () => {
     updateParam();
   }, [searchTerm, pricePerHour, type, sort]);
 
+  let content;
+
   if (isLoading) {
-    return <Loading />;
+    content = <Loading />;
+  }
+
+  if (!isLoading && allCars?.data?.length >= 1) {
+    content = (
+      <>
+        {/* all products  */}
+        <div className="allProducts grid grid-cols-1 sm:grid-cols-2 xmd:grid-cols-3 gap-x-5 gap-y-8 ">
+          {allCars?.data?.length === 0 ? (
+            <NoProduct />
+          ) : (
+            allCars?.data &&
+            allCars?.data?.map((item: TCar, ind: number) => (
+              <FeaturedCarCard carData={item} key={ind} />
+            ))
+          )}
+        </div>
+      </>
+    );
   }
 
   // console.log(params);
@@ -188,19 +208,7 @@ const BookingCarList = () => {
             {/* content top section ends */}
 
             {/* products content starts  */}
-            <div className="productsContent  py-3 px-4 ">
-              {/* all products  */}
-              <div className="allProducts grid grid-cols-1 sm:grid-cols-2 xmd:grid-cols-3 gap-x-5 gap-y-8 ">
-                {allCars?.data?.length === 0 ? (
-                  <NoProduct />
-                ) : (
-                  allCars?.data &&
-                  allCars?.data?.map((item: TCar, ind: number) => (
-                    <FeaturedCarCard carData={item} key={ind} />
-                  ))
-                )}
-              </div>
-            </div>
+            <div className="productsContent  py-3 px-4 ">{content}</div>
             {/* products content ends */}
 
             {/*  */}

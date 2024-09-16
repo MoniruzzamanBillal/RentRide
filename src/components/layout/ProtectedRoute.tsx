@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { TUser } from "@/types/globalTypes";
 import { verifyToken } from "@/util/Verify.token";
 import { ReactNode } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { toast } from "sonner";
 
 type TProtectedRouteProps = {
@@ -12,13 +12,11 @@ type TProtectedRouteProps = {
 };
 
 const ProtectedRoute = ({ children, role }: TProtectedRouteProps) => {
-  const location = useLocation();
-
   const { token } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
   if (!token) {
-    return <Navigate state={location.pathname} to={"/login"} />;
+    return <Navigate to={"/login"} replace />;
   }
 
   const user = verifyToken(token!) as TUser;
@@ -32,7 +30,7 @@ const ProtectedRoute = ({ children, role }: TProtectedRouteProps) => {
       duration: 2000,
     });
 
-    return <Navigate to={"/login"} />;
+    return <Navigate to={"/login"} replace />;
   }
 
   return children;

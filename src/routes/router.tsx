@@ -83,7 +83,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/book-car/:carId",
-        element: <BookForm />,
+        element: (
+          <ProtectedRoute role={userRole.user}>
+            <BookForm />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/update-book-car/:bookId",

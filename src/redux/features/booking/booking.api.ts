@@ -136,7 +136,7 @@ const bookingApi = baseApi.injectEndpoints({
           body: payload,
         };
       },
-      invalidatesTags: ["userBooking"],
+      invalidatesTags: ["userBooking", "cars"],
     }),
 
     // ! complete booking

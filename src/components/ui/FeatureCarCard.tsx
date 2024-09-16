@@ -2,6 +2,7 @@ import { TFeaturedCar } from "@/types/globalTypes";
 
 import { Link } from "react-router-dom";
 import { Button } from "./button";
+import { carStatus } from "@/util/Constants";
 
 type TFeatureCarProps = {
   carData: TFeaturedCar;
@@ -11,7 +12,20 @@ const FeaturedCarCard = ({ carData }: TFeatureCarProps) => {
   // console.log(carData);
 
   return (
-    <div className=" bg-gray-50 min-h-[28rem] w-[82%] xsm:w-[65%]  sm:w-auto m-auto carCard p-4  cursor-pointer group flex flex-col justify-between  gap-y-4 border   border-gray-300 rounded-2xl  shadow-md hover:shadow-lg hover:scale-[1.02] duration-200 overflow-hidden ">
+    <div className=" bg-gray-50 min-h-[28rem] w-[88%] xsm:w-[65%]  sm:w-auto m-auto carCard p-4  cursor-pointer group flex flex-col justify-between  gap-y-4 border   border-gray-300 rounded-2xl  shadow-md hover:shadow-lg hover:scale-[1.02] duration-200 overflow-hidden relative ">
+      <div className="carStatusContainer  absolute top-[1.1rem] left-[3.1rem] transform -translate-x-1/2 -translate-y-1/2 ">
+        <h1
+          className={`  font-medium ${
+            carData?.status === carStatus.available
+              ? "text-green-700"
+              : "text-red-700"
+          }  `}
+        >
+          {" "}
+          {carData?.status}{" "}
+        </h1>
+      </div>
+
       {/* product image  */}
       <div className="carImg  h-[12rem] ">
         <img
