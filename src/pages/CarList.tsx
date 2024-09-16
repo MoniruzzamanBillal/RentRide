@@ -100,8 +100,6 @@ const CarList = () => {
     return <Loading />;
   }
 
-  console.log(params);
-
   return (
     <div className="CarListContainer py-6 ">
       <Wrapper className="CarListWrapper">

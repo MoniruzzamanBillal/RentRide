@@ -52,6 +52,10 @@ const router = createBrowserRouter([
         element: <BookingCarList />,
       },
       {
+        path: "/booking-car-list/:location",
+        element: <BookingCarList />,
+      },
+      {
         path: "/car-list",
         element: <CarList />,
       },
