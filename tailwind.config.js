@@ -20,7 +20,7 @@ module.exports = {
       colors: {
         prime50: "#02B8A6",
         prime100: "#009B94",
-        black100: " #070A1F ",
+        black100: "#020817",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

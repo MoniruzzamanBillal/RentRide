@@ -65,7 +65,7 @@ const Navbar = () => {
                 alt="logo"
               />
 
-              <p className=" text-2xl sm:text-2xl md:text-xl lg:text-3xl font-bold font-headingFont ">
+              <p className="  text-2xl sm:text-2xl md:text-xl lg:text-3xl font-bold font-headingFont ">
                 Rent <span className="   text-prime100 ">Ride</span>{" "}
               </p>
             </div>
@@ -97,7 +97,7 @@ const Navbar = () => {
               >
                 <Link
                   to={link.link}
-                  className="text-gray-700 hover:text-prime50 duration-500  "
+                  className=" hover:text-prime50 duration-500  "
                   onClick={() => setOpen(false)}
                 >
                   {link.name}
