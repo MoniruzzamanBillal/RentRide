@@ -77,13 +77,14 @@ const carApi = baseApi.injectEndpoints({
 
     // ! for returning car
     returnCar: builder.mutation({
-      query: (id: string) => {
+      query: (payload) => {
         return {
-          url: `/cars/return-car/${id}`,
+          url: `/cars/return-car`,
           method: "PATCH",
+          body: payload,
         };
       },
-      invalidatesTags: ["availableCar"],
+      invalidatesTags: ["availableCar", "completeBookUnavailableCar"],
     }),
 
     // ! for deleting a car

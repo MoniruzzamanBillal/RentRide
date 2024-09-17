@@ -27,5 +27,6 @@ export const baseApi = createApi({
     "completeBookingCount",
     "availableCar",
     "bookingRevenue",
+    "completeBookUnavailableCar",
   ],
 });

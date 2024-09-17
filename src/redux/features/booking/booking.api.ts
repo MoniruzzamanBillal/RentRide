@@ -46,6 +46,7 @@ const bookingApi = baseApi.injectEndpoints({
           data: (response as any)?.data,
         };
       },
+      providesTags: ["completeBookUnavailableCar"],
     }),
 
     // ! get user  booking
@@ -98,7 +99,7 @@ const bookingApi = baseApi.injectEndpoints({
       providesTags: ["completeBookingCount"],
     }),
 
-    // ! get payment completed booking count
+    // ! get booking revenue
     completedPaymentBookingRevenue: builder.query({
       query: () => {
         return {

@@ -1,3 +1,4 @@
+import { TBooking } from "@/types/globalTypes";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,11 +13,14 @@ import {
 import { Button } from "./button";
 
 type TReturnCarProps = {
-  handleReturnCar: (id: string) => void;
-  id: string;
+  handleReturnCar: (payload: TBooking) => void;
+  payload: TBooking;
 };
 
-const ManageReturnCarModal = ({ handleReturnCar, id }: TReturnCarProps) => {
+const ManageReturnCarModal = ({
+  handleReturnCar,
+  payload,
+}: TReturnCarProps) => {
   return (
     <div className="ManageReturnCarModalContainer">
       <AlertDialog>
@@ -42,7 +46,7 @@ const ManageReturnCarModal = ({ handleReturnCar, id }: TReturnCarProps) => {
           {/* bottom button type  */}
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={() => handleReturnCar(id)}>
+            <AlertDialogAction onClick={() => handleReturnCar(payload)}>
               Continue
             </AlertDialogAction>
           </AlertDialogFooter>

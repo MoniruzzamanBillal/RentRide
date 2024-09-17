@@ -1,22 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ManageReturnCarModal, TableDataError } from "@/components/ui";
-import {
-  useGetCompletedBookingsQuery,
-  useGetCompletedBookingsUnavailableCarQuery,
-} from "@/redux/features/booking/booking.api";
+import { useGetCompletedBookingsUnavailableCarQuery } from "@/redux/features/booking/booking.api";
 import { useReturnCarMutation } from "@/redux/features/cars/car.api";
 import { TBooking } from "@/types/globalTypes";
 import { carStatus } from "@/util/Constants";
 import { toast } from "sonner";
 
 const ManageReturnCar = () => {
-  // const {
-  //   data: completedBookingData,
-  //   isLoading: completedCarDataLoading,
-  //   isError: carDataError,
-  //   refetch: completedDataRefetch,
-  // } = useGetCompletedBookingsQuery(undefined);
-
   const {
     data: completedBookingData,
     isLoading: completedCarDataLoading,
@@ -26,14 +16,20 @@ const ManageReturnCar = () => {
 
   const [returnCar] = useReturnCarMutation();
 
-  console.log(completedBookingData?.data);
+  // console.log(completedBookingData?.data);
 
   // ! for return car
-  const handleReturnCar = async (id: string) => {
+  const handleReturnCar = async (payload: TBooking) => {
+    const payloadData = {
+      carId: payload?.car?._id,
+      bookId: payload?._id,
+    };
+
     const toastId = toast.loading("Returning car!!!");
 
     try {
-      const response = await returnCar(id);
+      const response = await returnCar(payloadData);
+      console.log(response);
       // * for any error
       if (response?.error) {
         toast.error((response?.error as any)?.data?.message, {
@@ -105,7 +101,6 @@ const ManageReturnCar = () => {
     content = completedBookingData?.data?.map((booking: TBooking) => (
       <tr key={booking._id} className="border-b">
         <td className="p-4 text-center"> {booking?.car?.name} </td>
-
         <td className="  ">
           <img
             className="size-[3.4rem] xsm:size-[4rem] sm:size-[4.5rem]"
@@ -142,7 +137,7 @@ const ManageReturnCar = () => {
         >
           <ManageReturnCarModal
             handleReturnCar={handleReturnCar}
-            id={booking?.car?._id}
+            payload={booking}
           />
         </td>
       </tr>
