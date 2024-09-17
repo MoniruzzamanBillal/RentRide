@@ -21,6 +21,7 @@ import {
   ManageReturnCar,
   ManageUsers,
   PaymentSuccess,
+  ResetPassword,
   SignUp,
   UpdateBookForm,
   UpdateUserForm,
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/email-reset-confirmation/:email",
         element: <EmailResetConfirmation />,
+      },
+      {
+        path: "/reset-password/:token",
+        element: <ResetPassword />,
       },
       {
         path: "/",

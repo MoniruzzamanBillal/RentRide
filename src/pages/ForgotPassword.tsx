@@ -1,5 +1,4 @@
 import { z } from "zod";
-
 import { RentForm, RentInput } from "@/components/form";
 import Wrapper from "@/components/shared/Wrapper";
 import { Button } from "@/components/ui/button";
