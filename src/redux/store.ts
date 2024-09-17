@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./features/auth/auth.slice";
 import bookingReducer from "./features/booking/booking.slice";
+import darkModeReducer from "./features/darkMode/dark.slice";
 
 import {
   persistStore,
@@ -20,12 +21,19 @@ const persistConfig = {
   storage,
 };
 
+const darkModeConfig = {
+  key: "mode",
+  storage,
+};
+
 const persistedReducer = persistReducer(persistConfig, authReducer);
+const persistedDarkReducer = persistReducer(darkModeConfig, darkModeReducer);
 
 export const store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
     auth: persistedReducer,
+    mode: persistedDarkReducer,
     booking: bookingReducer,
   },
 

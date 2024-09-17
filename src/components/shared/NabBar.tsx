@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
+import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 import { LuUser2 } from "react-icons/lu";
 import Wrapper from "./Wrapper";
 
 import logo from "@/assets/logo.png";
 import { Button } from "../ui/button";
 import { UseGetUser } from "@/util/SharedFunction";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { toggleMode } from "@/redux/features/darkMode/dark.slice";
 
 const Links = [
   { name: "Home", link: "/" },
@@ -18,13 +21,31 @@ const Links = [
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const userInfo = UseGetUser();
 
-  // dark mode toggle
-  // const handleDarkMode = () => {
-  //     document.documentElement.classList.toggle("dark");
-  //     toggleDarkMode();
-  //   };
+  const userInfo = UseGetUser();
+  const dispatch = useAppDispatch();
+  const { darkMode } = useAppSelector((state) => state.mode);
+
+  console.log(darkMode);
+
+  //! dark mode toggle
+  const handleDarkMode = () => {
+    dispatch(toggleMode());
+
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  };
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
 
   return (
     <div
@@ -37,10 +58,14 @@ const Navbar = () => {
         {/* logo section */}
         <div className="imgContainer  ">
           <Link to={"/"}>
-            <div className=" text-2xl cursor-pointer flex items-center  gap-x-2">
-              <img src={logo} className="  w-[3rem] sm:w-[4rem]" alt="logo" />
+            <div className=" text-2xl cursor-pointer flex items-center  gap-x-1">
+              <img
+                src={logo}
+                className="  w-[3rem] sm:w-[3.6rem] md:w-[2.8rem] lg:w-[4rem]  "
+                alt="logo"
+              />
 
-              <p className=" text-2xl sm:text-3xl font-bold font-headingFont ">
+              <p className=" text-2xl sm:text-2xl md:text-xl lg:text-3xl font-bold font-headingFont ">
                 Rent <span className="   text-prime100 ">Ride</span>{" "}
               </p>
             </div>
@@ -68,11 +93,11 @@ const Navbar = () => {
             Links.map((link, index) => (
               <li
                 key={index}
-                className=" my-5 xsm:my-7 md:ml-8 md:my-0  font-semibold uppercase"
+                className="  my-5 xsm:my-7 md:ml-8 md:my-0  font-semibold uppercase"
               >
                 <Link
                   to={link.link}
-                  className="text-gray-700 hover:text-prime50 duration-500"
+                  className="text-gray-700 hover:text-prime50 duration-500  "
                   onClick={() => setOpen(false)}
                 >
                   {link.name}
@@ -80,7 +105,7 @@ const Navbar = () => {
               </li>
             ))}
 
-          <div className="buttonSection md:ml-8   ">
+          <div className="buttonSection  md:ml-5 lg:ml-8  flex  items-center gap-x-0.5  ">
             {!userInfo ? (
               <Link to={"/login"}>
                 <Button className=" -z-[1] text-xs sm:text-sm md:text-base bg-prime50 hover:bg-prime100 ">
@@ -97,6 +122,15 @@ const Navbar = () => {
                 </Link>
               </div>
             )}
+
+            {/* toggle button  */}
+            <div
+              className="toggleMode  pl-0 md:pl-2 mr-3 md:pr-0 text-xl sm:text-2xl cursor-pointer  "
+              onClick={() => handleDarkMode()}
+            >
+              {darkMode ? <BsFillMoonFill /> : <BsFillSunFill />}
+            </div>
+            {/* toggle button  */}
 
             {/*  */}
             {/*  */}
