@@ -12,7 +12,7 @@ const FeaturedCarCard = ({ carData }: TFeatureCarProps) => {
   // console.log(carData);
 
   return (
-    <div className=" bg-gray-50 min-h-[28rem] w-[88%] xsm:w-[65%]  sm:w-auto m-auto carCard p-4  cursor-pointer group flex flex-col justify-between  gap-y-4 border   border-gray-300 rounded-2xl  shadow-md hover:shadow-lg hover:scale-[1.02] duration-200 overflow-hidden relative ">
+    <div className=" bg-gray-50 dark:bg-black50 min-h-[28rem] w-[88%] xsm:w-[65%]  sm:w-auto m-auto carCard p-4  cursor-pointer group flex flex-col justify-between  gap-y-4 border   border-gray-300 rounded-2xl  shadow-md hover:shadow-lg hover:scale-[1.02] duration-200 overflow-hidden relative ">
       <div className="carStatusContainer  absolute top-[1.1rem] left-[3.1rem] transform -translate-x-1/2 -translate-y-1/2 ">
         <h1
           className={`  font-medium ${
@@ -43,7 +43,7 @@ const FeaturedCarCard = ({ carData }: TFeatureCarProps) => {
 
       {/* brief description  */}
       <div className="carBriefDescription   ">
-        <p className="   text-sm text-gray-500 ">
+        <p className="   text-sm text-gray-500 dark:text-gray-300 ">
           {carData?.description?.length >= 110
             ? `${carData?.description.slice(0, 100)}....`
             : carData?.description}

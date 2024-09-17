@@ -14,11 +14,11 @@ const HeroSliderCard = ({ banner }: THeroSliderCardProps) => {
           {banner?.subHeading}
         </p>
 
-        <h1 className="mb-2 font-bold text-black text-xl xsm:text-2xl sm:text-3xl md:text-4xl xmd:text-2xl ">
+        <h1 className="mb-2 font-bold  text-xl xsm:text-2xl sm:text-3xl md:text-4xl xmd:text-2xl ">
           {banner?.heading}
         </h1>
 
-        <p className="mb-3 leading-relaxed text-gray-500 lg:w-4/5 text-sm xsm:text-base sm:text-lg  xmd:text-base">
+        <p className="mb-3 leading-relaxed text-gray-500 dark:text-gray-300 lg:w-4/5 text-sm xsm:text-base sm:text-lg  xmd:text-base">
           {banner?.description}
         </p>
 
@@ -33,7 +33,7 @@ const HeroSliderCard = ({ banner }: THeroSliderCardProps) => {
       {/* content - end  */}
 
       {/* image - start  */}
-      <div className="  w-[100%]  lg:w-[50%]  overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:h-auto ">
+      <div className="  w-[100%]  lg:w-[50%]  overflow-hidden rounded-lg bg-gray-100  lg:h-auto ">
         <img
           src={banner?.bannerImg}
           loading="lazy"

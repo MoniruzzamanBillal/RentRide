@@ -18,7 +18,7 @@ const HeroBanner = () => {
   };
 
   return (
-    <div className="HeroBannerContainer py-4 lg:py-8 dark:bg-red-600 ">
+    <div className="HeroBannerContainer py-4 lg:py-8 dark:bg-black50 ">
       <Wrapper className="HeroBannerWrapper  flex flex-col lg:flex-row justify-between items-center  gap-y-5 lg:gap-y-0 ">
         <div className="sliderContainer  w-[100%] lg:w-[60%]  ">
           <HeroSlider />

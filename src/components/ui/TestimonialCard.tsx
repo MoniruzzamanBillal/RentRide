@@ -13,7 +13,7 @@ const TestimonialCard = ({ testimonial }: TTestimonialProps) => {
           <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
             {/* quote - start  */}
             <div className="flex flex-col items-center gap-4 md:gap-6">
-              <div className="max-w-md text-center text-gray-600 lg:text-lg">
+              <div className="max-w-md text-center text-gray-600 dark:text-gray-200 lg:text-lg">
                 {testimonial?.review}
               </div>
 
