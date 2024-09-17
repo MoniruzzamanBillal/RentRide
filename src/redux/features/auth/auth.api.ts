@@ -1,7 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { baseApi } from "@/redux/api/baseApi";
 
 const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    // ! for sending reset link
+    sendResetLink: builder.mutation({
+      query: (email: string) => {
+        return {
+          url: `/auth/reset-link/${email}`,
+          method: "PATCH",
+        };
+      },
+    }),
     // ! for sign  up
     signUp: builder.mutation({
       query: (payload) => {
@@ -26,4 +36,5 @@ const authApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useLogInMutation, useSignUpMutation } = authApi;
+export const { useLogInMutation, useSignUpMutation, useSendResetLinkMutation } =
+  authApi;

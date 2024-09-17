@@ -5,15 +5,26 @@ import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import { verifyToken } from "@/util/Verify.token";
+import { toast } from "sonner";
 
 const ResetPassword = () => {
   const { token } = useParams();
 
   console.log(token);
   //   ! for reseting password
+
+  if (!token) {
+    toast.error("No valid token detected!!", { duration: 2000 });
+  }
+
   const handleResetPassword = (data: FieldValues) => {
     console.log("reset password !! ");
     console.log(data);
+
+    const verifyTokenData = verifyToken(token as string);
+
+    console.log(verifyTokenData);
   };
 
   return (
