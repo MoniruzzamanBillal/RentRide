@@ -79,6 +79,10 @@ const Login = () => {
           </RentForm>
           {/* form ends */}
 
+          <div className="forgotPassword  mt-2  font-semibold underline cursor-pointer text-blue-800 ">
+            <Link to={"/forgotPassword"}>forgot password</Link>
+          </div>
+
           {/*  */}
 
           <div className="text-center  mt-6  ">

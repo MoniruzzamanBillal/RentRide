@@ -12,6 +12,8 @@ import {
   ContactUs,
   Dashboard,
   DashboardLayout,
+  EmailResetConfirmation,
+  ForgotPassword,
   HomePage,
   Login,
   ManageBookings,
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/forgotPassword",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "/email-reset-confirmation/:email",
+        element: <EmailResetConfirmation />,
       },
       {
         path: "/",
