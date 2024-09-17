@@ -2,11 +2,16 @@ import Wrapper from "@/components/shared/Wrapper";
 import GlassZoomImage from "@/util/GlassZoomImage";
 
 import { useGetCarQuery } from "@/redux/features/cars/car.api";
-import { carStatus } from "@/util/Constants";
+import { carStatus, UserRole } from "@/util/Constants";
 import { Link, useParams } from "react-router-dom";
 import Loading from "./Loading";
+import { useAppSelector } from "@/redux/hook";
+import { verifyToken } from "@/util/Verify.token";
+import { TUser } from "@/types/globalTypes";
 
 const CarDetail = () => {
+  const { token } = useAppSelector((state) => state.auth);
+
   const { id } = useParams();
 
   if (!id) {
@@ -15,7 +20,7 @@ const CarDetail = () => {
 
   const { data: carDetail, isLoading } = useGetCarQuery(id, { skip: !id });
 
-  // console.log(carDetail?.data);
+  const { userRole } = verifyToken(token as string) as TUser;
 
   if (isLoading) {
     return <Loading />;
@@ -125,14 +130,15 @@ const CarDetail = () => {
 
             {/* {/* buttons - start  */}
             <div className="   ">
-              <Link to={`/book-car/${carDetail?.data?._id}`}>
-                <button
-                  disabled={
-                    carDetail?.data?.status === carStatus.unavailable
-                      ? true
-                      : false
-                  }
-                  className={`inline-block flex-1 rounded-lg px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 sm:flex-none md:text-base 
+              {userRole === UserRole.admin ? (
+                <Link to={`/dashboard/update-car/${carDetail?.data?._id}`}>
+                  <button
+                    disabled={
+                      carDetail?.data?.status === carStatus.unavailable
+                        ? true
+                        : false
+                    }
+                    className={`inline-block flex-1 rounded-lg px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 sm:flex-none md:text-base 
                  ${
                    carDetail?.data?.status === carStatus.available
                      ? "bg-prime50 hover:bg-prime100 hover:scale-[1.02] active:scale-100 cursor-pointer   "
@@ -140,10 +146,31 @@ const CarDetail = () => {
                  }
              
              `}
-                >
-                  Book Now
-                </button>
-              </Link>
+                  >
+                    Update Car
+                  </button>
+                </Link>
+              ) : (
+                <Link to={`/book-car/${carDetail?.data?._id}`}>
+                  <button
+                    disabled={
+                      carDetail?.data?.status === carStatus.unavailable
+                        ? true
+                        : false
+                    }
+                    className={`inline-block flex-1 rounded-lg px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 sm:flex-none md:text-base 
+                 ${
+                   carDetail?.data?.status === carStatus.available
+                     ? "bg-prime50 hover:bg-prime100 hover:scale-[1.02] active:scale-100 cursor-pointer   "
+                     : " bg-red-600 cursor-not-allowed "
+                 }
+             
+             `}
+                  >
+                    Book Now
+                  </button>
+                </Link>
+              )}
             </div>
             {/* buttons - end  */}
           </div>

@@ -24,7 +24,7 @@ const SellChart = () => {
     isError,
   } = useCompletedPaymentBookingQuery(range);
 
-  console.log(paymentData?.data);
+  console.log(paymentData);
 
   // ! effect to set bar data in state
   useEffect(() => {

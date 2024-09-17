@@ -125,11 +125,11 @@ const bookingApi = baseApi.injectEndpoints({
           params: { range: query },
         };
       },
-      transformResponse: (response) => {
-        return {
-          data: (response as any)?.data,
-        };
-      },
+      // transformResponse: (response) => {
+      //   return {
+      //     data: (response as any)?.data,
+      //   };
+      // },
     }),
 
     // ! for approve a booking

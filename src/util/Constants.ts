@@ -1,5 +1,10 @@
 import { TSelectElectric } from "@/types/globalTypes";
 
+export const UserRole = {
+  admin: "admin",
+  user: "user",
+};
+
 export const isElectricCarOption: TSelectElectric[] = [
   {
     name: "Electric",
