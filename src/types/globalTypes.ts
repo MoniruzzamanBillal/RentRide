@@ -107,6 +107,7 @@ type TBookingCar = {
 export type TBooking = {
   _id: string;
   date: string;
+  carStatus: string;
   car: TBookingCar;
   user: TBookingUser;
   startTime: string;

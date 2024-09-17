@@ -40,7 +40,7 @@ const BookingConfirmation = () => {
         });
 
         setTimeout(() => {
-          navigate("/");
+          navigate("/dashboard/user/user-booking");
         }, 1000);
         dispatch(clearBookingData());
       }

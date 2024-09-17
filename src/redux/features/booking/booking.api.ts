@@ -33,6 +33,21 @@ const bookingApi = baseApi.injectEndpoints({
       },
     }),
 
+    // ! for getting all completed booking unavailable car
+    getCompletedBookingsUnavailableCar: builder.query({
+      query: () => {
+        return {
+          url: "/bookings/completed-booking-unavailable-car",
+          method: "GET",
+        };
+      },
+      transformResponse: (response) => {
+        return {
+          data: (response as any)?.data,
+        };
+      },
+    }),
+
     // ! get user  booking
     userBooking: builder.query({
       query: () => {
@@ -125,11 +140,11 @@ const bookingApi = baseApi.injectEndpoints({
           params: { range: query },
         };
       },
-      // transformResponse: (response) => {
-      //   return {
-      //     data: (response as any)?.data,
-      //   };
-      // },
+      transformResponse: (response) => {
+        return {
+          data: (response as any)?.data,
+        };
+      },
     }),
 
     // ! for approve a booking
@@ -216,4 +231,5 @@ export const {
   useCompletedPaymentBookingQuery,
   useCompletedPaymentBookingCountQuery,
   useCompletedPaymentBookingRevenueQuery,
+  useGetCompletedBookingsUnavailableCarQuery,
 } = bookingApi;

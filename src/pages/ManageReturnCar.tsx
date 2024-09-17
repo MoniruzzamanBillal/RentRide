@@ -1,18 +1,28 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ManageReturnCarModal, TableDataError } from "@/components/ui";
-import { useGetCompletedBookingsQuery } from "@/redux/features/booking/booking.api";
+import {
+  useGetCompletedBookingsQuery,
+  useGetCompletedBookingsUnavailableCarQuery,
+} from "@/redux/features/booking/booking.api";
 import { useReturnCarMutation } from "@/redux/features/cars/car.api";
 import { TBooking } from "@/types/globalTypes";
 import { carStatus } from "@/util/Constants";
 import { toast } from "sonner";
 
 const ManageReturnCar = () => {
+  // const {
+  //   data: completedBookingData,
+  //   isLoading: completedCarDataLoading,
+  //   isError: carDataError,
+  //   refetch: completedDataRefetch,
+  // } = useGetCompletedBookingsQuery(undefined);
+
   const {
     data: completedBookingData,
     isLoading: completedCarDataLoading,
     isError: carDataError,
     refetch: completedDataRefetch,
-  } = useGetCompletedBookingsQuery(undefined);
+  } = useGetCompletedBookingsUnavailableCarQuery(undefined);
 
   const [returnCar] = useReturnCarMutation();
 
@@ -95,19 +105,26 @@ const ManageReturnCar = () => {
     content = completedBookingData?.data?.map((booking: TBooking) => (
       <tr key={booking._id} className="border-b">
         <td className="p-4 text-center"> {booking?.car?.name} </td>
-        <td className="p-4 text-center"> car image </td>
+
+        <td className="  ">
+          <img
+            className="size-[3.4rem] xsm:size-[4rem] sm:size-[4.5rem]"
+            src={booking?.car?.carImg}
+            alt="car img"
+          />
+        </td>
         <td className="p-4 text-center"> {booking?.date} </td>
         <td className="p-4 text-center"> {booking?.dropLocation} </td>
         <td className="p-4 text-center"> {booking?.totalCost} </td>
 
         <td
           className={`p-4 text-center font-semibold ${
-            booking?.car?.status === carStatus.unavailable
+            booking?.carStatus === carStatus.unavailable
               ? "text-red-600"
               : "text-green-600"
           }  `}
         >
-          {booking?.car?.status}
+          {booking?.carStatus}
         </td>
 
         <td
@@ -120,9 +137,7 @@ const ManageReturnCar = () => {
 
         <td
           className={`p-4  ${
-            booking?.car?.status === carStatus.available
-              ? " hidden "
-              : " flex justify-center items-center"
+            booking?.car?.status === carStatus.available ? " hidden " : "  "
           }  `}
         >
           <ManageReturnCarModal

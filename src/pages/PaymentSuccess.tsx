@@ -6,7 +6,7 @@ const PaymentSuccess = () => {
   const navigate = useNavigate();
 
   const handleNavigateProduct = () => {
-    navigate("/dashboard/user/user-booking");
+    navigate("/dashboard/user/user-payment");
     window.location.reload();
   };
 
