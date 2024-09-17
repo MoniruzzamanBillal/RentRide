@@ -6,11 +6,11 @@ import { carStatus, UserRole } from "@/util/Constants";
 import { Link, useParams } from "react-router-dom";
 import Loading from "./Loading";
 import { useAppSelector } from "@/redux/hook";
-import { verifyToken } from "@/util/Verify.token";
-import { TUser } from "@/types/globalTypes";
 
 const CarDetail = () => {
-  const { token } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
+
+  console.log(user);
 
   const { id } = useParams();
 
@@ -19,8 +19,6 @@ const CarDetail = () => {
   }
 
   const { data: carDetail, isLoading } = useGetCarQuery(id, { skip: !id });
-
-  const { userRole } = verifyToken(token as string) as TUser;
 
   if (isLoading) {
     return <Loading />;
@@ -130,7 +128,7 @@ const CarDetail = () => {
 
             {/* {/* buttons - start  */}
             <div className="   ">
-              {userRole === UserRole.admin ? (
+              {user?.userRole === UserRole.admin ? (
                 <Link to={`/dashboard/update-car/${carDetail?.data?._id}`}>
                   <button
                     disabled={
