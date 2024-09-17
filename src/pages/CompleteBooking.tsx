@@ -70,9 +70,7 @@ const CompleteBooking = () => {
 
       if (response?.data?.success) {
         toast.success(response?.data?.message, { id: toastId, duration: 1200 });
-        setTimeout(() => {
-          navigate("/dashboard/user/user-payment");
-        }, 600);
+        navigate("/dashboard/user/user-payment");
       }
     } catch (error) {
       console.log(error);

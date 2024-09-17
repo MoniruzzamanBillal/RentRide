@@ -16,17 +16,12 @@ const ForgotPassword = () => {
 
   // ! for handling sent email for email sent link
   const handleSentEmail = async (data: FieldValues) => {
-    console.log("sent email !! ");
-    console.log(data);
-
     const toastId = toast.loading("Sending password reset link !!!");
 
     const { email } = data;
 
     try {
       const result = await sendResetLink(email);
-
-      console.log(result);
 
       //  *  for any  error
       if (result?.error) {
@@ -48,12 +43,11 @@ const ForgotPassword = () => {
           duration: 1000,
         });
 
-        setTimeout(() => {
-          navigate(`/email-reset-confirmation/${data?.email}`);
-        }, 700);
+        navigate(`/email-reset-confirmation/${data?.email}`);
       }
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong !! ", { id: toastId, duration: 1800 });
     }
   };
 

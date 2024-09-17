@@ -39,9 +39,7 @@ const BookingConfirmation = () => {
           duration: 2000,
         });
 
-        setTimeout(() => {
-          navigate("/dashboard/user/user-booking");
-        }, 1000);
+        navigate("/dashboard/user/user-booking");
         dispatch(clearBookingData());
       }
     } catch (error) {

@@ -1,30 +1,66 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { z } from "zod";
 import { RentForm, RentInput } from "@/components/form";
 import Wrapper from "@/components/shared/Wrapper";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { verifyToken } from "@/util/Verify.token";
 import { toast } from "sonner";
+import { TUser } from "@/types/globalTypes";
+import { useResetPasswordMutation } from "@/redux/features/auth/auth.api";
 
 const ResetPassword = () => {
+  const navigate = useNavigate();
   const { token } = useParams();
+  const [resetPassword, { isLoading }] = useResetPasswordMutation();
 
-  console.log(token);
   //   ! for reseting password
+  const handleResetPassword = async (data: FieldValues) => {
+    const { password } = data;
 
-  if (!token) {
-    toast.error("No valid token detected!!", { duration: 2000 });
-  }
+    const verifyTokenData = verifyToken(token as string) as TUser;
 
-  const handleResetPassword = (data: FieldValues) => {
-    console.log("reset password !! ");
-    console.log(data);
+    const { userId } = verifyTokenData;
 
-    const verifyTokenData = verifyToken(token as string);
+    const payload = {
+      userId,
+      password,
+    };
 
-    console.log(verifyTokenData);
+    console.log(payload);
+
+    const toastId = toast.loading("Password reseting !!!");
+
+    try {
+      const result = await resetPassword(payload);
+
+      //  *  for any  error
+      if (result?.error) {
+        const errorMessage = (result?.error as any)?.data?.message;
+
+        toast.error(errorMessage, {
+          id: toastId,
+          duration: 1400,
+        });
+      }
+
+      //  * for success
+      if (result?.data) {
+        console.log(result?.data);
+        const successMsg = (result?.data as any)?.message;
+
+        toast.success(successMsg, {
+          id: toastId,
+          duration: 1000,
+        });
+        navigate(`/login`);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong !! ", { id: toastId, duration: 1800 });
+    }
   };
 
   return (
@@ -64,7 +100,14 @@ const ResetPassword = () => {
               name="confirmPassword"
             />
 
-            <Button className="px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base bg-prime50 hover:bg-prime100 active:scale-95 duration-500">
+            <Button
+              disabled={isLoading}
+              className={`px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base active:scale-95 duration-500 ${
+                isLoading
+                  ? " cursor-not-allowed bg-gray-600 "
+                  : "bg-prime50 hover:bg-prime100  "
+              } `}
+            >
               Reset Password
             </Button>
           </RentForm>
