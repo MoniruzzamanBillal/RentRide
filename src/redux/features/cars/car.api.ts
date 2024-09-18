@@ -84,7 +84,18 @@ const carApi = baseApi.injectEndpoints({
           body: payload,
         };
       },
-      invalidatesTags: ["availableCar", "completeBookUnavailableCar"],
+      invalidatesTags: [
+        "userBooking",
+        "getAllBooking",
+        "completedBooking",
+        "userCompletedBooking",
+        "chartBooking",
+        "completeBookingCount",
+        "availableCar",
+        "bookingRevenue",
+        "completeBookUnavailableCar",
+        "cars",
+      ],
     }),
 
     // ! for deleting a car
@@ -95,6 +106,7 @@ const carApi = baseApi.injectEndpoints({
           method: "Delete",
         };
       },
+      invalidatesTags: ["cars"],
     }),
 
     //

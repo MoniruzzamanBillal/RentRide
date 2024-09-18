@@ -35,8 +35,10 @@ const ProductsFilter = ({
         Filtered By :
       </h1>
       {/*  price range type starts   */}
-      <div className="priceRange bg-gray-50 shadow-md rounded border border-gray-300 py-2 px-4">
-        <h1 className="font-medium mb-6 text-gray-800">Price Range :</h1>
+      <div className="priceRange bg-gray-50 dark:bg-black100 shadow-md rounded border border-gray-300 py-2 px-4">
+        <h1 className="font-medium mb-6 text-gray-800 dark:text-gray-200 ">
+          Price Range :
+        </h1>
 
         <div className="priceRangeInput">
           <Slider
@@ -44,11 +46,11 @@ const ProductsFilter = ({
             onValueChange={(value) => setPriceRange(value[0])}
             max={100}
             step={1}
-            className="w-full h-2 accent-red-500 rounded-lg "
+            className="w-full h-2 accent-red-500 rounded-lg   "
           />
 
           {/* price labal   */}
-          <div className="priceLabel mt-2 text-lg font-medium text-gray-800 flex justify-between">
+          <div className="priceLabel mt-2 text-lg font-medium text-gray-800 dark:text-gray-200 flex justify-between">
             <span>0</span>
             <span>{priceRange ? priceRange : 1000}</span>
           </div>
@@ -60,9 +62,11 @@ const ProductsFilter = ({
 
       {/* category input starts  */}
 
-      <div className="categoryInput bg-gray-50 shadow-md rounded border border-gray-300 py-2 px-4">
-        <h1 className="font-medium mb-2 text-gray-800">Category :</h1>
-        <ul className="text-sm font-medium text-gray-800">
+      <div className="categoryInput bg-gray-50 dark:bg-black100 shadow-md rounded border border-gray-300 py-2 px-4">
+        <h1 className="font-medium mb-2 text-gray-800 dark:text-gray-200">
+          Category :
+        </h1>
+        <ul className="text-sm font-medium text-gray-800 dark:text-gray-200">
           {options &&
             options?.map((item) => (
               <li className="w-full border-b border-gray-300">
@@ -78,7 +82,7 @@ const ProductsFilter = ({
                   />
                   <label
                     htmlFor={item?.name}
-                    className="w-full py-3 ms-2 text-sm font-medium text-gray-900"
+                    className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-200"
                   >
                     {item?.name}
                   </label>
@@ -92,7 +96,7 @@ const ProductsFilter = ({
       {/* reset btn  */}
       <div className="resetBtn w-[98%] m-auto   ">
         <Button
-          className="bg-red-600 hover:bg-red-700 hover:shadow-md hover:scale-[1.02] active:scale-100 duration-200 w-full  "
+          className="bg-red-600 hover:bg-red-700 dark:text-gray-100 hover:shadow-md hover:scale-[1.02] active:scale-100 duration-200 w-full  "
           onClick={() => handleAddReset()}
         >
           Reset

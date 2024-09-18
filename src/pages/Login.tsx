@@ -44,11 +44,9 @@ const Login = () => {
 
         toast.success(result?.message, { id: toastId, duration: 1400 });
 
-        setTimeout(() => {
-          navigate("/", {
-            replace: true,
-          });
-        }, 500);
+        navigate("/", {
+          replace: true,
+        });
       }
     } catch (error) {
       const errorMsg = (error as any)?.data?.message;

@@ -123,10 +123,10 @@ const CarList = () => {
   }
 
   return (
-    <div className="CarListContainer py-6 ">
+    <div className="CarListContainer py-6 dark:bg-black50  ">
       <Wrapper className="CarListWrapper">
         {/* search section   */}
-        <div className="searchSection bg-gray-50 border border-gray-300  w-[60%] m-auto py-1 px-5 rounded-full flex justify-center items-center  mb-6  ">
+        <div className="searchSection bg-gray-50 dark:bg-black100 border border-gray-300  w-[60%] m-auto py-1 px-5 rounded-full flex justify-center items-center  mb-6  ">
           <Input
             type="text"
             placeholder="Looking for...."
@@ -158,7 +158,7 @@ const CarList = () => {
           {/* products section  */}
           <div className="contentRight w-[100%] xl:w-[70%] flex flex-col gap-y-4 ">
             {/* content top section  */}
-            <div className="contentTop bg-gray-50 shadow-md rounded border border-gray-300 py-2 px-4 flex justify-between items-center ">
+            <div className="contentTop bg-gray-50 dark:bg-black100 shadow-md rounded border border-gray-300 py-2 px-4 flex justify-between items-center ">
               {/* Conditional rendering of ProductsFilter */}
               {!isXl ? (
                 <Sheet>
@@ -200,14 +200,14 @@ const CarList = () => {
 
               {/* sort input section starts  */}
               <div className="sortSection  flex  justify-between items-center gap-x-1 ">
-                <p className="text-gray-600 "> sort by : </p>
+                <p className="text-gray-600 dark:text-gray-200 "> sort by : </p>
 
                 {/* input section  */}
                 <Select
                   value={sort}
                   onValueChange={(value) => setSortBy(value)}
                 >
-                  <SelectTrigger className="w-[14rem]  outline-none border-gray-400 ring-0 focus:ring-0  ">
+                  <SelectTrigger className="w-[14rem]  outline-none border-gray-400 ring-0 focus:ring-0  dark:text-gray-200  ">
                     <SelectValue placeholder="sort by price" />
                   </SelectTrigger>
                   <SelectContent>

@@ -16,6 +16,7 @@ const bookingApi = baseApi.injectEndpoints({
           data: (response as any)?.data,
         };
       },
+      providesTags: ["getAllBooking"],
     }),
 
     // ! for getting all completed booking
@@ -31,6 +32,7 @@ const bookingApi = baseApi.injectEndpoints({
           data: (response as any)?.data,
         };
       },
+      providesTags: ["completedBooking"],
     }),
 
     // ! for getting all completed booking unavailable car
@@ -80,6 +82,7 @@ const bookingApi = baseApi.injectEndpoints({
           data: (response as any)?.data,
         };
       },
+      providesTags: ["userCompletedBooking"],
     }),
 
     // ! get payment completed booking count
@@ -146,6 +149,7 @@ const bookingApi = baseApi.injectEndpoints({
           data: (response as any)?.data,
         };
       },
+      providesTags: ["chartBooking"],
     }),
 
     // ! for approve a booking
@@ -156,6 +160,17 @@ const bookingApi = baseApi.injectEndpoints({
           method: "PATCH",
         };
       },
+      invalidatesTags: [
+        "userBooking",
+        "getAllBooking",
+        "completedBooking",
+        "userCompletedBooking",
+        "chartBooking",
+        "completeBookingCount",
+        "availableCar",
+        "bookingRevenue",
+        "completeBookUnavailableCar",
+      ],
     }),
 
     // ! for updating a booking
@@ -168,6 +183,17 @@ const bookingApi = baseApi.injectEndpoints({
           body: bookingData,
         };
       },
+      invalidatesTags: [
+        "userBooking",
+        "getAllBooking",
+        "completedBooking",
+        "userCompletedBooking",
+        "chartBooking",
+        "completeBookingCount",
+        "availableCar",
+        "bookingRevenue",
+        "completeBookUnavailableCar",
+      ],
     }),
 
     // ! for canceling a booking
@@ -175,6 +201,17 @@ const bookingApi = baseApi.injectEndpoints({
       query: (id: string) => {
         return { url: `/bookings/cancel-booking/${id}`, method: "PATCH" };
       },
+      invalidatesTags: [
+        "userBooking",
+        "getAllBooking",
+        "completedBooking",
+        "userCompletedBooking",
+        "chartBooking",
+        "completeBookingCount",
+        "availableCar",
+        "bookingRevenue",
+        "completeBookUnavailableCar",
+      ],
     }),
 
     // ! book a  car
@@ -186,7 +223,18 @@ const bookingApi = baseApi.injectEndpoints({
           body: payload,
         };
       },
-      invalidatesTags: ["userBooking", "cars"],
+      invalidatesTags: [
+        "userBooking",
+        "getAllBooking",
+        "completedBooking",
+        "userCompletedBooking",
+        "chartBooking",
+        "completeBookingCount",
+        "availableCar",
+        "bookingRevenue",
+        "completeBookUnavailableCar",
+        "cars",
+      ],
     }),
 
     // ! complete booking
@@ -198,7 +246,18 @@ const bookingApi = baseApi.injectEndpoints({
           body: payload,
         };
       },
-      invalidatesTags: ["userBooking"],
+      invalidatesTags: [
+        "userBooking",
+        "getAllBooking",
+        "completedBooking",
+        "userCompletedBooking",
+        "chartBooking",
+        "completeBookingCount",
+        "availableCar",
+        "bookingRevenue",
+        "completeBookUnavailableCar",
+        "cars",
+      ],
     }),
 
     // ! completing payment
@@ -209,7 +268,18 @@ const bookingApi = baseApi.injectEndpoints({
           method: "POST",
         };
       },
-      invalidatesTags: ["completeBookingCount", "bookingRevenue"],
+      invalidatesTags: [
+        "userBooking",
+        "getAllBooking",
+        "completedBooking",
+        "userCompletedBooking",
+        "chartBooking",
+        "completeBookingCount",
+        "availableCar",
+        "bookingRevenue",
+        "completeBookUnavailableCar",
+        "cars",
+      ],
     }),
 
     //
