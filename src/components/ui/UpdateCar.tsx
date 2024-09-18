@@ -26,11 +26,13 @@ const UpdateCar = () => {
     throw new Error("Something went wrong!! ");
   }
 
+  console.log(id);
+
   const {
     data: carDetail,
     isLoading: carDetailLoading,
     isFetching: carDetailFetching,
-  } = useGetCarQuery(id);
+  } = useGetCarQuery(id, { skip: !id });
 
   const [updateCar] = useUpdateCarMutation();
 

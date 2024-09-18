@@ -54,10 +54,11 @@ const UpdateBookForm = () => {
     useSingleBookingQuery(bookId, { skip: !bookId });
 
   const { data: carDetail, isLoading: carDetailLoading } = useGetCarQuery(
-    bookingDetail?.data?.car,
-    { skip: !bookingDetail?.data?.car }
+    bookingDetail?.data?.car?._id,
+    { skip: !bookingDetail?.data?.car?._id }
   );
 
+  // console.log(bookingDetail?.data?.car?._id);
   const [droppLocationOption, setDropLocationOption] = useState([]);
 
   let defaultValues;
@@ -150,20 +151,24 @@ const UpdateBookForm = () => {
 
   //  * effect for getting drop location option
   useEffect(() => {
-    const droppLocation = carDetail?.data?.dropLocation?.map(
-      (location: string) => ({
-        name: location,
-        value: location,
-      })
-    );
+    if (carDetail?.data?.dropLocation) {
+      const droppLocation = carDetail?.data?.dropLocation?.map(
+        (location: string) => ({
+          name: location,
+          value: location,
+        })
+      );
 
-    setDropLocationOption(droppLocation);
+      setDropLocationOption(droppLocation);
+    }
   }, [carDetail, carDetailLoading]);
 
   // ! if data is loading
   if (carDetailLoading || bookingDetailLoading) {
     return <Loading />;
   }
+
+  // console.log(carDetail?.data);
 
   return (
     <div className="UpdateBookFormContainer w-full min-h-screen  imageCenter  flex items-center justify-center ">
