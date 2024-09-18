@@ -10,8 +10,6 @@ import { useAppSelector } from "@/redux/hook";
 const CarDetail = () => {
   const { user } = useAppSelector((state) => state.auth);
 
-  console.log(user);
-
   const { id } = useParams();
 
   if (!id) {
@@ -24,6 +22,8 @@ const CarDetail = () => {
     return <Loading />;
   }
 
+  console.log(carDetail);
+
   return (
     <div className="CarDetailContainer py-8 ">
       <Wrapper className="CarDetailWrapper bg-gray-100 py-6 px-4 rounded-md shadow-sm  ">
@@ -33,7 +33,7 @@ const CarDetail = () => {
           <div className=" detailLeft space-y-4">
             {/* images - start  */}
             <div className="relative overflow-hidden rounded-lg  ">
-              <GlassZoomImage imageSrc={"https://i.ibb.co/XWy9KF8/car1.png"} />
+              <GlassZoomImage imageSrc={carDetail?.data?.carImg} />
             </div>
             {/* images - end  */}
           </div>

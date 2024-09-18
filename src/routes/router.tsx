@@ -122,7 +122,7 @@ const router = createBrowserRouter([
         element: <BookingConfirmation />,
       },
       {
-        path: "/payment-success",
+        path: "/payment-success/:bookingId",
         element: <PaymentSuccess />,
       },
 
