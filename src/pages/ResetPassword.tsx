@@ -67,7 +67,7 @@ const ResetPassword = () => {
     <div className="ResetPasswordContainer w-full min-h-screen  imageCenter   bg-[url('https://i.postimg.cc/XvsTKcvd/pexels-albert-nunez-18065-88630-1.jpg')] flex items-center justify-center">
       <Wrapper className="ResetPasswordWrapper py-14">
         {/*  */}
-        <div className=" w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto p-3 xsm:p-5 sm:p-7 md:p-10  rounded-md shadow-xl bg-gray-200 backdrop-blur bg-opacity-60 dark:backdrop-blur  ">
+        <div className=" w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto p-3 xsm:p-5 sm:p-7 md:p-10  rounded-md shadow-xl bg-gray-200 dark:bg-black100 backdrop-blur bg-opacity-60 dark:backdrop-blur  ">
           <p className=" mb-3 xsm:mb-5 sm:mb-8 text-xl xsm:text-2xl sm:text-3xl text-center font-semibold CormorantFont text-gray-700 dark:text-white  ">
             Reset Password
           </p>
@@ -93,11 +93,17 @@ const ResetPassword = () => {
                 })
             )}
           >
-            <RentInput type="password" label="Password :" name="password" />
+            <RentInput
+              type="password"
+              label="Password :"
+              name="password"
+              placeholder="Enter your password "
+            />
             <RentInput
               type="password"
               label="Confirm Password :"
               name="confirmPassword"
+              placeholder="Confirm your password "
             />
 
             <Button
