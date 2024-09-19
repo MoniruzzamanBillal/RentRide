@@ -26,8 +26,6 @@ const Navbar = () => {
   const dispatch = useAppDispatch();
   const { darkMode } = useAppSelector((state) => state.mode);
 
-  console.log(darkMode);
-
   //! dark mode toggle
   const handleDarkMode = () => {
     dispatch(toggleMode());
