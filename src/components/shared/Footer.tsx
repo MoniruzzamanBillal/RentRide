@@ -14,29 +14,30 @@ const Footer = () => {
               About Us
             </Link>
             <Link
-              to={"/products"}
+              to={"/car-list"}
               className="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
             >
-              Products
+              Car lists
             </Link>
             <Link
-              to={"/cart"}
+              to={"/dashboard"}
               className="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
             >
-              Cart
+              Dashboard
             </Link>
             <Link
-              to={"/all-product"}
+              to={"/contact-us"}
               className="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
             >
-              Manage Product
+              Contact us
             </Link>
           </nav>
 
           <div className="flex ">
             {/* facebook icon  */}
             <Link
-              to={"https://www.facebook.com/"}
+              to={"https://www.facebook.com/boss.mesut/"}
+              target="_blank"
               className="mr-6 text-2xl text-neutral-600 hover:text-blue-700"
             >
               <FaFacebook />
@@ -45,6 +46,7 @@ const Footer = () => {
             {/* linkedin icon  */}
             <Link
               to={"https://bd.linkedin.com/"}
+              target="_blank"
               className="mr-6 text-2xl text-neutral-600 hover:text-blue-800"
             >
               <FaLinkedin />
@@ -52,6 +54,7 @@ const Footer = () => {
             {/* github icon  */}
             <Link
               to={"https://github.com/MoniruzzamanBillal"}
+              target="_blank"
               className="mr-6 text-2xl text-neutral-600 hover:text-neutral-800"
             >
               <FaGithub />

@@ -26,7 +26,7 @@ const CarDetail = () => {
 
   return (
     <div className="CarDetailContainer py-8 ">
-      <Wrapper className="CarDetailWrapper bg-gray-100 py-6 px-4 rounded-md shadow-sm  ">
+      <Wrapper className="CarDetailWrapper bg-gray-100 dark:bg-black20 py-6 px-4 rounded-lg shadow-sm  ">
         {/* top section starts  */}
         <div className="grid gap-8 md:grid-cols-2">
           {/* detail left starts  */}
@@ -44,7 +44,7 @@ const CarDetail = () => {
           <div className=" detailRight  md:py-8">
             {/* {/* name - start  */}
             <div className="mb-6  ">
-              <h2 className="text-3xl font-semibold text-gray-800 lg:text-4xl">
+              <h2 className="text-3xl font-semibold  lg:text-4xl">
                 {carDetail?.data?.name}
               </h2>
             </div>
@@ -52,7 +52,9 @@ const CarDetail = () => {
 
             {/* {/* description - start  */}
             <div className=" mb-6 ">
-              <p className="text-gray-500">{carDetail?.data?.description}</p>
+              <p className="text-gray-500 dark:text-gray-300 ">
+                {carDetail?.data?.description}
+              </p>
             </div>
             {/* description - end  */}
 
@@ -60,7 +62,7 @@ const CarDetail = () => {
             <div className="mb-6">
               <div className="  font-medium mb-1.5  ">
                 Price Per Hour :{" "}
-                <span className=" font-bold text-gray-800 md:text-xl">
+                <span className=" font-bold text-gray-800 dark:text-gray-100 md:text-xl">
                   {carDetail?.data?.pricePerHour} $
                 </span>
               </div>
@@ -73,7 +75,7 @@ const CarDetail = () => {
               <div className="mb-6">
                 <div className="  font-medium mb-1.5  ">
                   Trip Completed :{" "}
-                  <span className=" font-bold text-gray-800 md:text-xl">
+                  <span className=" font-bold text-gray-800 dark:text-gray-100 md:text-xl">
                     {carDetail?.data?.tripCompleted}+
                   </span>
                 </div>
@@ -88,7 +90,10 @@ const CarDetail = () => {
 
               {carDetail?.data?.dropLocation?.map(
                 (location: string, ind: number) => (
-                  <p key={ind} className="text-gray-700 pl-6">
+                  <p
+                    key={ind}
+                    className="text-gray-700 dark:text-gray-300 pl-6"
+                  >
                     {" "}
                     * {location}
                   </p>
@@ -99,11 +104,9 @@ const CarDetail = () => {
 
             {/* product category starts  */}
             <div className="mb-4 ">
-              <p className="font-medium text-gray-900">
-                Additional features :{" "}
-              </p>
+              <p className="font-medium  ">Additional features : </p>
               <ul
-                className="text-gray-600 pl-6
+                className="text-gray-600 dark:text-gray-300 pl-6
                "
               >
                 <li> * GPS</li>
@@ -117,8 +120,8 @@ const CarDetail = () => {
               <span
                 className={` font-semibold  ${
                   carDetail?.data?.status === carStatus.available
-                    ? "text-green-700"
-                    : "text-red-700"
+                    ? "text-green-600"
+                    : "text-red-600"
                 }  `}
               >
                 {carDetail?.data?.status}

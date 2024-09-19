@@ -106,7 +106,8 @@ const TeamCard = () => {
                         <div className="flex gap-5">
                           {/* facebook icon  */}
                           <Link
-                            to={"https://www.facebook.com/"}
+                            to={"https://www.facebook.com/boss.mesut/"}
+                            target="_blank"
                             className=" text-2xl text-neutral-600 hover:text-blue-700"
                           >
                             <FaFacebook />
@@ -115,6 +116,7 @@ const TeamCard = () => {
                           {/* linkedin icon  */}
                           <Link
                             to={"https://bd.linkedin.com/"}
+                            target="_blank"
                             className=" text-2xl text-neutral-600 hover:text-blue-800"
                           >
                             <FaLinkedin />
@@ -122,6 +124,7 @@ const TeamCard = () => {
                           {/* github icon  */}
                           <Link
                             to={"https://github.com/MoniruzzamanBillal"}
+                            target="_blank"
                             className=" text-2xl text-neutral-600 hover:text-neutral-800"
                           >
                             <FaGithub />
