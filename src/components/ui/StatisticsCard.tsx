@@ -4,7 +4,7 @@ const StatisticsCard = ({ number, text }: { number: number; text: string }) => {
   //   const { number, text } = counter;
 
   return (
-    <div className="flex group flex-col items-center justify-center rounded-lg bg-gray-200 shadow-md border border-gray-200 dark:bg-gray-600 p-4 lg:p-8  cursor-pointer relative m-auto w-[94%] xsm:w-full  hover:shadow-lg ">
+    <div className="flex group flex-col items-center justify-center rounded-lg bg-gray-200 dark:bg-black50 shadow-md   p-4 lg:p-8  cursor-pointer relative m-auto w-[94%] xsm:w-full  hover:shadow-lg ">
       {/* top border  */}
 
       {/* top line  */}
@@ -33,10 +33,10 @@ const StatisticsCard = ({ number, text }: { number: number; text: string }) => {
       {/* bottom right line  */}
       {/* bottom right line  */}
 
-      <div className="  text-gray-800 group-hover:text-prime100 dark:text-gray-400   pb-2 text-sm xsm:text-lg sm:text-xl md:text-2xl xmd:text-3xl font-semibold     ">
+      <div className="  text-gray-800 group-hover:text-prime50 dark:text-gray-100   pb-2 text-sm xsm:text-lg sm:text-xl md:text-2xl xmd:text-3xl font-semibold     ">
         <CountUp start={0} end={number} duration={2} />
       </div>
-      <div className="  text-center text-gray-800 group-hover:text-prime100 text-sm xsm:text-lg sm:text-xl md:text-xl xmd:text-2xl  font-semibold    ">
+      <div className="  text-center text-gray-800 dark:text-gray-100 group-hover:text-prime50 text-sm xsm:text-lg sm:text-xl md:text-xl xmd:text-2xl  font-semibold    ">
         <h4 className="counterTitle  ">{text}</h4>
       </div>
     </div>

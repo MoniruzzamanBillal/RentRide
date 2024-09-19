@@ -5,7 +5,7 @@ import Statistics from "./Statistics";
 
 const AdminProfile = () => {
   return (
-    <div className="AdminProfileContainer">
+    <div className="AdminProfileContainer  ">
       <div className="AdminProfileWrapper  flex flex-col gap-y-6  ">
         <Statistics />
         <SellChart />

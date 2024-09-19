@@ -156,14 +156,14 @@ const UserPayment = () => {
 
   return (
     <div className="UserPaymentContainer">
-      <div className="UserPaymentWrapper bg-gray-100 shadow rounded-md p-3 border border-gray-200  ">
+      <div className="UserPaymentWrapper bg-gray-100 dark:bg-black100 shadow rounded-md p-3 border border-gray-200  ">
         <h3 className="brand text-2xl font-medium mb-4 ">My Bookings</h3>
 
         {/* table starts  */}
         <div className="tableContainer relative w-full overflow-auto mt-4 ">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm dark:bg-black20">
             <thead className="border-b">
-              <tr>
+              <tr className="w-full text-sm bg-sky-100 dark:bg-black100 dark:text-gray-200 ">
                 <th className="px-4 font-medium">Name</th>
                 <th className="px-4 font-medium">Car </th>
                 <th className="px-4 font-medium">Drop location</th>

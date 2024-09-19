@@ -28,10 +28,10 @@ const PaymentSuccess = () => {
     content = <Loading />;
   } else if (!isLoading && bookingData) {
     content = (
-      <div className="confirmationCard bg-white py-8 px-16 rounded-md shadow-lg border border-gray-100 flex flex-col  justify-center items-center gap-y-3  ">
+      <div className="confirmationCard bg-white dark:bg-black100 py-8 px-16 rounded-md shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col  justify-center items-center gap-y-3  ">
         {/* icon starts  */}
         <div className="icon  text-center flex justify-center items-center ">
-          <IoIosCheckmarkCircleOutline className=" text-7xl text-prime100 " />
+          <IoIosCheckmarkCircleOutline className=" text-7xl text-prime100  dark:text-prime50 " />
         </div>
         {/* icon ends  */}
 
@@ -81,7 +81,7 @@ const PaymentSuccess = () => {
   }
 
   return (
-    <div className="paymentSuccessContainer bg-gray-200 ">
+    <div className="paymentSuccessContainer bg-gray-200 dark:bg-black20 ">
       <div className="paymentSuccessWrapper min-h-screen  flex justify-center items-center   ">
         {content}
       </div>

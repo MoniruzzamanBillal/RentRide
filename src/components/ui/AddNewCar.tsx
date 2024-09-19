@@ -92,7 +92,7 @@ const AddNewCar = () => {
   };
 
   return (
-    <div className="AddNewCarContainer py-8 bg-gray-100 min-h-screen p-3 shadow rounded-md ">
+    <div className="AddNewCarContainer py-8 bg-gray-100 dark:bg-black100 min-h-screen p-3 shadow rounded-md ">
       <div className="addCarWrapper">
         <h1 className=" mb-8 px-3 xsm:px-4 sm:px-5 md:px-6 font-bold text-2xl  md:text-3xl text-center  ">
           Add new car
@@ -104,10 +104,25 @@ const AddNewCar = () => {
             onSubmit={handleAddCar}
             resolver={zodResolver(addCarValidationSchema)}
           >
-            <RentInput type="text" label="Name :" name="name" />
+            <RentInput
+              type="text"
+              label="Name :"
+              name="name"
+              placeholder="Enter car name"
+            />
             <RentInput type="file" label="Car Image :" name="image" />
-            <RentInput type="text" label="Description :" name="description" />
-            <RentInput type="text" label="Color :" name="color" />
+            <RentInput
+              type="text"
+              label="Description :"
+              name="description"
+              placeholder="Enter car description"
+            />
+            <RentInput
+              type="text"
+              label="Color :"
+              name="color"
+              placeholder="Enter car color"
+            />
 
             <RentSelectInput
               name="isElectric"
@@ -134,6 +149,7 @@ const AddNewCar = () => {
               type="number"
               label="Price per hour :"
               name="pricePerHour"
+              placeholder="Enter car price per hour cost"
             />
 
             <Button

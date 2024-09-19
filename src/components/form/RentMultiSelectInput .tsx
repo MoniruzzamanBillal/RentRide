@@ -29,8 +29,8 @@ const RentMultiSelectInput = ({ name, label, options }: TMultiSelect) => {
               components={animatedComponents}
               isMulti
               options={selectOptions}
-              className="basic-multi-select"
-              classNamePrefix="select"
+              className="basic-multi-select  "
+              classNamePrefix="select dark:bg-black50 dark:text-gray-100 "
               onChange={(selectedOptions) => {
                 field.onChange(
                   selectedOptions

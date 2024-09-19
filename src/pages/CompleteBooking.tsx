@@ -99,9 +99,9 @@ const CompleteBooking = () => {
   }
 
   return (
-    <div className="CompleteBookingContainer w-full min-h-screen flex items-center justify-center  ">
+    <div className="CompleteBookingContainer w-full min-h-screen flex items-center justify-center dark:bg-black20  ">
       <Wrapper className="formWrapper   py-14 ">
-        <div className="fomrContainer   w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto p-3 xsm:p-5 sm:p-7 md:p-10  rounded-md shadow-xl bg-gray-200 backdrop-blur bg-opacity-60 dark:backdrop-blur ">
+        <div className="fomrContainer   w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto p-3 xsm:p-5 sm:p-7 md:p-10  rounded-md shadow-xl bg-gray-200 dark:bg-black100 backdrop-blur bg-opacity-60 dark:backdrop-blur ">
           <h1 className=" mb-6  md:mb-8 xmd:mb-12 lg:mb-14 text-center font-semibold text-prime100 text-lg xsm:text-xl sm:text-3xl md:text-3xl xl:text-4xl text-shadow-prime ">
             Complete Booking
           </h1>
@@ -118,7 +118,7 @@ const CompleteBooking = () => {
               filterTime={filterPassedTime}
               timeCaption="Time"
               dateFormat="h:mm aa"
-              className="border border-gray-400 py-2 px-3 rounded-md "
+              className="border border-gray-400 dark:bg-black100 py-2 px-3 rounded-md "
             />
 
             <Button

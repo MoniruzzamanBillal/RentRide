@@ -5,9 +5,10 @@ type TInput = {
   type: string;
   name: string;
   label: string;
+  placeholder?: string;
 };
 
-const RentInput = ({ type, label, name }: TInput) => {
+const RentInput = ({ type, label, name, placeholder }: TInput) => {
   const { control } = useFormContext();
 
   const inputProps =
@@ -28,6 +29,7 @@ const RentInput = ({ type, label, name }: TInput) => {
         render={({ field, fieldState: { error } }) => (
           <>
             <Input
+              placeholder={placeholder}
               type={type}
               id={name}
               className="border border-gray-400  "

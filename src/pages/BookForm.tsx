@@ -110,9 +110,9 @@ const BookForm = () => {
   }
 
   return (
-    <div className="bookformContainer w-full min-h-screen flex items-center justify-center ">
+    <div className="bookformContainer dark:bg-black20 w-full min-h-screen flex items-center justify-center ">
       <Wrapper className="formWrapper   py-14 ">
-        <div className="    w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto p-3 xsm:p-5 sm:p-7 md:p-10  rounded-md shadow-xl bg-gray-200 backdrop-blur bg-opacity-60 dark:backdrop-blur  ">
+        <div className="    w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto p-3 xsm:p-5 sm:p-7 md:p-10  rounded-md shadow-xl bg-gray-200 dark:bg-black100 backdrop-blur bg-opacity-60 dark:backdrop-blur  ">
           <h1 className=" mb-6  md:mb-8 xmd:mb-12 lg:mb-14 text-center font-semibold text-prime100 text-lg xsm:text-xl sm:text-3xl md:text-3xl xl:text-4xl text-shadow-prime ">
             Book Car
           </h1>
@@ -124,8 +124,18 @@ const BookForm = () => {
             onSubmit={handleBookCar}
             resolver={zodResolver(bookCarSchema)}
           >
-            <RentInput type="number" label="NID/Passport :" name="nid" />
-            <RentInput type="number" label="License :" name="license" />
+            <RentInput
+              type="number"
+              label="NID/Passport :"
+              name="nid"
+              placeholder="Enter your NID"
+            />
+            <RentInput
+              type="number"
+              label="License :"
+              name="license"
+              placeholder="Enter your License"
+            />
             <RentSelectInput
               name="paymentMethod"
               label="Payment Method: "
@@ -143,7 +153,11 @@ const BookForm = () => {
               options={droppLocationOption}
             />
 
-            <RentDatePicker name="bookingDate" label="Booking Date" />
+            <RentDatePicker
+              name="bookingDate"
+              label="Booking Date"
+              placeholderText="Select date and time"
+            />
 
             <Button className="px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base bg-prime50 hover:bg-prime100 active:scale-95 duration-500 ">
               Book Now

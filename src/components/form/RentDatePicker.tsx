@@ -4,9 +4,10 @@ import "react-datepicker/dist/react-datepicker.css";
 type TInput = {
   name: string;
   label: string;
+  placeholderText?: string;
 };
 
-const RentDatePicker = ({ label, name }: TInput) => {
+const RentDatePicker = ({ label, name, placeholderText }: TInput) => {
   const { control } = useFormContext();
   return (
     <div className="RentInputContainer mb-5 flex flex-col gap-y-1">
@@ -22,7 +23,8 @@ const RentDatePicker = ({ label, name }: TInput) => {
               onChange={field.onChange}
               showTimeSelect
               dateFormat="d-MMM-yyyy ,h:mm aa"
-              className="border border-gray-400 py-2 px-3 rounded-md "
+              className="border border-gray-400 dark:bg-black100 py-2 px-3 rounded-md "
+              placeholderText={placeholderText}
             />
             {error && (
               <p className="text-xs font-medium text-red-600">

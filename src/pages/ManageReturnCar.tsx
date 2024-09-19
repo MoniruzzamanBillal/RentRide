@@ -146,16 +146,16 @@ const ManageReturnCar = () => {
 
   return (
     <div className="ManageReturnCarContainer">
-      <div className="manageReturnWrapper bg-gray-100 shadow rounded-md p-3  ">
+      <div className="manageReturnWrapper bg-gray-100 dark:bg-black100 shadow rounded-md p-3  ">
         <h1 className="brand text-2xl font-medium mb-4 ">
           {" "}
           Manage Return cars{" "}
         </h1>
         {/* table starts  */}
         <div className="tableContainer relative w-full overflow-auto mt-4 ">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm dark:bg-black20">
             <thead className="border-b">
-              <tr>
+              <tr className="w-full text-sm bg-sky-100 dark:bg-black100 dark:text-gray-200 ">
                 <th className="px-4 font-medium">Name</th>
                 <th className="px-4 font-medium">Image</th>
                 <th className="px-4 font-medium">Booking Date</th>

@@ -56,7 +56,7 @@ const Statistics = () => {
 
   return (
     <div className="StatisticsContainer">
-      <div className="StatisticsWrapper rounded-md bg-gray-100 border border-gray-200 p-6 shadow-md">
+      <div className="StatisticsWrapper rounded-md bg-gray-100 dark:bg-black100 border border-gray-200 dark:border-gray-600 p-6 shadow-md">
         <h1 className=" mb-8 px-3 xsm:px-4 sm:px-5 md:px-6 font-medium text-2xl  md:text-3xl   ">
           Statistics
         </h1>
