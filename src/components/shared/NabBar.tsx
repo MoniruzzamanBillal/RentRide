@@ -116,7 +116,7 @@ const Navbar = () => {
                   to="/dashboard"
                   className="inline-block p-2 rounded-full bg-orange-100 cursor-pointe"
                 >
-                  <LuUser2 className=" text-2xl font-bold " />
+                  <LuUser2 className=" text-2xl font-bold text-gray-800 " />
                 </Link>
               </div>
             )}

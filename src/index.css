@@ -82,7 +82,7 @@ td {
 }
 
 table th {
-  @apply uppercase bg-sky-50;
+  @apply uppercase;
 }
 
 * {
