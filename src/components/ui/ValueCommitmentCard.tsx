@@ -11,7 +11,7 @@ const HeaderText = ({ text }: { text: string }) => {
 
 const ValueCommitmentCard = () => {
   return (
-    <div className="ValueCommitmentCardContainer">
+    <div className="ValueCommitmentCardContainer  ">
       <div className="   grid grid-cols-1 sm:grid-cols-2 xlm:grid-cols-3 gap-x-7 gap-y-12 ">
         {valueCommitmentData &&
           valueCommitmentData?.map((element: TValueCommitment) => (
@@ -21,7 +21,7 @@ const ValueCommitmentCard = () => {
             >
               <CanvasRevealEffect
                 animationSpeed={3}
-                containerClassName="bg-emerald-900"
+                containerClassName="bg-emerald-900  "
                 dotSize={2}
               />
             </Card>
@@ -47,7 +47,7 @@ const Card = ({
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="border border-black/[0.2] group/canvas-card flex items-center justify-center dark:border-white/[0.2]  max-w-sm w-full mx-auto p-4 relative h-[24rem] shadow-md bg-sky-200 cursor-pointer "
+      className="border border-black/[0.2] group/canvas-card flex items-center justify-center dark:border-white/[0.2]  max-w-sm w-full mx-auto p-4 relative h-[24rem] shadow-md bg-sky-200 dark:bg-black20 cursor-pointer "
     >
       <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
       <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />

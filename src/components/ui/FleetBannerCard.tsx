@@ -13,7 +13,7 @@ const FleetBannerCard = ({ banner }: HeroBannerCardProps) => {
           {banner?.heading}
         </h1>
 
-        <p className=" leading-relaxed text-gray-700  lg:w-4/5 xl:text-lg">
+        <p className=" leading-relaxed text-gray-700 dark:text-gray-3 00 lg:w-4/5 xl:text-lg">
           {banner?.description}
         </p>
       </div>

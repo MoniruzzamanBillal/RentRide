@@ -17,7 +17,7 @@ const MissionVisionCard = ({ element }: TCardProps) => {
           <h1 className="  font-semibold text-xl xsm:text-2xl sm:text-3xl md:text-3xl xmd:text-4xl  text-prime100 ">
             {element?.header}
           </h1>
-          <p className=" text-gray-900 text-sm xsm:text-base lg:text-lg ">
+          <p className=" text-gray-900 dark:text-gray-300 text-sm xsm:text-base lg:text-lg ">
             {element?.content}
           </p>
         </div>

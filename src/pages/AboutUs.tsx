@@ -1,6 +1,6 @@
 import Wrapper from "@/components/shared/Wrapper";
 import missionImg from "@/assets/images/mission.png";
-import visionImg from "@/assets/images/vision.jpg";
+import visionImg from "@/assets/images/vision.png";
 import {
   FleetBanner,
   MissionVisionCard,
@@ -28,7 +28,7 @@ const missionVisionContent: TMissionVisionItem[] = [
 
 const AboutUs = () => {
   return (
-    <div className="AboutUsContainer  ">
+    <div className="AboutUsContainer dark:bg-black20 ">
       <div className="AboutUsWrapper flex flex-col  ">
         {/* video container starts  */}
         <div className="aboutUsVideoContainer    ">
@@ -64,7 +64,7 @@ const AboutUs = () => {
         {/*  */}
 
         {/* Founding Year, Founders, and Inspiration section  */}
-        <div className="founderSection bg-blue-50 py-8 ">
+        <div className="founderSection bg-blue-50 dark:bg-black50 py-8 ">
           <Wrapper className=" flex flex-col gap-y-8 ">
             <h1 className=" mb-2 sm:mb-4 text-center font-semibold text-lg xsm:text-2xl sm:text-3xl md:text-3xl xmd:text-4xl   ">
               Founding{" "}
@@ -73,7 +73,7 @@ const AboutUs = () => {
               </span>
             </h1>
 
-            <p className=" text-xl text-gray-700 ">
+            <p className=" text-xl text-gray-700 dark:text-gray-300 ">
               Rent Ride was founded in 2024 by a team of passionate
               entrepreneurs who recognized a growing need for convenient and
               reliable car rental services in an increasingly mobile world. The
@@ -83,7 +83,7 @@ const AboutUs = () => {
               satisfaction and efficiency.
             </p>
 
-            <p className=" text-xl text-gray-700">
+            <p className=" text-xl text-gray-700 dark:text-gray-300">
               The inspiration for Rent Ride came from the founders' personal
               experiences and observations of the challenges faced by travelers
               and commuters when renting vehicles. Whether it was the
@@ -100,7 +100,7 @@ const AboutUs = () => {
         {/*  */}
 
         {/* mission vision sectioin starts  */}
-        <div className="missionVisionSection py-8 ">
+        <div className="missionVisionSection py-8 dark:bg-black20 ">
           <Wrapper>
             {missionVisionContent &&
               missionVisionContent?.map((element) => (
@@ -111,7 +111,7 @@ const AboutUs = () => {
         {/* mission vision sectioin ends */}
 
         {/* team member sectiion  */}
-        <div className="teamSection">
+        <div className="teamSection ">
           <TeamCard />
         </div>
         {/* team member sectiion  */}
@@ -140,10 +140,10 @@ const AboutUs = () => {
         {/* fleet section  */}
 
         {/* value commitment section  */}
-        <div className="valueCommitmentSection bg-blue-50 ">
+        <div className="valueCommitmentSection bg-blue-50 dark:bg-black50 ">
           <Wrapper className=" py-8">
             <div className="mb-16">
-              <h1 className=" mb-2 sm:mb-4 text-center font-semibold text-lg xsm:text-2xl sm:text-3xl md:text-3xl xmd:text-4xl text-prime100  ">
+              <h1 className=" mb-2 sm:mb-4 text-center font-semibold text-lg xsm:text-2xl sm:text-3xl md:text-3xl xmd:text-4xl text-prime100 dark:text-prime50  ">
                 Our Value and Commitment
               </h1>
             </div>

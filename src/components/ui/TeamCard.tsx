@@ -61,8 +61,8 @@ const teamMembers: TMember[] = [
 
 const TeamCard = () => {
   return (
-    <div className="TeamMemberContainer ">
-      <div className="bg-blue-50 py-8    ">
+    <div className="TeamMemberContainer  ">
+      <div className="bg-blue-50 py-8  dark:bg-black50  ">
         <Wrapper>
           <div className=" max-w-screen-xl  m-auto  ">
             {/* text - start  */}
@@ -79,7 +79,7 @@ const TeamCard = () => {
                 teamMembers?.map((member: TMember, ind: number) => (
                   <div
                     key={ind}
-                    className=" h-[23.5rem] xsm:h-[22.5rem] md:h-[24rem] lg:h-[27rem] flex flex-col items-center rounded-lg bg-gray-50 border border-gray-200 p-4 lg:p-8  w-[95%] xsm:w-[75%] sm:w-full m-auto shadow-lg "
+                    className=" h-[23.5rem] xsm:h-[22.5rem] md:h-[24rem] lg:h-[27rem] flex flex-col items-center rounded-lg bg-gray-50 dark:bg-black20 border border-gray-200 p-4 lg:p-8  w-[95%] xsm:w-[75%] sm:w-full m-auto shadow-lg "
                   >
                     <div className="mb-2 h-24 w-24 overflow-hidden rounded-full bg-gray-200 shadow-lg md:mb-4 md:h-32 md:w-32">
                       <img
@@ -94,10 +94,10 @@ const TeamCard = () => {
                       <div className="text-center font-bold text-indigo-500 md:text-lg">
                         {member?.name}
                       </div>
-                      <p className="mb-3 text-center text-sm text-gray-500 md:mb-4 md:text-base">
+                      <p className="mb-3 text-center text-sm text-gray-500 dark:text-gray-100 md:mb-4 md:text-base">
                         {member?.designation}
                       </p>
-                      <p className=" text-center   text-gray-500 md:mb-4 text-sm">
+                      <p className=" text-center   text-gray-500 dark:text-gray-300 md:mb-4 text-sm">
                         {member?.descriptiion}
                       </p>
 
@@ -108,7 +108,7 @@ const TeamCard = () => {
                           <Link
                             to={"https://www.facebook.com/boss.mesut/"}
                             target="_blank"
-                            className=" text-2xl text-neutral-600 hover:text-blue-700"
+                            className=" text-2xl text-neutral-600 hover:text-blue-700 dark:text-gray-100 "
                           >
                             <FaFacebook />
                           </Link>
@@ -117,7 +117,7 @@ const TeamCard = () => {
                           <Link
                             to={"https://bd.linkedin.com/"}
                             target="_blank"
-                            className=" text-2xl text-neutral-600 hover:text-blue-800"
+                            className=" text-2xl text-neutral-600 dark:text-gray-100 hover:text-blue-800"
                           >
                             <FaLinkedin />
                           </Link>
@@ -125,7 +125,7 @@ const TeamCard = () => {
                           <Link
                             to={"https://github.com/MoniruzzamanBillal"}
                             target="_blank"
-                            className=" text-2xl text-neutral-600 hover:text-neutral-800"
+                            className=" text-2xl text-neutral-600 dark:text-gray-100  hover:text-neutral-800"
                           >
                             <FaGithub />
                           </Link>
