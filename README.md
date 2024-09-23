@@ -104,19 +104,24 @@ A user-friendly car rental reservation platform with features for both customers
 ## Screenshots
 
 - Home page
+
   ![image](https://i.postimg.cc/bNRh64SM/Rent-Ride.png)
 
 - Car List Page
+
   ![image](https://i.postimg.cc/7h1vfPGx/contact-page.png)
 
 - Booking Car List Page
+
   ![image](https://i.postimg.cc/ry52hjhv/booking-car.png)
 
 - Contact us page
+
   ![image](https://i.postimg.cc/zX5Z4h63/Rent-Ride.png)
 
 - User Dashboard
-  ![image](https://i.postimg.cc/MGnh1mM3/Rent-Ride.png)
+
+![image](https://i.postimg.cc/MGnh1mM3/Rent-Ride.png)
 
 ![image](https://i.postimg.cc/sXSqNfJp/Rent-Ride-1.png)
 
@@ -125,7 +130,8 @@ A user-friendly car rental reservation platform with features for both customers
 ##
 
 - Admin Dashboard
-  ![image](https://i.postimg.cc/WbSKKH0f/Rent-Ride.png)
+
+![image](https://i.postimg.cc/WbSKKH0f/Rent-Ride.png)
 
 ![image](https://i.postimg.cc/dV1XKjBQ/Rent-Ride-1.png)
 
