@@ -92,7 +92,15 @@ const SellChart = () => {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="updatedAt" />
             <YAxis />
-            <Tooltip />
+
+            <Tooltip
+              contentStyle={{
+                backgroundColor: "#02B8A6",
+                borderColor: "#009B94",
+              }}
+              itemStyle={{ color: "#020817" }}
+              cursor={{ fill: "rgba(0, 0, 0, 0.1)" }}
+            />
             <Legend />
             <Bar
               dataKey="amount"

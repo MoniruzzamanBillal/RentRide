@@ -58,7 +58,7 @@ const carApi = baseApi.injectEndpoints({
           body: payload,
         };
       },
-      invalidatesTags: ["cars"],
+      invalidatesTags: ["cars", "availableCar"],
     }),
 
     // ! for  updating a car
@@ -72,7 +72,7 @@ const carApi = baseApi.injectEndpoints({
           body: carData,
         };
       },
-      invalidatesTags: ["cars"],
+      invalidatesTags: ["cars", "availableCar"],
     }),
 
     // ! for returning car
@@ -106,7 +106,7 @@ const carApi = baseApi.injectEndpoints({
           method: "Delete",
         };
       },
-      invalidatesTags: ["cars"],
+      invalidatesTags: ["cars", "availableCar"],
     }),
 
     //

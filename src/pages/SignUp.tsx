@@ -59,7 +59,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="SignUpContainer w-full min-h-screen  imageCenter   bg-[url('https://i.ibb.co/rsq6CQL/signupBg.jpg')] flex items-center justify-center ">
+    <div className="SignUpContainer w-full min-h-screen  imageCenter   bg-[url('https://i.postimg.cc/3w2BvtCZ/signupBg.jpg')] flex items-center justify-center ">
       <Wrapper className="formContainer py-14 ">
         {/*  */}
         <div className="    w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto p-3 xsm:p-5 sm:p-7 md:p-10  rounded-md shadow-xl bg-gray-200 dark:bg-black100 backdrop-blur bg-opacity-60 dark:backdrop-blur  ">
