@@ -188,8 +188,8 @@ git clone https://github.com/MoniruzzamanBillal/RentRide
 
 ### Credentials :
 
-**Admin Email**: abc@d.com
-**Frontend**: 123456
+- **Admin Email**: abc@d.com
+- **password**: 123456
 
 ##
 
