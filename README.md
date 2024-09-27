@@ -1,6 +1,10 @@
 # Car Rental Reservation System
 
-![image](https://i.postimg.cc/bNRh64SM/Rent-Ride.png)
+<!-- ![image](https://i.postimg.cc/7ZDhVj2L/home.png) -->
+
+<p align="center">
+  <img src="https://i.postimg.cc/7ZDhVj2L/home.png" alt="Home page">
+</p>
 
 A user-friendly car rental reservation platform with features for both customers and administrators. The system offers seamless browsing, booking, and management of cars, while providing administrators with the necessary tools to manage inventory and reservations.
 
@@ -39,10 +43,13 @@ A user-friendly car rental reservation platform with features for both customers
    - Review and confirm booking details before finalizing the reservation.
 
 6. **Authentication**:
+
    - Sign-up with email and password.
    - Secure login with session management.
    - Password recovery option.
    - Profile management.
+
+     ##
 
 ### Admin Features
 
@@ -67,9 +74,12 @@ A user-friendly car rental reservation platform with features for both customers
    - Manage returned cars and update their availability status.
 
 4. **User Management**:
+
    - Manage users and admin accounts.
    - Promote users to admin or block/unblock accounts.
    - Change user roles (user to admin).
+
+     ##
 
 ### General Features
 
@@ -88,8 +98,11 @@ A user-friendly car rental reservation platform with features for both customers
    - Integration with local payment methods such as AmarPay or SSLCommerz.
 
 4. **Authentication & Authorization**:
+
    - Role-based access control for users and admins.
    - Secure sign-in and session management.
+
+     ##
 
 ### Technologies Used
 
@@ -101,39 +114,41 @@ A user-friendly car rental reservation platform with features for both customers
 - **Payment Integration**: SSLCommerz/AmarPay (Optional)
 - **Deployment**: Vercel (API)
 
+  ##
+
 ## Screenshots
 
-- Home page
+- ### Home page
 
-  ![image](https://i.postimg.cc/bNRh64SM/Rent-Ride.png)
-
-  ##
-
-- Car List Page
-
-  ![image](https://i.postimg.cc/8zTVFS2T/car-list.png)
+  ![image](https://i.postimg.cc/7ZDhVj2L/home.png)
 
   ##
 
-- Booking Car List Page
+- ### Car List Page
 
-  ![image](https://i.postimg.cc/ry52hjhv/booking-car.png)
-
-  ##
-
-- About us page
-
-  ![image](https://i.postimg.cc/hvVHjyMJ/about-us.png)
+  ![image](https://i.postimg.cc/YC39y86z/car-list-1.png)
 
   ##
 
-- Contact us page
+- ### Booking Car List Page
 
-  ![image](https://i.postimg.cc/X70RhW79/contact-us.png)
+![image](https://i.postimg.cc/bvwJXbLc/booking-car-list-1.png)
+
+##
+
+- ### About us page
+
+  ![image](https://i.postimg.cc/76CZhkpK/about-us-1.png)
 
   ##
 
-- User Dashboard
+- ### Contact us page
+
+  ![image](https://i.postimg.cc/0QL2J4vP/contact-us-1.png)
+
+  ##
+
+- ### User Dashboard
 
 ![image](https://i.postimg.cc/MGnh1mM3/Rent-Ride.png)
 
