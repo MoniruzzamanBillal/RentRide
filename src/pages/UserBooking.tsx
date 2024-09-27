@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   CompleteBookingModal,
+  FormSubmitLoading,
   ManageUserBookingModal,
   TableDataError,
 } from "@/components/ui";
@@ -22,7 +24,8 @@ const UserBooking = () => {
     refetch: userBookingDataRefetch,
   } = useUserBookingQuery(undefined);
 
-  const [cancelBooking] = useCancelBookingMutation();
+  const [cancelBooking, { isLoading: cancelBookingLoading }] =
+    useCancelBookingMutation();
 
   // console.log(userBookingData?.data);
 
@@ -160,31 +163,35 @@ const UserBooking = () => {
   }
 
   return (
-    <div className="UserBookingContainer">
-      <div className="UserBookingWrapper bg-gray-100 dark:bg-black100 shadow rounded-md p-3 ">
-        <h3 className="brand text-2xl font-medium mb-4 ">My Bookings</h3>
+    <>
+      {cancelBookingLoading && <FormSubmitLoading />}
 
-        {/* table starts  */}
-        <div className="tableContainer relative w-full overflow-auto mt-4 ">
-          <table className="w-full text-sm dark:bg-black20 ">
-            <thead className="border-b ">
-              <tr className="w-full text-sm bg-sky-100 dark:bg-black100 dark:text-gray-200 ">
-                <th className="px-4 font-medium">Name</th>
-                <th className="px-4 font-medium">Email</th>
+      <div className="UserBookingContainer">
+        <div className="UserBookingWrapper bg-gray-100 dark:bg-black100 shadow rounded-md p-3 ">
+          <h3 className="brand text-2xl font-medium mb-4 ">My Bookings</h3>
 
-                <th className="px-4 font-medium">Car</th>
-                <th className="px-4 font-medium">Date</th>
-                <th className="px-4 font-medium">Drop location</th>
-                <th className="px-4 font-medium">Status</th>
-                <th className="px-4 font-medium">Action</th>
-              </tr>
-            </thead>
-            <tbody>{content}</tbody>
-          </table>
+          {/* table starts  */}
+          <div className="tableContainer relative w-full overflow-auto mt-4 ">
+            <table className="w-full text-sm dark:bg-black20 ">
+              <thead className="border-b ">
+                <tr className="w-full text-sm bg-sky-100 dark:bg-black100 dark:text-gray-200 ">
+                  <th className="px-4 font-medium">Name</th>
+                  <th className="px-4 font-medium">Email</th>
+
+                  <th className="px-4 font-medium">Car</th>
+                  <th className="px-4 font-medium">Date</th>
+                  <th className="px-4 font-medium">Drop location</th>
+                  <th className="px-4 font-medium">Status</th>
+                  <th className="px-4 font-medium">Action</th>
+                </tr>
+              </thead>
+              <tbody>{content}</tbody>
+            </table>
+          </div>
+          {/* table ends  */}
         </div>
-        {/* table ends  */}
       </div>
-    </div>
+    </>
   );
 };
 

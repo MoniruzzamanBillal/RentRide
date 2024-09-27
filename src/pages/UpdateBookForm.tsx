@@ -26,6 +26,7 @@ import {
 import { UpdatebookCarSchema } from "@/schemas/BookCarSchema";
 import { toast } from "sonner";
 import Loading from "./Loading";
+import { FormSubmitLoading } from "@/components/ui";
 
 const paymentOptions = [
   {
@@ -44,7 +45,7 @@ const UpdateBookForm = () => {
   const { bookId } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [updateBooking] = useUpdateBookingMutation();
+  const [updateBooking, { isLoading }] = useUpdateBookingMutation();
 
   if (!bookId) {
     throw new Error("Something went wrong!! ");
@@ -102,7 +103,7 @@ const UpdateBookForm = () => {
     try {
       const result = await updateBooking({ bookId, bookingData });
 
-      console.log(result);
+      // console.log(result);
 
       //  *  for any  error
       if (result?.error) {
@@ -171,56 +172,67 @@ const UpdateBookForm = () => {
   // console.log(carDetail?.data);
 
   return (
-    <div className="UpdateBookFormContainer dark:bg-black20 w-full min-h-screen  imageCenter  flex items-center justify-center ">
-      <Wrapper className="formWrapper   py-14 ">
-        <div className="    w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto p-3 xsm:p-5 sm:p-7 md:p-10  rounded-md shadow-xl bg-gray-200 dark:bg-black100 backdrop-blur bg-opacity-60 dark:backdrop-blur  ">
-          <h1 className=" mb-6  md:mb-8 xmd:mb-12 lg:mb-14 text-center font-semibold text-prime100 text-lg xsm:text-xl sm:text-3xl md:text-3xl xl:text-4xl text-shadow-prime ">
-            Update Booking Data
-          </h1>
+    <>
+      {isLoading && <FormSubmitLoading />}
 
-          {/*  */}
+      <div className="UpdateBookFormContainer dark:bg-black20 w-full min-h-screen  imageCenter  flex items-center justify-center ">
+        <Wrapper className="formWrapper   py-14 ">
+          <div className="    w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto p-3 xsm:p-5 sm:p-7 md:p-10  rounded-md shadow-xl bg-gray-200 dark:bg-black100 backdrop-blur bg-opacity-60 dark:backdrop-blur  ">
+            <h1 className=" mb-6  md:mb-8 xmd:mb-12 lg:mb-14 text-center font-semibold text-prime100 text-lg xsm:text-xl sm:text-3xl md:text-3xl xl:text-4xl text-shadow-prime ">
+              Update Booking Data
+            </h1>
 
-          {/* form starts  */}
-          <RentForm
-            onSubmit={handleUpdateBooking}
-            resolver={zodResolver(UpdatebookCarSchema)}
-            defaultValues={defaultValues}
-          >
-            <RentInput type="number" label="NID/Passport :" name="nid" />
-            <RentInput type="number" label="License :" name="license" />
-            <RentSelectInput
-              name="paymentMethod"
-              label="Payment Method: "
-              options={paymentOptions}
-            />
+            {/*  */}
 
-            <RentMultiSelectInput
-              name="additionalFeature"
-              label="Features : "
-              options={carFeaturesOptions}
-            />
-            <RentSelectInput
-              name="dropLocation"
-              label="Drop Location : "
-              options={droppLocationOption}
-            />
+            {/* form starts  */}
+            <RentForm
+              onSubmit={handleUpdateBooking}
+              resolver={zodResolver(UpdatebookCarSchema)}
+              defaultValues={defaultValues}
+            >
+              <RentInput type="number" label="NID/Passport :" name="nid" />
+              <RentInput type="number" label="License :" name="license" />
+              <RentSelectInput
+                name="paymentMethod"
+                label="Payment Method: "
+                options={paymentOptions}
+              />
 
-            <RentDatePicker
-              name="bookingDate"
-              label="Booking Date"
-              placeholderText="Update date and time "
-            />
+              <RentMultiSelectInput
+                name="additionalFeature"
+                label="Features : "
+                options={carFeaturesOptions}
+              />
+              <RentSelectInput
+                name="dropLocation"
+                label="Drop Location : "
+                options={droppLocationOption}
+              />
 
-            <Button className="px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base bg-prime50 hover:bg-prime100 active:scale-95 duration-500 ">
-              Book Now
-            </Button>
-          </RentForm>
-          {/* form ends */}
+              <RentDatePicker
+                name="bookingDate"
+                label="Booking Date"
+                placeholderText="Update date and time "
+              />
 
-          {/*  */}
-        </div>
-      </Wrapper>
-    </div>
+              <Button
+                disabled={isLoading}
+                className={`px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base active:scale-95 duration-500 ${
+                  isLoading
+                    ? " cursor-not-allowed bg-gray-300  "
+                    : " bg-prime50 hover:bg-prime100"
+                } `}
+              >
+                Book Now
+              </Button>
+            </RentForm>
+            {/* form ends */}
+
+            {/*  */}
+          </div>
+        </Wrapper>
+      </div>
+    </>
   );
 };
 

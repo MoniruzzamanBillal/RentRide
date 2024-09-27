@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChangeRoleModal, TableDataError } from "@/components/ui";
+import {
+  ChangeRoleModal,
+  FormSubmitLoading,
+  TableDataError,
+} from "@/components/ui";
 
 import {
   useChangeUserRoleMutation,
@@ -17,9 +21,9 @@ const ManageUsers = () => {
     refetch: userDataRefetch,
   } = useGetUsersQuery(undefined);
 
-  const [changeUserRole] = useChangeUserRoleMutation();
+  const [changeUserRole, { isLoading }] = useChangeUserRoleMutation();
 
-  console.log(usersData?.data);
+  // console.log(usersData?.data);
 
   // ! for changing user role
   const handleChangeRole = async (id: string) => {
@@ -111,31 +115,35 @@ const ManageUsers = () => {
   }
 
   return (
-    <div className="ManageUsersContainer">
-      <div className="ManageUsersWrapper bg-gray-100 dark:bg-black100 shadow rounded-md p-3  ">
-        <h3 className="brand text-2xl font-medium mb-4 "> Manage Users </h3>
+    <>
+      {isLoading && <FormSubmitLoading />}
 
-        {/* manage user table starts  */}
-        <div className="manageUserTable relative w-full overflow-auto mt-4 ">
-          <table className="w-full text-sm dark:bg-black20 ">
-            <thead className="border-b">
-              <tr className="w-full text-sm bg-sky-100 dark:bg-black100 dark:text-gray-200 ">
-                <th className="px-4 font-medium">Name</th>
-                <th className="px-4 font-medium">Email </th>
-                <th className="px-4 font-medium">Phone </th>
-                <th className="px-4 font-medium">Role </th>
-                <th className="px-4 font-medium">Change role </th>
-              </tr>
-            </thead>
-            <tbody>{content}</tbody>
-          </table>
+      <div className="ManageUsersContainer">
+        <div className="ManageUsersWrapper bg-gray-100 dark:bg-black100 shadow rounded-md p-3  ">
+          <h3 className="brand text-2xl font-medium mb-4 "> Manage Users </h3>
+
+          {/* manage user table starts  */}
+          <div className="manageUserTable relative w-full overflow-auto mt-4 ">
+            <table className="w-full text-sm dark:bg-black20 ">
+              <thead className="border-b">
+                <tr className="w-full text-sm bg-sky-100 dark:bg-black100 dark:text-gray-200 ">
+                  <th className="px-4 font-medium">Name</th>
+                  <th className="px-4 font-medium">Email </th>
+                  <th className="px-4 font-medium">Phone </th>
+                  <th className="px-4 font-medium">Role </th>
+                  <th className="px-4 font-medium">Change role </th>
+                </tr>
+              </thead>
+              <tbody>{content}</tbody>
+            </table>
+          </div>
+          {/* manage user table ends  */}
+
+          {/*  */}
+          {/*  */}
         </div>
-        {/* manage user table ends  */}
-
-        {/*  */}
-        {/*  */}
       </div>
-    </div>
+    </>
   );
 };
 

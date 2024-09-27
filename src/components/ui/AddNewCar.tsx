@@ -15,6 +15,7 @@ import addCarValidationSchema from "@/schemas/AddCarSchema";
 import { toast } from "sonner";
 
 import { useAddNewCarMutation } from "@/redux/features/cars/car.api";
+import FormSubmitLoading from "./FormSubmitLoading";
 
 const AddNewCar = () => {
   const navigate = useNavigate();
@@ -92,81 +93,85 @@ const AddNewCar = () => {
   };
 
   return (
-    <div className="AddNewCarContainer py-8 bg-gray-100 dark:bg-black100 min-h-screen p-3 shadow rounded-md ">
-      <div className="addCarWrapper">
-        <h1 className=" mb-8 px-3 xsm:px-4 sm:px-5 md:px-6 font-bold text-2xl  md:text-3xl text-center  ">
-          Add new car
-        </h1>
+    <>
+      {isLoading && <FormSubmitLoading />}
 
-        {/* add car form container starts  */}
-        <div className="addCarForm p-1 w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto ">
-          <RentForm
-            onSubmit={handleAddCar}
-            resolver={zodResolver(addCarValidationSchema)}
-          >
-            <RentInput
-              type="text"
-              label="Name :"
-              name="name"
-              placeholder="Enter car name"
-            />
-            <RentInput type="file" label="Car Image :" name="image" />
-            <RentInput
-              type="text"
-              label="Description :"
-              name="description"
-              placeholder="Enter car description"
-            />
-            <RentInput
-              type="text"
-              label="Color :"
-              name="color"
-              placeholder="Enter car color"
-            />
+      <div className="AddNewCarContainer py-8 bg-gray-100 dark:bg-black100 min-h-screen p-3 shadow rounded-md ">
+        <div className="addCarWrapper">
+          <h1 className=" mb-8 px-3 xsm:px-4 sm:px-5 md:px-6 font-bold text-2xl  md:text-3xl text-center  ">
+            Add new car
+          </h1>
 
-            <RentSelectInput
-              name="isElectric"
-              label="Electric  : "
-              options={isElectricCarOption}
-            />
-            <RentSelectInput
-              name="type"
-              label="Car Type  : "
-              options={carTypeOptions}
-            />
-            <RentMultiSelectInput
-              name="features"
-              label="Features : "
-              options={carFeaturesOptions}
-            />
-            <RentMultiSelectInput
-              name="dropLocation"
-              label="Drop locations: "
-              options={dropLocationOptions}
-            />
-
-            <RentInput
-              type="number"
-              label="Price per hour :"
-              name="pricePerHour"
-              placeholder="Enter car price per hour cost"
-            />
-
-            <Button
-              disabled={isLoading}
-              className={`px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base  active:scale-95 duration-500 ${
-                isLoading
-                  ? " bg-gray-600 cursor-not-allowed "
-                  : " bg-green-600 hover:bg-green-700 "
-              } `}
+          {/* add car form container starts  */}
+          <div className="addCarForm p-1 w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto ">
+            <RentForm
+              onSubmit={handleAddCar}
+              resolver={zodResolver(addCarValidationSchema)}
             >
-              Add car
-            </Button>
-          </RentForm>
+              <RentInput
+                type="text"
+                label="Name :"
+                name="name"
+                placeholder="Enter car name"
+              />
+              <RentInput type="file" label="Car Image :" name="image" />
+              <RentInput
+                type="text"
+                label="Description :"
+                name="description"
+                placeholder="Enter car description"
+              />
+              <RentInput
+                type="text"
+                label="Color :"
+                name="color"
+                placeholder="Enter car color"
+              />
+
+              <RentSelectInput
+                name="isElectric"
+                label="Electric  : "
+                options={isElectricCarOption}
+              />
+              <RentSelectInput
+                name="type"
+                label="Car Type  : "
+                options={carTypeOptions}
+              />
+              <RentMultiSelectInput
+                name="features"
+                label="Features : "
+                options={carFeaturesOptions}
+              />
+              <RentMultiSelectInput
+                name="dropLocation"
+                label="Drop locations: "
+                options={dropLocationOptions}
+              />
+
+              <RentInput
+                type="number"
+                label="Price per hour :"
+                name="pricePerHour"
+                placeholder="Enter car price per hour cost"
+              />
+
+              <Button
+                disabled={isLoading}
+                className={`px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base  active:scale-95 duration-500 ${
+                  isLoading
+                    ? " bg-gray-600 cursor-not-allowed "
+                    : " bg-green-600 hover:bg-green-700 "
+                } `}
+              >
+                Add car
+              </Button>
+            </RentForm>
+          </div>
+          {/* add car form container ends  */}
         </div>
-        {/* add car form container ends  */}
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Wrapper from "@/components/shared/Wrapper";
+import { FormSubmitLoading } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import {
   useCompleteBookingMutation,
@@ -17,12 +18,12 @@ const CompleteBooking = () => {
   const { data: bookingDetail, isLoading: bookingDetailLoading } =
     useSingleBookingQuery(bookId!, { skip: !bookId });
 
-  const [completeBooking] = useCompleteBookingMutation();
+  const [completeBooking, { isLoading }] = useCompleteBookingMutation();
 
   const [startDate, setStartDate] = useState(new Date());
   const [bookingStartTime, setbookingStartTime] = useState("");
 
-  console.log(bookingDetail?.data);
+  // console.log(bookingDetail?.data);
 
   const filterPassedTime = (time: Date) => {
     const currentDate = new Date();
@@ -99,40 +100,49 @@ const CompleteBooking = () => {
   }
 
   return (
-    <div className="CompleteBookingContainer w-full min-h-screen flex items-center justify-center dark:bg-black20  ">
-      <Wrapper className="formWrapper   py-14 ">
-        <div className="fomrContainer   w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto p-3 xsm:p-5 sm:p-7 md:p-10  rounded-md shadow-xl bg-gray-200 dark:bg-black100 backdrop-blur bg-opacity-60 dark:backdrop-blur ">
-          <h1 className=" mb-6  md:mb-8 xmd:mb-12 lg:mb-14 text-center font-semibold text-prime100 text-lg xsm:text-xl sm:text-3xl md:text-3xl xl:text-4xl text-shadow-prime ">
-            Complete Booking
-          </h1>
+    <>
+      {isLoading && <FormSubmitLoading />}
 
-          {/* form starts  */}
-
-          <div className="completeBookingForm  flex flex-col gap-y-4 justify-center items-center ">
-            <DatePicker
-              selected={startDate}
-              onChange={(date) => setStartDate(date!)}
-              showTimeSelect
-              showTimeSelectOnly
-              timeIntervals={15}
-              filterTime={filterPassedTime}
-              timeCaption="Time"
-              dateFormat="h:mm aa"
-              className="border border-gray-400 dark:bg-black100 py-2 px-3 rounded-md "
-            />
-
-            <Button
-              onClick={() => handleCompleteBooking()}
-              className="px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base bg-prime50 hover:bg-prime100 active:scale-95 duration-500 "
-            >
+      <div className="CompleteBookingContainer w-full min-h-screen flex items-center justify-center dark:bg-black20  ">
+        <Wrapper className="formWrapper   py-14 ">
+          <div className="fomrContainer   w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto p-3 xsm:p-5 sm:p-7 md:p-10  rounded-md shadow-xl bg-gray-200 dark:bg-black100 backdrop-blur bg-opacity-60 dark:backdrop-blur ">
+            <h1 className=" mb-6  md:mb-8 xmd:mb-12 lg:mb-14 text-center font-semibold text-prime100 text-lg xsm:text-xl sm:text-3xl md:text-3xl xl:text-4xl text-shadow-prime ">
               Complete Booking
-            </Button>
-          </div>
+            </h1>
 
-          {/* form Ends */}
-        </div>
-      </Wrapper>
-    </div>
+            {/* form starts  */}
+
+            <div className="completeBookingForm  flex flex-col gap-y-4 justify-center items-center ">
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date!)}
+                showTimeSelect
+                showTimeSelectOnly
+                timeIntervals={15}
+                filterTime={filterPassedTime}
+                timeCaption="Time"
+                dateFormat="h:mm aa"
+                className="border border-gray-400 dark:bg-black100 py-2 px-3 rounded-md "
+              />
+
+              <Button
+                onClick={() => handleCompleteBooking()}
+                disabled={isLoading}
+                className={`px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base  active:scale-95 duration-500 ${
+                  isLoading
+                    ? " cursor-not-allowed bg-gray-300  "
+                    : " bg-prime50 hover:bg-prime100"
+                } `}
+              >
+                Complete Booking
+              </Button>
+            </div>
+
+            {/* form Ends */}
+          </div>
+        </Wrapper>
+      </div>
+    </>
   );
 };
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   useGetCarQuery,
   useUpdateCarMutation,
@@ -17,6 +18,7 @@ import {
 import RentMultiSelectInput from "../form/RentMultiSelectInput ";
 import { Button } from "./button";
 import { toast } from "sonner";
+import FormSubmitLoading from "./FormSubmitLoading";
 
 const UpdateCar = () => {
   const { id } = useParams();
@@ -34,7 +36,7 @@ const UpdateCar = () => {
     isFetching: carDetailFetching,
   } = useGetCarQuery(id, { skip: !id });
 
-  const [updateCar] = useUpdateCarMutation();
+  const [updateCar, { isLoading }] = useUpdateCarMutation();
 
   let defaultValues;
   defaultValues = {
@@ -182,7 +184,14 @@ const UpdateCar = () => {
           placeholder="Enter car price per hour cost"
         />
 
-        <Button className="px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base bg-green-600 hover:bg-green-700 active:scale-95 duration-500">
+        <Button
+          disabled={isLoading}
+          className={`px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base  active:scale-95 duration-500 ${
+            isLoading
+              ? " cursor-not-allowed bg-gray-300  "
+              : " bg-green-600 hover:bg-green-700"
+          } `}
+        >
           Update
         </Button>
       </RentForm>
@@ -190,19 +199,23 @@ const UpdateCar = () => {
   }
 
   return (
-    <div className="UpdateCarContainer  py-8 bg-gray-100 dark:bg-black100 min-h-screen p-3 shadow rounded-md ">
-      <div className="UpdateCarWrapper">
-        <h1 className=" mb-8 px-3 xsm:px-4 sm:px-5 md:px-6 font-bold text-2xl  md:text-3xl text-center  ">
-          Update car
-        </h1>
+    <>
+      {isLoading && <FormSubmitLoading />}
 
-        {/* update car form container starts  */}
-        <div className="updateCarForm p-1 w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto ">
-          {content}
+      <div className="UpdateCarContainer  py-8 bg-gray-100 dark:bg-black100 min-h-screen p-3 shadow rounded-md ">
+        <div className="UpdateCarWrapper">
+          <h1 className=" mb-8 px-3 xsm:px-4 sm:px-5 md:px-6 font-bold text-2xl  md:text-3xl text-center  ">
+            Update car
+          </h1>
+
+          {/* update car form container starts  */}
+          <div className="updateCarForm p-1 w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto ">
+            {content}
+          </div>
+          {/* update car form container ends  */}
         </div>
-        {/* update car form container ends  */}
       </div>
-    </div>
+    </>
   );
 };
 

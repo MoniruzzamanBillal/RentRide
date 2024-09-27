@@ -1,4 +1,8 @@
-import { ProcedePaymentModal, TableDataError } from "@/components/ui";
+import {
+  FormSubmitLoading,
+  ProcedePaymentModal,
+  TableDataError,
+} from "@/components/ui";
 import {
   useCompletePaymentMutation,
   useUserCompletedBookingQuery,
@@ -17,13 +21,13 @@ const UserPayment = () => {
     isError: userCompletedBookError,
   } = useUserCompletedBookingQuery(undefined);
 
-  const [completePayment] = useCompletePaymentMutation();
+  const [completePayment, { isLoading }] = useCompletePaymentMutation();
 
-  console.log(userPaymentCompletedBookingData?.data);
+  // console.log(userPaymentCompletedBookingData?.data);
 
   // ! for complete payment
   const handleProcedePayment = async (id: string) => {
-    const taostId = toast.loading("Paying ....");
+    const taostId = toast.loading("Procede to payment ....");
 
     try {
       const result = await completePayment(id);
@@ -155,31 +159,35 @@ const UserPayment = () => {
   }
 
   return (
-    <div className="UserPaymentContainer">
-      <div className="UserPaymentWrapper bg-gray-100 dark:bg-black100 shadow rounded-md p-3 border border-gray-200  ">
-        <h3 className="brand text-2xl font-medium mb-4 ">My Bookings</h3>
+    <>
+      {isLoading && <FormSubmitLoading />}
 
-        {/* table starts  */}
-        <div className="tableContainer relative w-full overflow-auto mt-4 ">
-          <table className="w-full text-sm dark:bg-black20">
-            <thead className="border-b">
-              <tr className="w-full text-sm bg-sky-100 dark:bg-black100 dark:text-gray-200 ">
-                <th className="px-4 font-medium">Name</th>
-                <th className="px-4 font-medium">Car </th>
-                <th className="px-4 font-medium">Drop location</th>
-                <th className="px-4 font-medium">Date</th>
-                <th className="px-4 font-medium">Cost</th>
+      <div className="UserPaymentContainer">
+        <div className="UserPaymentWrapper bg-gray-100 dark:bg-black100 shadow rounded-md p-3 border border-gray-200  ">
+          <h3 className="brand text-2xl font-medium mb-4 ">My Bookings</h3>
 
-                <th className="px-4 font-medium"> Payment Status</th>
-                <th className="px-4 font-medium">Action</th>
-              </tr>
-            </thead>
-            <tbody>{content}</tbody>
-          </table>
+          {/* table starts  */}
+          <div className="tableContainer relative w-full overflow-auto mt-4 ">
+            <table className="w-full text-sm dark:bg-black20">
+              <thead className="border-b">
+                <tr className="w-full text-sm bg-sky-100 dark:bg-black100 dark:text-gray-200 ">
+                  <th className="px-4 font-medium">Name</th>
+                  <th className="px-4 font-medium">Car </th>
+                  <th className="px-4 font-medium">Drop location</th>
+                  <th className="px-4 font-medium">Date</th>
+                  <th className="px-4 font-medium">Cost</th>
+
+                  <th className="px-4 font-medium"> Payment Status</th>
+                  <th className="px-4 font-medium">Action</th>
+                </tr>
+              </thead>
+              <tbody>{content}</tbody>
+            </table>
+          </div>
+          {/* table ends  */}
         </div>
-        {/* table ends  */}
       </div>
-    </div>
+    </>
   );
 };
 

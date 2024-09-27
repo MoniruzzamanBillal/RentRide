@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ManageReturnCarModal, TableDataError } from "@/components/ui";
+import {
+  FormSubmitLoading,
+  ManageReturnCarModal,
+  TableDataError,
+} from "@/components/ui";
 import { useGetCompletedBookingsUnavailableCarQuery } from "@/redux/features/booking/booking.api";
 import { useReturnCarMutation } from "@/redux/features/cars/car.api";
 import { TBooking } from "@/types/globalTypes";
@@ -14,7 +18,7 @@ const ManageReturnCar = () => {
     refetch: completedDataRefetch,
   } = useGetCompletedBookingsUnavailableCarQuery(undefined);
 
-  const [returnCar] = useReturnCarMutation();
+  const [returnCar, { isLoading }] = useReturnCarMutation();
 
   // console.log(completedBookingData?.data);
 
@@ -29,7 +33,7 @@ const ManageReturnCar = () => {
 
     try {
       const response = await returnCar(payloadData);
-      console.log(response);
+      // console.log(response);
       // * for any error
       if (response?.error) {
         toast.error((response?.error as any)?.data?.message, {
@@ -145,33 +149,37 @@ const ManageReturnCar = () => {
   }
 
   return (
-    <div className="ManageReturnCarContainer">
-      <div className="manageReturnWrapper bg-gray-100 dark:bg-black100 shadow rounded-md p-3  ">
-        <h1 className="brand text-2xl font-medium mb-4 ">
-          {" "}
-          Manage Return cars{" "}
-        </h1>
-        {/* table starts  */}
-        <div className="tableContainer relative w-full overflow-auto mt-4 ">
-          <table className="w-full text-sm dark:bg-black20">
-            <thead className="border-b">
-              <tr className="w-full text-sm bg-sky-100 dark:bg-black100 dark:text-gray-200 ">
-                <th className="px-4 font-medium">Name</th>
-                <th className="px-4 font-medium">Image</th>
-                <th className="px-4 font-medium">Booking Date</th>
-                <th className="px-4 font-medium">Drop location</th>
-                <th className="px-4 font-medium">Earning</th>
-                <th className="px-4 font-medium">Car Status</th>
-                <th className="px-4 font-medium">Payment Status</th>
-                <th className="px-4 font-medium">Action</th>
-              </tr>
-            </thead>
-            <tbody>{content}</tbody>
-          </table>
+    <>
+      {isLoading && <FormSubmitLoading />}
+
+      <div className="ManageReturnCarContainer">
+        <div className="manageReturnWrapper bg-gray-100 dark:bg-black100 shadow rounded-md p-3  ">
+          <h1 className="brand text-2xl font-medium mb-4 ">
+            {" "}
+            Manage Return cars{" "}
+          </h1>
+          {/* table starts  */}
+          <div className="tableContainer relative w-full overflow-auto mt-4 ">
+            <table className="w-full text-sm dark:bg-black20">
+              <thead className="border-b">
+                <tr className="w-full text-sm bg-sky-100 dark:bg-black100 dark:text-gray-200 ">
+                  <th className="px-4 font-medium">Name</th>
+                  <th className="px-4 font-medium">Image</th>
+                  <th className="px-4 font-medium">Booking Date</th>
+                  <th className="px-4 font-medium">Drop location</th>
+                  <th className="px-4 font-medium">Earning</th>
+                  <th className="px-4 font-medium">Car Status</th>
+                  <th className="px-4 font-medium">Payment Status</th>
+                  <th className="px-4 font-medium">Action</th>
+                </tr>
+              </thead>
+              <tbody>{content}</tbody>
+            </table>
+          </div>
+          {/* table ends  */}
         </div>
-        {/* table ends  */}
       </div>
-    </div>
+    </>
   );
 };
 

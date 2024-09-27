@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { RentForm, RentInput } from "@/components/form";
 import Wrapper from "@/components/shared/Wrapper";
+import { FormSubmitLoading } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { useLogInMutation } from "@/redux/features/auth/auth.api";
 import { setUser } from "@/redux/features/auth/auth.slice";
@@ -56,61 +57,68 @@ const Login = () => {
   };
 
   return (
-    <div className="LoginContainer w-full min-h-screen  imageCenter   bg-[url('https://i.postimg.cc/ZqLb0hgF/loginBg.jpg')] flex items-center justify-center ">
-      <Wrapper className="formContainer py-14 ">
-        <div className="    w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto p-3 xsm:p-5 sm:p-7 md:p-10  rounded-md shadow-xl bg-gray-200 dark:bg-black100 backdrop-blur bg-opacity-60 dark:backdrop-blur  ">
-          <p className=" mb-3 xsm:mb-5 sm:mb-8 text-xl xsm:text-2xl sm:text-3xl text-center font-semibold CormorantFont text-gray-700 dark:text-white  ">
-            Log in
-          </p>
+    <>
+      {isLoading && <FormSubmitLoading />}
 
-          {/*  */}
-
-          {/* form starts  */}
-          <RentForm onSubmit={handleLogin} resolver={zodResolver(loginSchema)}>
-            <RentInput
-              type="email"
-              label="Email :"
-              name="email"
-              placeholder="Enter Your Email"
-            />
-
-            <RentInput
-              type="password"
-              label="Password :"
-              name="password"
-              placeholder="Enter Your Password"
-            />
-
-            <Button
-              disabled={isLoading}
-              className={`px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base  active:scale-95 duration-500 ${
-                isLoading
-                  ? " cursor-not-allowed bg-gray-300  "
-                  : " bg-prime50 hover:bg-prime100"
-              } `}
-            >
+      <div className="LoginContainer w-full min-h-screen  imageCenter   bg-[url('https://i.postimg.cc/ZqLb0hgF/loginBg.jpg')] flex items-center justify-center   ">
+        <Wrapper className="formContainer py-14  ">
+          <div className="    w-[95%] xsm:w-[85%] sm:w-[78%] md:w-[70%] xmd:w-[65%] lg:w-[55%] m-auto p-3 xsm:p-5 sm:p-7 md:p-10  rounded-md shadow-xl bg-gray-200 dark:bg-black100 backdrop-blur bg-opacity-60 dark:backdrop-blur  ">
+            <p className=" mb-3 xsm:mb-5 sm:mb-8 text-xl xsm:text-2xl sm:text-3xl text-center font-semibold CormorantFont text-gray-700 dark:text-white  ">
               Log in
-            </Button>
-          </RentForm>
-          {/* form ends */}
+            </p>
 
-          <div className="forgotPassword  mt-2  font-semibold underline cursor-pointer text-blue-800 dark:text-blue-500  ">
-            <Link to={"/forgotPassword"}>forgot password</Link>
+            {/*  */}
+
+            {/* form starts  */}
+            <RentForm
+              onSubmit={handleLogin}
+              resolver={zodResolver(loginSchema)}
+            >
+              <RentInput
+                type="email"
+                label="Email :"
+                name="email"
+                placeholder="Enter Your Email"
+              />
+
+              <RentInput
+                type="password"
+                label="Password :"
+                name="password"
+                placeholder="Enter Your Password"
+              />
+
+              <Button
+                disabled={isLoading}
+                className={`px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base  active:scale-95 duration-500 ${
+                  isLoading
+                    ? " cursor-not-allowed bg-gray-300  "
+                    : " bg-prime50 hover:bg-prime100"
+                } `}
+              >
+                Log in
+              </Button>
+            </RentForm>
+            {/* form ends */}
+
+            <div className="forgotPassword  mt-2  font-semibold underline cursor-pointer text-blue-800 dark:text-blue-500  ">
+              <Link to={"/forgotPassword"}>forgot password</Link>
+            </div>
+
+            {/*  */}
+
+            <div className="text-center  mt-6  ">
+              <a className="right-0 inline-block text-sm font-semibold align-baseline text-gray-900 hover:text-gray-950 dark:text-gray-200  ">
+                Don't have any account ?{" "}
+                <span className=" text-blue-700 font-bold cursor-pointer ">
+                  <Link to={`/sign-up`}>Sign up </Link>
+                </span>
+              </a>
+            </div>
           </div>
-
-          {/*  */}
-
-          <div className="text-center  mt-6  ">
-            <a className="right-0 inline-block text-sm font-semibold align-baseline text-gray-900 hover:text-gray-950 dark:text-gray-200  ">
-              Don't have any account ?{" "}
-              <span className=" text-blue-700 font-bold cursor-pointer ">
-                <Link to={`/sign-up`}>Sign up </Link>
-              </span>
-            </a>
-          </div>
-        </div>
-      </Wrapper>
-    </div>
+        </Wrapper>
+      </div>
+    </>
   );
 };
 

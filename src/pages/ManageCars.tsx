@@ -1,4 +1,8 @@
-import { CarDeleteModal, TableDataError } from "@/components/ui";
+import {
+  CarDeleteModal,
+  FormSubmitLoading,
+  TableDataError,
+} from "@/components/ui";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,7 +22,7 @@ const ManageCars = () => {
     refetch: carDataRefetch,
   } = useGetAllCarsQuery(undefined);
 
-  const [deleteCar] = useDeleteCarMutation();
+  const [deleteCar, { isLoading: carDeleteLoading }] = useDeleteCarMutation();
 
   console.log(allCarData?.data);
 
@@ -128,45 +132,49 @@ const ManageCars = () => {
   }
 
   return (
-    <div className="ManageCarsContainer ">
-      <div className="manageCarWrapper bg-gray-100 dark:bg-black100  shadow rounded-md p-3 ">
-        <h3 className="brand text-2xl font-medium mb-4 ">All Cars</h3>
+    <>
+      {carDeleteLoading && <FormSubmitLoading />}
 
-        {/* new product add  container starts  */}
-        <div className="addNewProduct mb-4 ">
-          <Link to={"/dashboard/add-car"}>
-            <Button className=" px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base bg-prime50 hover:bg-prime100 active:scale-95 duration-500 ">
-              Add new Car
-            </Button>
-          </Link>
+      <div className="ManageCarsContainer ">
+        <div className="manageCarWrapper bg-gray-100 dark:bg-black100  shadow rounded-md p-3 ">
+          <h3 className="brand text-2xl font-medium mb-4 ">All Cars</h3>
+
+          {/* new product add  container starts  */}
+          <div className="addNewProduct mb-4 ">
+            <Link to={"/dashboard/add-car"}>
+              <Button className=" px-3 xsm:px-4 sm:px-5 md:px-6 font-semibold text-xs sm:text-sm md:text-base bg-prime50 hover:bg-prime100 active:scale-95 duration-500 ">
+                Add new Car
+              </Button>
+            </Link>
+
+            {/*  */}
+          </div>
+          {/* new product add  container ends */}
+
+          {/* table starts  */}
+          <div className="relative w-full overflow-auto mt-4">
+            <table className="w-full text-sm dark:bg-black20">
+              <thead className="border-b">
+                <tr className="w-full text-sm bg-sky-100 dark:bg-black100 dark:text-gray-200 ">
+                  <th className="px-4 font-medium">Name</th>
+                  <th className="px-4 font-medium">Image</th>
+                  <th className="px-4 font-medium">Color</th>
+                  <th className="px-4 font-medium">Electric</th>
+                  <th className="px-4 font-medium">Price Per Hour</th>
+                  <th className="px-4 font-medium">Status</th>
+                  <th className="px-4 font-medium">Update</th>
+                  <th className="px-4 font-medium">Deletee</th>
+                </tr>
+              </thead>
+              <tbody>{content}</tbody>
+            </table>
+          </div>
+          {/* table ends  */}
 
           {/*  */}
         </div>
-        {/* new product add  container ends */}
-
-        {/* table starts  */}
-        <div className="relative w-full overflow-auto mt-4">
-          <table className="w-full text-sm dark:bg-black20">
-            <thead className="border-b">
-              <tr className="w-full text-sm bg-sky-100 dark:bg-black100 dark:text-gray-200 ">
-                <th className="px-4 font-medium">Name</th>
-                <th className="px-4 font-medium">Image</th>
-                <th className="px-4 font-medium">Color</th>
-                <th className="px-4 font-medium">Electric</th>
-                <th className="px-4 font-medium">Price Per Hour</th>
-                <th className="px-4 font-medium">Status</th>
-                <th className="px-4 font-medium">Update</th>
-                <th className="px-4 font-medium">Deletee</th>
-              </tr>
-            </thead>
-            <tbody>{content}</tbody>
-          </table>
-        </div>
-        {/* table ends  */}
-
-        {/*  */}
       </div>
-    </div>
+    </>
   );
 };
 
