@@ -168,15 +168,13 @@ A user-friendly car rental reservation platform with features for both customers
 
 - ### Admin Dashboard
 
-![image](https://i.postimg.cc/bwdMKwbV/Rent-Ride.png)
-
-![image](https://i.postimg.cc/Sx55qbfS/Rent-Ride-1.png)
-
-![image](https://i.postimg.cc/hGdYtZ29/Rent-Ride-2.png)
-
-![image](https://i.postimg.cc/MTJFM0Lg/Rent-Ride-3.png)
-
-![image](https://i.postimg.cc/xCGFKJD8/Rent-Ride-4.png)
+<p align="center">
+  <img src="https://i.postimg.cc/SstY1Vpv/Rent-Ride.png" alt="Admin Dashboard 1">
+  <img src="https://i.postimg.cc/Sx55qbfS/Rent-Ride-1.png" alt="Admin Dashboard 2">
+  <img src="https://i.postimg.cc/hGdYtZ29/Rent-Ride-2.png" alt="Admin Dashboard 3">
+  <img src="https://i.postimg.cc/MTJFM0Lg/Rent-Ride-3.png" alt="Admin Dashboard 4">
+  <img src="https://i.postimg.cc/xCGFKJD8/Rent-Ride-4.png" alt="Admin Dashboard 5">
+</p>
 
 ## Installation
 
