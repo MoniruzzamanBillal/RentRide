@@ -1,7 +1,5 @@
 # Car Rental Reservation System
 
-<!-- ![image](https://i.postimg.cc/7ZDhVj2L/home.png) -->
-
 <p align="center">
   <img src="https://i.postimg.cc/7ZDhVj2L/home.png" alt="Home page">
 </p>
@@ -120,63 +118,80 @@ A user-friendly car rental reservation platform with features for both customers
 
 - ### Home page
 
-  ![image](https://i.postimg.cc/7ZDhVj2L/home.png)
+<p align="center">
+  <img src="https://i.postimg.cc/7ZDhVj2L/home.png" alt="Home page">
+</p>
 
-  ##
+##
 
 - ### Car List Page
 
-  ![image](https://i.postimg.cc/YC39y86z/car-list-1.png)
+<p align="center">
+  <img src="https://i.postimg.cc/YC39y86z/car-list-1.png" alt="Car List Page">
+</p>
 
-  ##
+##
 
 - ### Booking Car List Page
 
-![image](https://i.postimg.cc/bvwJXbLc/booking-car-list-1.png)
+<p align="center">
+  <img src="https://i.postimg.cc/bvwJXbLc/booking-car-list-1.png" alt="Booking Car List Page">
+</p>
 
 ##
 
 - ### About us page
 
-  ![image](https://i.postimg.cc/76CZhkpK/about-us-1.png)
+    <p align="center">
+    <img src="https://i.postimg.cc/76CZhkpK/about-us-1.png" alt="About us page">
+  </p>
 
   ##
 
 - ### Contact us page
 
-  ![image](https://i.postimg.cc/0QL2J4vP/contact-us-1.png)
+    <p align="center">
+    <img src="https://i.postimg.cc/0QL2J4vP/contact-us-1.png" alt="Contact us page">
+  </p>
 
   ##
 
 - ### User Dashboard
 
-![image](https://i.postimg.cc/MGnh1mM3/Rent-Ride.png)
+![image](https://i.postimg.cc/ZY8hcnFr/Rent-Ride.png)
 
-![image](https://i.postimg.cc/sXSqNfJp/Rent-Ride-1.png)
+![image](https://i.postimg.cc/WbscfVXx/Rent-Ride-1.png)
 
-![image](https://i.postimg.cc/vTtjGPkT/Rent-Ride-2.png)
+![image](https://i.postimg.cc/rFgXBHHs/Rent-Ride-2.png)
 
 ##
 
-- Admin Dashboard
+- ### Admin Dashboard
 
-![image](https://i.postimg.cc/wMzwW6cv/admin-dashboard.png)
+![image](https://i.postimg.cc/bwdMKwbV/Rent-Ride.png)
 
-![image](https://i.postimg.cc/dV1XKjBQ/Rent-Ride-1.png)
+![image](https://i.postimg.cc/Sx55qbfS/Rent-Ride-1.png)
 
-![image](https://i.postimg.cc/0yB45KWY/Rent-Ride-2.png)
+![image](https://i.postimg.cc/hGdYtZ29/Rent-Ride-2.png)
 
-![image](https://i.postimg.cc/25LK1jMP/Rent-Ride-3.png)
+![image](https://i.postimg.cc/MTJFM0Lg/Rent-Ride-3.png)
 
-![image](https://i.postimg.cc/xCrFMDSq/Rent-Ride-4.png)
+![image](https://i.postimg.cc/xCGFKJD8/Rent-Ride-4.png)
 
 ## Installation
 
-1. Clone the repository:
+1.  Clone the repository:
 
-   ```bash
-   git clone https://github.com/MoniruzzamanBillal/RentRide
-   ```
+```bash
+git clone https://github.com/MoniruzzamanBillal/RentRide
+```
+
+##
+
+### Credentials :
+
+**Admin Email**: abc@d.com
+**Frontend**: 123456
 
 ##
 
